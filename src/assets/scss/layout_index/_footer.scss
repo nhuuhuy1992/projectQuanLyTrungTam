@@ -1,0 +1,42 @@
+.footer {
+    color: #7ab9ff;
+    font-weight: 300;
+    background: darken( $main-color, 20%) url(../images/footer-bg.png)bottom center repeat-x;
+    background-size: contain;
+    &__block {
+        margin-top: 10px;
+    }
+    &__item {
+        margin-top: 10px;
+        a {
+            color: #7ab9ff;
+            &:hover {
+                color: $white-color;
+            }
+        }
+    }
+    &__title {
+        color: $white-color;
+        position: relative;
+        font-weight: 500;
+        span {
+            background: darken( $main-color, 20%);
+            padding: 0 10px 0 0;
+            z-index: 10;
+            position: relative;
+        }
+        &::after {
+            content: "";
+            position: absolute;
+            right: 0px;
+            left: 0;
+            height: 1px;
+            background: $light-green-color;
+            bottom: 7px;
+            z-index: 1;
+        }
+    }
+    &__copyright {
+        border-top: 1px solid darken( #7ab9ff, 50%);
+    }
+}

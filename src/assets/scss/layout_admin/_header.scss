@@ -1,0 +1,21 @@
+.header{
+    height: 60px;
+    border-bottom: 3px solid $amber-color;
+    &__content{
+        height: 100%;
+    }
+    &__right{
+        .fa-envelope{
+            color: #529ea5;
+            font-size: 20px;
+            position: relative;
+            cursor: pointer;
+            margin-right: 30px;
+            .badge{
+                @include posi-top-right(absolute, -13px, -9px);
+            }
+        }
+    }
+}
+
+

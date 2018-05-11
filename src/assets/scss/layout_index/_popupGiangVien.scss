@@ -1,0 +1,36 @@
+.popUpGiangVien{
+	.modal-body{
+		h2{
+			color: #3C3C3C;
+			font-family: lato-reg;
+			font-size: 160%;
+		}
+		.gach{
+			@include size(11%, 3px);
+			width: 11%;
+		    height: 3px;
+		    margin: 10px 0 21px;
+		}
+		h5{
+			font-size: 14px;
+			letter-spacing: 1px;
+			margin: 10px 0 ;
+		}
+		ul{
+			margin-bottom: 30px;
+			.icon-info{
+				@include size(30px, 30px);
+				font-size: 13px;
+				&::after{
+					background: #fff;
+				}
+			}
+		}
+		p{
+			font-family: lato-reg;
+		}
+	}
+	@include mobile{
+		padding-right: 0 !important;
+	}
+}

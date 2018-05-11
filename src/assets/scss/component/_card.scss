@@ -1,0 +1,15 @@
+.card {
+    border-radius: 0px;
+    border: none;
+    box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
+    &-img-wrapper {
+        height: 15rem;
+        overflow: hidden;
+    }
+    &-img-top {
+        border-radius: 0px;
+    }
+    &-title {
+        color: $gray-color
+    }
+}

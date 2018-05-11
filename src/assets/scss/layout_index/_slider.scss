@@ -1,0 +1,41 @@
+.slider {
+    @include size(100vw, 100vh);
+    position: relative;
+    z-index: $z_slider;
+    background: url(../images/01.jpeg) no-repeat center center fixed;
+    background-size: cover;
+    &__overlay {
+        @include posi-top-left(absolute, 0, 0);
+        @include size(100%, 100%);
+        z-index: $z_slider__overlay;
+        background-image: -webkit-linear-gradient(180deg, rgba(61, 22, 132, 0.8), #1641b5);
+        background-image: -o-linear-gradient(180deg, rgba(61, 22, 132, 0.8), #1641b5);
+        background-image: linear-gradient(180deg, rgba(61, 22, 132, 0.8), #1641b5);
+    }
+    &__caption {
+        @include posi-top-left(absolute, 50%, 50%);
+        transform: translate(-50%, -50%);
+        z-index: $z_slider__caption;
+        text-align: center;
+        color: #fff;
+        @include mobile{
+            text-align: center;
+        }
+        h1 {
+            font-weight: 400;
+            letter-spacing: .4em;
+            @include mobile{
+                letter-spacing: .1em !important;
+                font-size: 40px !important;
+            }
+        }
+        h4 {
+            font-weight: 300;
+            letter-spacing: .1em;
+            @include mobile{
+                font-size: 1rem !important;
+                margin-bottom: 20px !important;
+            }
+        }
+    }
+}

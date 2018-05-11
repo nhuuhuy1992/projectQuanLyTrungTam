@@ -1,0 +1,12 @@
+*{@include model(0,0)}
+a,a:hover,a:visited{text-decoration: none !important;}
+li{list-style: none;}
+ul{margin: 0;}
+body{
+	overflow-x: hidden; 
+	@include size(100%, 100%);
+	position: relative;
+}
+header,nav,aside,section,article,main,footer{
+	display: block;
+}

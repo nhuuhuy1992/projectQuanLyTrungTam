@@ -1,0 +1,152 @@
+.input  {
+	position: relative;
+	z-index: 1;
+	display: inline-block;
+	margin: 1em;
+	margin-bottom: 3px !important;
+	width: calc(100% - 2em);
+	vertical-align: top;
+	font-family: lato-reg;
+
+	&__field  {
+		position: relative;
+		display: block;
+		float: right;
+		padding: 0.8em;
+		width: 60%;
+		border: none;
+		border-radius: 0;
+		background: #f0f0f0;
+		color: #aaa;
+		font-family: monts-reg;
+		-webkit-appearance: none; /* for box shadows to show on iOS */
+		&:focus {
+			outline: none;
+		}
+		&--juro {
+			position: absolute;
+			z-index: 100;
+			padding: 2.15em 0.75em 0;
+			width: 100%;
+			background: transparent;
+			color: $primary-color;
+			font-size: 0.85em;
+			text-align: center;
+			
+		}
+	}
+	&__label {
+		display: inline-block;
+		float: right;
+		padding: 0 1em;
+		width: 40%;
+		color: #6a7989;
+		border: 1px solid #e1e1;
+		font-weight: bold;
+		font-size: 70.25%;
+		-webkit-font-smoothing: antialiased;
+	    -moz-osx-font-smoothing: grayscale;
+		-webkit-touch-callout: none;
+		-webkit-user-select: none;
+		-khtml-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+		&-content {
+			position: relative;
+			display: block;
+			padding: 1.6em 0;
+			width: 100%;
+			&--juro {
+				padding: 1.5em 1em;
+				-webkit-transform-origin: 0% 50%;
+				transform-origin: 0% 50%;
+				-webkit-transition: -webkit-transform 0.3s, color 0.3s;
+				transition: transform 0.3s, color 0.3s;
+
+				text-rendering: geometricPrecision;
+			}
+		}
+		&--juro {
+			padding: 0;
+			width: 100%;
+			background: #fff;
+			text-align: left;
+			&::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				border: 0px solid transparent;
+				-webkit-transition: border-width 0.3s, border-color 0.3s;
+				transition: border-width 0.3s, border-color 0.3s;
+			}
+		}
+	}
+	&--juro {
+		overflow: hidden;
+	}
+}
+.gach{
+	@include size(2rem, 3px);
+	margin: auto auto 20px;
+}
+.form-title{
+	font-family: lato-reg;
+	font-size: 2rem;
+}
+.thongBao{
+	transition: .3s all linear;
+	color: $primary-color;
+	margin-left: 70px;
+	font-family: monts-reg;
+	opacity: 0;
+	visibility: hidden;
+	font-style: italic;
+	&.err{
+		opacity:1 !important;
+		visibility: visible !important;
+		margin-left: 40px !important;
+	}
+	&.none_err{
+		opacity:0 !important;
+		visibility: hidden !important;
+		margin-left: 70px !important;
+	}
+}
+.modalDangKy .left{
+	background: url(../images/dangky.jpeg) no-repeat center center;
+	-webkit-background-size: cover;
+	background-size: cover;
+	position: relative;
+	.overlay{
+		@include posi-top-left(absolute, 0,0);
+		@include size(100%, 100%);
+		z-index: 1;
+		background: rgba(0,0,0,.6);
+	}
+	.left__content{
+		@include posi-top-left(absolute, 50%, 50%);
+		width: 80%;
+		color: #fff;
+		transform: translate(-50%, -50%);
+		z-index: 2;
+	}
+}
+
+.input__field--juro:focus + .input__label--juro::before,
+.input--filled .input__label--juro::before {
+	border-width: 8px;
+    border-color: $primary-color;
+    border-top-width: 2em;
+    border-radius: 3px;
+}
+
+.input__field--juro:focus + .input__label--juro .input__label-content--juro,
+.input--filled .input__label--juro .input__label-content--juro {
+	color: #fff;
+	-webkit-transform: translate3d(0, -1.5em, 0) scale3d(0.75, 0.75, 1);
+	transform: translate3d(0, -1.5em, 0) scale3d(0.75, 0.75, 1) translateZ(1px);
+}

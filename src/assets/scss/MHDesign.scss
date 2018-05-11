@@ -1,0 +1,37 @@
+//helpers
+@import "helpers/variables";
+@import "helpers/mixin";
+@import "helpers/placeholder";
+//base
+@import "base/normalize";
+@import "base/reset";
+@import "base/typography";
+//component
+@import "component/position";
+@import "component/sight";
+@import "component/button";
+@import "component/heading";
+@import "component/card";
+@import "component/icon";
+//custom
+@import "custom";
+//layout index
+@import "layout_index/header";
+@import "layout_index/slider";
+@import "layout_index/sidebar";
+@import "layout_index/titleSection";
+@import "layout_index/about";
+@import "layout_index/teachers";
+@import "layout_index/diemuuviet";
+@import "layout_index/camNhan";
+@import "layout_index/blockBtnForm";
+@import "layout_index/form";
+@import "layout_index/popupGiangVien";
+@import "layout_index/khoaHoc";
+@import "layout_index/formContact";
+@import "layout_index/footer";
+
+//layout admin
+@import "layout_admin/sidebar";
+@import "layout_admin/header";
+@import "layout_admin/tableHocVien";

@@ -1,0 +1,28 @@
+.diem-uu-viet {
+    margin-top:8rem;
+    .one-block {
+        font-family: lato-reg;
+        @include model(10px, .3rem 1rem);
+        transition:.3s all linear;
+        color: $text-color-inverse;
+        cursor: pointer;
+        border-radius: 4px;
+        p {
+            font-size: 90%;
+        }
+        .icon-intro {
+            @include size(50px, 50px);
+            transition:.3s all linear;
+            border-radius: 50%;
+            border: 2px solid $main-color;
+            color: $main-color;
+            font-size: 20px;
+        }
+        h2 {
+            font-size: 112%;
+            color: $text-color-inverse;
+            margin: 1rem 0;
+            font-weight: bold;
+        }
+    }
+}

@@ -1,0 +1,74 @@
+//background
+.bg-white{
+    color: #000!important;
+    background: $white-color !important;
+}
+.bg-primary{
+    color: #fff!important;
+	background: $primary-color !important;
+}
+.bg-dark-purple{
+    color: #fff!important;
+	background: $dark-purple-color !important;
+}
+.bg-mdb{
+    background: $mdb-color!important;
+    color: #fff!important;
+}
+.bg-indigo{
+    background: $indigo-color!important;
+    color: #fff!important;
+}
+.bg-grey{
+    background: $light-grey-color !important;
+    color: #000!important;
+}
+.bg-amber{
+    background: $amber-color!important;
+    color: #fff!important;
+}
+.bg-dark-green{
+    background: $dark-green-color!important;
+    color: #fff!important;
+}
+//gradient
+.peach-gradient{@extend %peach-gradient;}
+.purple-gradient{@extend %purple-gradient;}
+.blue-gradient{@extend %blue-gradient;}
+.aqua-gradient{@extend %aqua-gradient;}
+.rainbow-gradient{@extend %rainbow-gradient;}
+.lab-gradient{@extend %lab-gradient;}
+.costance-gradient{@extend %costance-gradient;}
+.info-gradient{@extend %info-gradient}
+
+.primary-color{color: $primary-color !important;}
+.black-color{color: $color-black !important;}
+.dark-purple-color{color: $dark-purple-color !important;}
+.default-color{color: $default-color !important;}
+.info-color{color: $info-color !important;}
+.success-color{color: $success-color !important;}
+.warning-color{color: $warning-color !important;}
+.mdb-color{color: $mdb-color !important;}
+.indigo-color{color: $indigo-color !important;}
+
+//border-radius
+.rounded{	 border-radius: .125rem;}
+.rounded-0{border-radius: 0}
+.rounded-1{border-radius: 40px}
+.rounded-circle{border-radius: 50%}
+//color
+.facebook-color{color: $facebook-color}
+.twitter-color{color: $twitter-color}
+.google-plus-color{color: $google-plus-color}
+.linkedin-color{color: $linkedin-color}
+.pinterest-color{color: $pinterest-color}
+.instagram-color{color: $instagram-color}
+.git-hub-color{color: $git-hub-color}
+.email-color{color: $email-color}
+.drib-color-color{color: $drib-color}
+//box shadow
+.z-depth-1-half{box-shadow: 0 5px 11px 0 rgba(0,0,0,.18), 0 4px 15px 0 rgba(0,0,0,.15);}
+.z-depth-2{box-shadow: 0 8px 17px 0 rgba(0,0,0,.2), 0 6px 20px 0 rgba(0,0,0,.19);}
+.z-depth-3{box-shadow: 0 16px 28px 0 rgba(0,0,0,.22), 0 25px 55px 0 rgba(0,0,0,.21);}
+
+

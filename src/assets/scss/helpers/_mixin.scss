@@ -1,0 +1,49 @@
+/*----------------MIXIN-------------------*/
+
+@mixin model($padd, $mar) {
+    padding: $padd;
+    margin: $mar;
+}
+@mixin size($width, $height) {
+    width: $width;
+    height: $height
+}
+@mixin flex($just, $align, $direct, $wrap) {
+    display: flex;
+    justify-content: $just;
+    align-items: $align;
+    flex-direction: $direct;
+    flex-wrap: $wrap;
+}
+@mixin posi-top-left($posi, $top, $left) {
+    position: $posi;
+    top: $top;
+    left: $left;
+}
+
+@mixin posi-top-right($posi, $top, $right) {
+    position: $posi;
+    top: $top;
+    right: $right;
+}
+
+$mobile-width: 480px;
+$tablet-width: 768px;
+$desktop-width: 1024px;
+@mixin mobile {
+    @media (max-width: #{$mobile-width - 1px}) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media (max-width: #{$tablet-width - 1px}) {
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media (min-width: #{$desktop-width}) {
+        @content;
+    }
+}

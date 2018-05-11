@@ -1,0 +1,12 @@
+.fixed{
+	position: fixed;
+	z-index: $z_fixed;
+	&.fixed-right{
+		top: 0;
+		right: 0;
+	}
+	&.fixed-left{
+		top: 0;
+		left: 0;
+	}
+}

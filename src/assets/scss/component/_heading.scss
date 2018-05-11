@@ -1,0 +1,20 @@
+.heading-secondary {
+    font-size: 2rem !important;
+    text-transform: uppercase;
+    font-weight: 700 !important;
+    display: inline-block;
+    color: #1641b5;
+    letter-spacing: .2rem;
+    transition: all .2s;
+    position: relative;
+    &::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: -2rem;
+        width: 5px;
+        height: 30px;
+        margin-left: -2.5px;
+        background: #2be6ab;
+    }
+}

@@ -1,0 +1,36 @@
+.icon{
+	@include size(40px, 40px);
+	display: flex !important;
+	justify-content: center;
+	align-items: center;
+	transition: .2s all linear;
+	z-index: 1;
+	position: relative;
+	cursor: pointer;
+	&::before{position: relative;z-index: 3;}
+	&::after{
+		@include posi-top-left(absolute, 50%, 50%);
+		@include size( calc(100% - 4px), calc(100% - 4px));
+		transition: .2s all linear;
+		transform: translate(-50%, -50%);		
+	    content: "";
+	    z-index: 0;
+	    border-radius: 50%;
+	   	background: #fff;
+	}
+	&:hover{
+		color:#fff;
+		&::after{
+			opacity: 0;
+			visibility: hidden;
+		}
+	}
+	&-info{@extend %info-gradient;color:$info-color;}
+	&-peach{@extend %peach-gradient;color:$peach-color;}
+	&-purple{@extend %purple-gradient;color: $purple-color;}
+	&-blue{@extend %blue-gradient;color: $blue-color;}
+	&-aqua{@extend %aqua-gradient;color: $aqua-color;}
+	&-rainbow{@extend %rainbow-gradient;color: $rainbow-color;}
+	&-lab{@extend %lab-gradient;color: $lab-color;}
+	&-costance{@extend %costance-gradient;color: $costance-color;}
+}

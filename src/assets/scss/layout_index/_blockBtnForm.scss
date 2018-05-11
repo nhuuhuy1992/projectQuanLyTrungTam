@@ -1,0 +1,74 @@
+.block-form .block-btn-form{
+	@include posi-top-left(fixed, 50%, -137px);
+	transform: translateY(-50%);
+	z-index: $z_btnForm;
+	display: flex;
+	flex-direction: column;
+	.btn-contact{
+		@include flex(space-between, center, row, wrap);
+		@include size(12rem, 3.5rem);
+		transition: .3s all linear;
+		min-width: 12rem;
+		margin-bottom: 1px;
+		cursor: pointer;
+		background: #1F1F1F;
+		color: #fff;
+		transition: 0.2s all linear;
+		outline: none;
+		padding: 0 10px;
+		
+		&:hover {
+			margin-left: 137px;
+		}
+	}
+	@include mobile{
+		@include flex(center, center, row !important, nowrap !important);
+        width: 100%;
+        top: 96% !important;
+        left: 0 !important;
+        .btn-contact {
+            @include flex(center, center, column-reverse !important, wrap);
+            @include size(calc(100 / 3) !important, auto !important);
+            min-width: auto !important;
+            padding: 10px !important;
+            margin: 0 1px !important;
+            span {
+                font-size: 11px;
+                margin: 3px 0;
+            }
+            .fa {
+                border: none !important;
+                @include size(auto !important, auto !important);
+                color: $text-color !important;
+                background: transparent !important;
+            }
+        }
+	}
+}
+.icon{
+	@include size(40px, 40px);
+	@include flex(center, center, row, nowrap);
+	transition: .3s all linear;
+	z-index: 1;
+	position: relative;
+	cursor: pointer;
+	&::before{position: relative;z-index: 3;}
+	&::after{
+		transition: .3s all linear;
+		@include posi-top-left(absolute, 50%, 50%);
+		@include size( calc(100% - 4px), calc(100% - 4px));
+		transform: translate(-50%, -50%);
+	    content: "";
+	    z-index: 0;
+	    border-radius: 50%;
+	   	background:  #1F1F1F;
+	}
+	&:hover{
+		color:#fff;
+		&::after{
+			opacity: 0;
+			visibility: hidden;
+		}
+	}
+	&-info{@extend %info-gradient;color:$info-color;}
+}

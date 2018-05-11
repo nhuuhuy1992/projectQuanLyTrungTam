@@ -1,0 +1,74 @@
+.khoaHoc{
+     &__one-block{
+        box-shadow: none !important;
+        border: none !important;
+        display: flex;
+        border-radius: .25rem;
+        .card-img-top{
+            width: 100%;
+            border-top-left-radius: calc(.25rem - 1px);
+            border-top-right-radius: calc(.25rem - 1px);
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .card-body{
+            @include model(auto , -4rem 4% auto);
+            background: #fff;
+            z-index: 3;
+            border-radius: .25rem;
+            @include mobile{
+                margin: 0;
+            }
+            .khoaHoc__ten {
+                margin-bottom: 5px;
+                h3{
+                    font-size: 23px;
+                    font-family: lato-reg;
+                    margin-bottom: 0;
+                }
+            }
+            .khoaHoc__type h5 {
+                font-size: 17px;
+            }
+            .khoaHoc__giangVien{
+                p{
+                    margin-bottom: 10px;
+                }
+            }
+            a.btn{
+                padding: 7px;
+                margin-top: 20px;
+                font-size: 11px;
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,27 @@
+.title{
+	margin-bottom: 3rem;
+	h1{
+		font-size: 3rem;
+		margin-bottom: 10px;
+		@include mobile{
+            font-size: 27px !important;
+            padding: 0 2rem !important;
+		}
+	}
+	.gach{
+		@include size(10%, 2px);
+		background: $main-color;
+		margin: auto;
+	}
+	&__small{
+		text-align: left;
+		margin: 0;
+		h6{
+			font-size: 1.6rem;
+		}
+		.gach{
+			margin: 0;
+			margin-bottom: 1rem;
+		}
+	}
+}

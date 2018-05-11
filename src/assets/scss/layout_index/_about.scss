@@ -1,0 +1,47 @@
+.about {
+    position: relative;
+    background: $main-color;
+    &__gioithieu {
+        position: relative;
+        color: $white-color;
+        z-index: 3;
+    }
+    .main-content-intro {
+        @include flex(center, flex-start, column, wrap);
+        padding: 2rem 1.2rem;
+        font-family: lato-reg;
+        i {
+            margin: 0 15px;
+        }
+        .block-text-more {
+            display: none
+        }
+        @include mobile{
+            padding: 0 !important;
+        }
+    }
+    &__overlay {
+        @include size(100%, 100%);
+        @include posi-top-left(absolute, 0, 0);
+        z-index: 1;
+        background: url(../images/about-overlay.png) no-repeat;
+        background-size: cover;
+    }
+    &__video {
+        transform: translateY(50%)
+    }
+    .nutPlay{
+        @include size(100px, 100px);
+        transition: .2s all linear;
+        position: relative;
+        top: 50px;
+        color: #fff !important;
+        outline: none;
+        &::after{
+            background: none !important;
+        }
+        &:hover{
+            transform: rotate(360deg);
+        }
+    }
+}

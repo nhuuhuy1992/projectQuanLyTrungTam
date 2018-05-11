@@ -1,0 +1,34 @@
+.main__content{
+    padding-left: 8rem;
+    padding-top: 2rem;
+}
+
+.title__data{
+    font: {
+        family: lato-reg;
+        size: 3rem;
+    }
+}
+.tableHocVien{
+  #dataHocVien{
+    .icon{
+      border:none !important;
+      @include size(30px !important, 30px!important);
+      &::after{
+        background: transparent !important;
+      }
+    }
+  }
+}
+
+
+
+
+  
+
+
+
+
+
+
+

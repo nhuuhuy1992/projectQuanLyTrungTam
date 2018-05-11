@@ -1,0 +1,114 @@
+.camNhan {
+    @include size(100%, 700px);
+    background: linear-gradient(to bottom, rgba(69, 202, 252, 0.7), #fff) !important;
+    background: rgba(69, 202, 252, 0.7);
+    background-size: cover;
+    position: relative;
+    z-index: $z_camNhan;
+    &__overlay {
+        @include posi-top-left(absolute, 0, 0);
+        @include size(100%, 100%);
+        background: url(../images/nhanXet.png)center center no-repeat fixed;
+        background-size: cover;
+        opacity: 1;
+        z-index: 1;
+    }
+    &__content {
+        @include posi-top-left(absolute, 50%, 50%);
+        transform: translate(-50%, -50%);
+        z-index: 2;
+        color: $text-color;
+    }
+    &__title {
+        margin-top: 4rem !important;
+        @include mobile {
+            margin-bottom: 10px !important;
+            h2.heading-secondary {
+                font-size: 1rem;
+            }
+        }
+    }
+    .owl-next,
+    .owl-prev {
+        background: transparent !important;
+        font-size: 10px !important;
+    }
+    .comment {
+        box-shadow: 0 0 .3em rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+        border-radius: 3px;
+        padding: 10px;
+        font-size: 1.6rem;
+        @include desktop {
+            transform: skewX(-12deg);
+            padding: 3rem;
+            padding-left: 6rem;
+        }
+        &:hover {
+            .comment__img {
+                transform: translateX(-4rem) scale(1);
+                filter: blur(3px) brightness(80%);
+            }
+            .comment__caption {
+                opacity: 1;
+                transform: translate(-50%, -50%);
+            }
+        }
+        &__shape {
+            width: 10rem;
+            height: 10rem;
+            @include desktop {
+                float: left;
+            }
+            -webkit-shape-outside: circle(50% at 50% 50%);
+            shape-outside: circle(50% at 50% 50%);
+            -webkit-clip-path: circle(50% at 50% 50%);
+            clip-path: circle(50% at 50% 50%);
+            @include desktop {
+                transform: translateX(-2rem) skewX(12deg);
+            }
+            position: relative;
+        }
+        &__info{
+            blockquote{
+                font-family: monts-reg;
+            }
+        }
+        &__img {
+            width: initial!important;
+            height: 100%;
+            transform: translateX(-4rem) scale(1.4);
+            backface-visibility: hidden;
+            transition: all .5s;
+        }
+        &__caption {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, 20%);
+            color: #fff;
+            text-transform: uppercase;
+            font-size: 1.7rem;
+            text-align: center;
+            opacity: 0;
+            transition: all .5s;
+            backface-visibility: hidden;
+        }
+        &__text {
+            @include desktop {
+                transform: skewX(12deg);
+            }
+            font-size: .6em;
+            font-weight: 300;
+            color: $gray-color;
+        }
+        &__author {
+            color: $gray-color;
+            font-weight: 500;
+        }
+        &__class {
+            font-size: .6em;
+            font-weight: 300;
+        }
+    }
+}

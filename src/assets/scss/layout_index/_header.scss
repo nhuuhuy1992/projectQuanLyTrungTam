@@ -1,0 +1,29 @@
+.navbar{
+	padding: 1rem 3rem;
+	&__logo{
+		@include posi-top-left(fixed, 0, auto);
+		@include flex(center, center, row, wrap);
+	    height: 85px;
+	    background: #fff;
+	    padding: 0 11px;
+	    border-bottom-left-radius: 15px;
+	    border-bottom-right-radius: 15px;
+	    box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+	    img{
+			width: $width_img_navbar;
+		}
+	}
+}
+.burger-icon{
+	top: $burger_fixed_top !important;
+	right: $burger_fixed_right !important;
+	z-index: $z_burger-icon;
+	&.active{
+		top: 0 !important;
+		right: 16px !important;
+	}
+	@include mobile{
+		right: 0 !important;
+		top: 0 !important;
+	}
+}

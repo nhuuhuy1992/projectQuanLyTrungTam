@@ -69,15 +69,23 @@ module.exports = {
             },
             {
                 test: /\.(png|svg|jpg|jpeg|gif|mp4)$/,
-                use: [
-                    "file-loader?name=[hash:6].[ext]&outputPath=../images/",
-                ]
+                use: [{
+                    loader: "url-loader",
+                    options: {
+                        name: "images/[name]-[hash:8].[ext]",
+                        outputPath: "./images/"
+                    }
+                }]
             },
             {
                 test: /\.(woff|woff2|eot|ttf|otf)$/,
-                use: [
-                    "file-loader?name=[hash:6].[ext]&outputPath=./fonts/",
-                ]
+                use: [{
+                    loader: "url-loader",
+                    options: {
+                        name: "fonts/[name]-[hash:8].[ext]",
+                        outputPath: "./fonts/"
+                    }
+                }]
             }
         ]
     },

@@ -111,7 +111,7 @@ module.exports = {
             },
             hash: true, //thay doi nhung duong link trong file index 
         }),
-        new ExtractTextPlugin("main.css"),
+        new ExtractTextPlugin("[name].css"),
         new webpack.ProvidePlugin({
             $: 'jquery',
             jQuery: 'jquery',

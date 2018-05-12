@@ -1,1 +1,1 @@
-console.log("ạịa");
+import "./../../assets/scss/admin.scss";

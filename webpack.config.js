@@ -68,22 +68,20 @@ module.exports = {
                 }]
             },
             {
-                test: /\.(woff|woff2|eot|ttf|otf|png|svg|jpg|jpeg|gif|mp4)$/,
+                test: /\.(png|svg|jpg|jpeg|gif|mp4)$/,
                 use: [
                     "file-loader?name=[hash:6].[ext]&outputPath=images/",
+                ]
+            },
+            {
+                test: /\.(woff|woff2|eot|ttf|otf)$/,
+                use: [
+                    "file-loader?name=[hash:6].[ext]&outputPath=./css/fonts/",
                 ]
             }
         ]
     },
     plugins: [
-        // new HtmlWebpackExtract({
-        //     minify: {
-        //         collapseWhitespace: false //bo khoang trong
-        //     },
-        //     hash: true, //thay doi nhung duong link trong file index 
-        //     // excludeChunks : ["admin"],
-        //     template: "./src/app/views/pages/index.html"
-        // }),
         new HtmlWebpackPlugin({
             filename: 'index.html',
             template: './src/app/views/pages/index.html',
@@ -111,7 +109,7 @@ module.exports = {
             },
             hash: true, //thay doi nhung duong link trong file index 
         }),
-        new ExtractTextPlugin("[name].css"),
+        new ExtractTextPlugin("./css/[name].css"),
         new webpack.ProvidePlugin({
             $: 'jquery',
             jQuery: 'jquery',

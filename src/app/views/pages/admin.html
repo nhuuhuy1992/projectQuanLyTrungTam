@@ -1,17 +1,166 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <title>Admin page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Admin pages</title>
 </head>
-
 <body>
-    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eligendi hic, natus odit quisquam nisi fugiat architecto blanditiis sequi distinctio repellat officia consequatur nobis possimus. Sapiente voluptatum quam facere suscipit temporibus?</p>
+    <!-- Start Header-->
+	<header class="header">
+		<div class="container-fluid header__content px-3 d-flex align-items-center justify-content-between">
+			<a href="#" class="header__logo header__left h-100 d-flex align-items-center">
+				<img src="../../../assets/images/logo.png" class="img-fluid" width="130" alt="">
+			</a>
+			<div class="nofication header__right">
+				<span class="h-100 d-flex align-items-center">
+					<i class="fa fa-envelope">
+						<span class="badge badge-success rounded-circle">7</span>
+					</i>
+					<a href="#">
+						<strong>Admin</strong>
+					</a>
+				</span>
+			</div>
+		</div>
+	</header><!-- End Header -->
 
+	
+	<nav class="sidebar--admin">
+		<ul class="sidebar__nav w-100">
+			<li class="sidebar__item" data-tab="divDashboard">
+				<a href="#" class="sidebar__link">
+					<i class="fa fa-home"></i>
+					<span>Trang Chủ</span>
+				</a>
+			</li>
+			<li class="sidebar__item" data-tab="divNguoiDung">
+				<a href="#" class="sidebar__link">
+					<i class="fa fa-users"></i>
+					<span>Người Dùng</span>
+				</a>
+			</li>
+			<li class="sidebar__item active" data-tab="divKhoaHoc">
+				<a href="#" class="sidebar__link">
+					<i class="fa fa-book"></i>
+					<span>Khóa Học</span>
+				</a>
+			</li>
+			<li class="sidebar__item" data-tab="divHocVien">
+				<a href="#" class="sidebar__link">
+					<i class="fa fa-graduation-cap"></i>
+					<span>Học Viên</span>
+				</a>
+			</li>
+		</ul>
+	</nav>	
 
+	<main class="main__content">
+		<div class="container" id="divHocVien">
+			<div class="row">
+				<div class="col-12">
+					<h3 class="text-center title__data">Danh Sách Học Viên</h3>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-5 col-12">
+					<span class="input input--juro float-left">
+						<input class="input__field input__field--juro" type="text" id="inputHo" data-thongbao="thongBaoHo"/>
+						<label class="input__label input__label--juro" for="inputHo">
+							<span class="input__label-content input__label-content--juro">Nhập Tên Học Viên</span>
+						</label>
+					</span>
+				</div>
+			</div>
+			<div class="row mt-4">
+				<div class="col-md-6 col-12">
+					<button class="btn btn-danger border-0 btn-rounded" id="btnXoaHocVien">Xóa Học Viên</button>
+					<button class="btn btn-success border-0 btn-rounded" id="btnThemHocVien">Thêm Học Viên</button>
+				</div>
+			</div>
+			<div class="row mt-4">
+				<div class="col-12">
+					<table class="table table-hoverable table-striped tableHocVien">
+						<thead>
+							<tr>
+								<th>id</th>
+								<th>Tài Khoản</th>
+								<th>Họ Tên</th>
+								<th>Email</th>
+								<th>Số ĐT</th>
+								<th>loại Người Dùng</th>
+								<th>Mã Người Dùng</th>
+								<th>Thao Tác</th>
+							</tr>
+						</thead>
+						<tbody id="dataHocVien">
 
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
 
+		<button class="btn btn-primary d-none" id="btnModal" data-target="#modalHocVien" data-toggle="modal">Modal</button>
+		<div class="modal fade" id="modalHocVien" tabindex="-1" role="dialog">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<div class="modal-title">
+							<h3>Modal-title</h3>
+						</div>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body container">
+						<form class="row">
+							<div class="col-12">
+								<div class="form-group">
+									<label for="TaiKhoan">Tài Khoản</label>
+									<input type="text" class="form-control" id="TaiKhoan"  placeholder="Nhập Vào Tài Khoản">
+								</div>
+							</div>
+							<div class="col-12">
+								<div class="form-group">
+									<label for="HoTen">Họ Tên</label>
+									<input type="text" class="form-control" id="HoTen" placeholder="Nhập Họ Tên">
+								</div>
+							</div>
+							<div class="col-12">
+								<div class="form-group">
+									<label for="Email">Email</label>
+									<input type="text" class="form-control" id="Email" placeholder="Nhập Email">
+								</div>
+							</div>
+							<div class="col-12">
+								<div class="form-group">
+									<label for="SoDT">Số Điện Thoại</label>
+									<input type="text" class="form-control" id="SoDT" placeholder="Nhập Số Điện Thoại">
+								</div>
+							</div>
+
+							<div class="col-12 col-md-6">
+								<div class="form-group">
+									<label for="SoDT">Loại Người Dùng</label>
+									<input type="text" class="form-control" readonly id="SoDT" value="HV">
+								</div>
+							</div>
+
+							<div class="col-12 col-md-6">
+								<div class="form-group">
+									<label for="SoDT">Mã Người Dùng</label>
+									<input type="text" class="form-control" readonly id="SoDT" value="Học Viên">
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button class="btn btn-danger" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
 </body>
-
-</html>

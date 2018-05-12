@@ -18,13 +18,13 @@
         z-index: $z_slider__caption;
         text-align: center;
         color: #fff;
-        @include mobile{
+        @include mobile {
             text-align: center;
         }
         h1 {
             font-weight: 400;
             letter-spacing: .4em;
-            @include mobile{
+            @include mobile {
                 letter-spacing: .1em !important;
                 font-size: 40px !important;
             }
@@ -32,7 +32,7 @@
         h4 {
             font-weight: 300;
             letter-spacing: .1em;
-            @include mobile{
+            @include mobile {
                 font-size: 1rem !important;
                 margin-bottom: 20px !important;
             }

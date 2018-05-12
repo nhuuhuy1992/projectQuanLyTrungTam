@@ -72,7 +72,6 @@ module.exports = {
                 use: [{
                     loader: "url-loader",
                     options: {
-
                         limit: 10000,
                         name: '[name]-[sha512:hash:base64:7].[ext]',
                         outputPath: "./images/",

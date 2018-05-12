@@ -70,7 +70,7 @@ module.exports = {
             {
                 test: /\.(png|svg|jpg|jpeg|gif|mp4)$/,
                 use: [
-                    "file-loader?name=[hash:6].[ext]&outputPath=images/",
+                    "file-loader?name=[hash:6].[ext]&outputPath=../images/",
                 ]
             },
             {

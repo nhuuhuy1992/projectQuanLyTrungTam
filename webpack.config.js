@@ -2,7 +2,7 @@ const webpack = require("webpack");
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
-
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 module.exports = {
     entry: {
         index: "./src/app/controllers/index.ts",
@@ -69,19 +69,33 @@ module.exports = {
             },
             {
                 test: /\.(png|svg|jpg|jpeg|gif|mp4)$/,
-                use: [
-                    "file-loader?name=[hash:6].[ext]&outputPath=../images/",
-                ]
+                use: [{
+                    loader: "url-loader",
+                    options: {
+
+                        limit: 10000,
+                        name: '[name]-[sha512:hash:base64:7].[ext]',
+                        outputPath: "./images/",
+                        // limit: 2000000,
+                    }
+                }]
             },
             {
                 test: /\.(woff|woff2|eot|ttf|otf)$/,
-                use: [
-                    "file-loader?name=[hash:6].[ext]&outputPath=./fonts/",
-                ]
+                use: [{
+                    loader: "url-loader",
+                    options: {
+                        limit: 10000,
+                        name: '[name]-[sha512:hash:base64:7].[ext]',
+                        outputPath: "./fonts/",
+                        // limit: 2000000,
+                    }
+                }]
             }
         ]
     },
     plugins: [
+        // new CleanWebpackPlugin(['dist']),
         new HtmlWebpackPlugin({
             filename: 'index.html',
             template: './src/app/views/pages/index.html',
@@ -89,7 +103,7 @@ module.exports = {
             minify: {
                 collapseWhitespace: false //bo khoang trong
             },
-            hash: true, //thay doi nhung duong link trong file index 
+            hash: false, //thay doi nhung duong link trong file index 
         }),
         new HtmlWebpackPlugin({
             filename: 'admin.html',
@@ -98,7 +112,7 @@ module.exports = {
             minify: {
                 collapseWhitespace: false //bo khoang trong
             },
-            hash: true, //thay doi nhung duong link trong file index 
+            hash: false, //thay doi nhung duong link trong file index 
         }),
         new HtmlWebpackPlugin({
             filename: 'user.html',
@@ -107,9 +121,9 @@ module.exports = {
             minify: {
                 collapseWhitespace: false //bo khoang trong
             },
-            hash: true, //thay doi nhung duong link trong file index 
+            hash: false, //thay doi nhung duong link trong file index 
         }),
-        new ExtractTextPlugin("./css/[name].css"),
+        new ExtractTextPlugin("[name].css"),
         new webpack.ProvidePlugin({
             $: 'jquery',
             jQuery: 'jquery',

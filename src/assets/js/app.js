@@ -99,20 +99,20 @@ particlesJS('particles-js', {
         fn(elem, c);
     }
 
-    var classie = {
-        // full names
-        hasClass: hasClass,
-        addClass: addClass,
-        removeClass: removeClass,
-        toggleClass: toggleClass,
-        // short names
-        has: hasClass,
-        add: addClass,
-        remove: removeClass,
-        toggle: toggleClass
-    };
+    // var classie = {
+    //     // full names
+    //     hasClass: hasClass,
+    //     addClass: addClass,
+    //     removeClass: removeClass,
+    //     toggleClass: toggleClass,
+    //     // short names
+    //     has: hasClass,
+    //     add: addClass,
+    //     remove: removeClass,
+    //     toggle: toggleClass
+    // };
 
-    if (typeof define === 'function' && define.amd) { define(classie); } else { window.classie = classie; }
+    // if (typeof define === 'function' && define.amd) { define(classie); } else { window.classie = classie; }
 
 })(window);
 (function() {

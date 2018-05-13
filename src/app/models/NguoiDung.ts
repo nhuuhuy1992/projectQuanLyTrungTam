@@ -4,7 +4,6 @@ export class NguoiDung {
     private _HoTen:string;
     private _Email:string;
     private _SoDT:number;
-    
     private _MaLoaiNguoiDung:string;
     private _TenLoaiNguoiDung:string;    
 

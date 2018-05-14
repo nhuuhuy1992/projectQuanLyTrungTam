@@ -1,22 +1,14 @@
 import { HocVien } from './HocVien';
 
-export class DanhSachHocVien {
+export class DanhSachHocVien{
+
     DSHV:Array<HocVien> = [];
-    themHocVien(hv:HocVien){
-        this.DSHV.push(hv);
-    }
+
+    themNguoiDung(){}
+    xoaNguoiDung(){}
+    suaNguoiDung(){}
+    ghiDanhKhoaHoc(){}
+    
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 

@@ -1,45 +1,18 @@
-export class HocVien {
-     TaiKhoan:string;
-     MatKhau:string;
-     HoTen:string;
-    Email:string;
-     SoDT:number;
-    
-     MaLoaiNguoiDung:string;
-    TenLoaiNguoiDung:string;    
+import { NguoiDung } from './NguoiDung';
+import { KhoaHoc } from './KhoaHoc';
 
-    // public get TaiKhoan():string{return this._TaiKhoan}
-    // public set TaiKhoan(a:string){this._TaiKhoan = a}
+export class HocVien extends NguoiDung{
 
-    // public get MatKhau():string{return this._MatKhau}
-    // public set MatKhau(a:string){this._MatKhau = a}
+	private _khoaHocDaDK:Array<KhoaHoc> = [];
 
-    // public get HoTen():string{return this._HoTen}
-    // public set HoTen(a:string){this._HoTen = a}
+	public get khoaHocDaDK():Array<KhoaHoc> { return this._khoaHocDaDK}
+	public set khoaHocDaDK(a:Array<KhoaHoc>) { this._khoaHocDaDK = a}
 
-    // public get Email():string{return this._Email}
-    // public set Email(a:string){this._Email = a}
+	constructor(TaiKhoan:string, MatKhau:string, HoTen:string, SoDT:number, Email:string, MaLoaiNguoiDung:string="HV", TenLoaiNguoiDung:string="Học Viên"){
+		super(TaiKhoan, MatKhau, HoTen, SoDT, Email, MaLoaiNguoiDung, TenLoaiNguoiDung);
+	}
 
-    // public get SoDT():number{return this._SoDT}
-    // public set SoDT(a:number){this._SoDT = a}
-
-    // public get Email():string{return this._Email}
-    // public set Email(a:string){this._Email = a}
-
-    // public get MaLoaiNguoiDung():string{return this._MaLoaiNguoiDung}
-    // public set MaLoaiNguoiDung(a:string){this._MaLoaiNguoiDung = a}
-    
-    // public get TenLoaiNguoiDung():string{return this._TenLoaiNguoiDung}
-    // public set TenLoaiNguoiDung(a:string){this._TenLoaiNguoiDung = a}
-
-    
-    constructor(TaiKhoan:string, MatKhau:string, HoTen:string, SoDT:number, Email:string, MaLoaiNguoiDung:string, TenLoaiNguoiDung:string){
-        this.TaiKhoan = TaiKhoan;
-        this.MatKhau = MatKhau;
-        this.HoTen = HoTen;
-        this.SoDT = SoDT;
-        this.Email = Email;
-        this.MaLoaiNguoiDung = MaLoaiNguoiDung;
-        this.TenLoaiNguoiDung = TenLoaiNguoiDung;
-    }
+    chinhSuaThongTin(){}  //chỉnh sửa thông tin ngừi dùng
+    dangKyKhoaHoc(){}      //đăng kí khoá học
+    xemDanhSachKH(){}       //xem danh sách đã đăng kí
 }

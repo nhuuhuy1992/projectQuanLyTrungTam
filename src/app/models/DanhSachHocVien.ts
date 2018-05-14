@@ -1,14 +1,14 @@
-import { HocVien } from './HocVien';
+// import { HocVien } from './HocVien';
 
-export class DanhSachHocVien{
+// export class DanhSachHocVien{
 
-    DSHV:Array<HocVien> = [];
+//     DSHV:Array<HocVien> = [];
 
-    themNguoiDung(){}
-    xoaNguoiDung(){}
-    suaNguoiDung(){}
-    ghiDanhKhoaHoc(){}
+//     themNguoiDung(){}
+//     xoaNguoiDung(){}
+//     suaNguoiDung(){}
+//     ghiDanhKhoaHoc(){}
     
-}
+// }
 
 

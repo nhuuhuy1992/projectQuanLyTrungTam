@@ -12,13 +12,13 @@ export class DanhSachNguoiDungServices {
 			dataType : "json"
 		});
 	}
-	themNguoiDungService(nd:NguoiDung):NguoiDung{
+	themNguoiDungService(nd:NguoiDung){
 		return $.ajax({
 			url : " http://sv.myclass.vn/api/QuanLyTrungTam/ThemNguoiDung",
 			type : "POST",
 			data : nd,
-			dataType : "application/json",
-			contentType: 'application/json; charset=utf-8',
+			// dataType : "application/json",
+			// contentType: 'application/json; charset=utf-8',
 		});
 	}
 }

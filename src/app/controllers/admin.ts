@@ -237,10 +237,10 @@ function xacNhanCapNhatAPI(btn){
 	  	let NDCapNhat = new NguoiDung(TaiKhoanCN, MatKhauNDCN, HoTenCN, SoDTCN, EmailCN, maNDCN);
 	  	//chuyển về chuỗi json
 	  	let jsonNDCapNhat = JSON.stringify(NDCapNhat);
-	  	DSNDService.suaNguoiDungService(NDCapNhat)
+	  	DSNDService.suaNguoiDungService(jsonNDCapNhat)
 	  			.done(function(res){
 	  				console.log("thanh cong");
-	  				window.location.reload();
+	  				// window.location.reload();
 	  			})
 	  			.fail(function(err){
 	  				console.log(err);

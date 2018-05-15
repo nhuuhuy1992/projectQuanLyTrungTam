@@ -25,11 +25,12 @@ export class DanhSachNguoiDungServices {
 			type : "DELETE"
 		});
 	}
-	suaNguoiDungService(nd){
+	suaNguoiDungService(nd:NguoiDung){
+		let ngJSON = JSON.stringify(nd);
 		return $.ajax({
 			url : "http://sv.myclass.vn/api/QuanLyTrungTam/CapNhatThongTinNguoiDung",
 			type : "PUT",
-			data:nd
+			data : nd
 		});
 	}
 }

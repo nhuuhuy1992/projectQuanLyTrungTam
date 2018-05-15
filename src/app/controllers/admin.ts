@@ -26,7 +26,7 @@ function showDSND(DSND:Array<NguoiDung>, divLoad){
 	for(let i:number = 0; i < DSNguoiDung.DSND.length; i++){
 		let motNguoiDung = DSNguoiDung.DSND[i];
 		data += `
-		<tr TaiKhoan="${motNguoiDung._TaiKhoan}"  HoTen="${motNguoiDung._HoTen}" Email="${motNguoiDung._Email}" SoDT=${motNguoiDung._SoDT} MaLoaiNguoiDung="${motNguoiDung._MaLoaiNguoiDung}" matkhau="${motNguoiDung._MatKhau}">
+		<tr TaiKhoan="${motNguoiDung._TaiKhoan}"  HoTen="${motNguoiDung._HoTen}" Email="${motNguoiDung._Email}" SoDT=${motNguoiDung._SoDT} MaLoaiNguoiDung="${motNguoiDung._MaLoaiNguoiDung}" matkhau="${motNguoiDung._MatKhau}" id="tr_${motNguoiDung._TaiKhoan}" class="trNguoiDung">
 			<td>${i+1}</td>
 			<td>${motNguoiDung._TaiKhoan}</td>
 			<td>${motNguoiDung._MatKhau}</td>
@@ -34,7 +34,7 @@ function showDSND(DSND:Array<NguoiDung>, divLoad){
 			<td>${motNguoiDung._Email}</td>
 			<td>${motNguoiDung._SoDT}</td>
 			<td>${motNguoiDung._MaLoaiNguoiDung}</td>
-			<td class="d-flex justify-content-center border-0">
+			<td class="d-flex justify-content-center">
 				<button class="icon icon-info rounded-circle border-0 fa fa-times mr-3 btnXoaTungND" style="width: 30px;height: 30px" id="btnXoa_${motNguoiDung._TaiKhoan}" data-toggle="tooltip" title="Xoá"></button>
 				<button class="icon icon-rainbow rounded-circle border-0  fa fa-pencil btnSuaTungND" style="width: 30px;height: 30px" id="btnSua_${motNguoiDung._TaiKhoan}" data-toggle="tooltip" title="Sửa"></button>
 			</td>
@@ -59,6 +59,7 @@ DSNDService.layDSNDService()
 				DSNguoiDung.themNguoiDung(personObj);
 			}
 			showDSND(DSNguoiDung.DSND, getid("dataNguoiDung"));
+
 		})
 		.fail(function(err){console.log(err);});
 
@@ -82,7 +83,11 @@ getid("btnThemNguoiDung").addEventListener("click", function(){
 				})
   			})
   			.fail(function(err){
-  				console.log(err);
+  				// console.log(err);
+  				swal({
+					type: 'warning',
+					title: 'Thêm Thất Bại!',
+				})
   			});
 
 });
@@ -108,7 +113,6 @@ function xoaNguoiDungAPI(btns){
 				if(result.value){
 					DSNDService.xoaNguoiDungService(taiKhoan)
 							.done(function(res){
-								console.log(DSNguoiDung.DSND);
 								swal(
 									'Deleted!',
 									'Your file has been deleted.',
@@ -232,26 +236,99 @@ function xacNhanCapNhatAPI(btn){
 	  	let EmailCN = getInputId("EmailCapNhatND").value;
 	  	let SoDTCN = parseInt(getInputId("SoDTCapNhatND").value);
 		// let maNDCN = (<HTMLSelectElement>document.getElementById("maCapNhatND")).value;
-		let maNDCN = 'HV';
 	  	let MatKhauNDCN = getInputId("MatKhauCapNhatND").value;
 
-	  	let NDCapNhat = new NguoiDung(TaiKhoanCN, MatKhauNDCN, HoTenCN, SoDTCN, EmailCN, maNDCN);
-		  //chuyển về chuỗi json
-		//   let userUpdate:any={
-		// 	TaiKhoan:NDCapNhat._TaiKhoan, MatKhau:NDCapNhat._MatKhau, Email:NDCapNhat._Email, SoDT:NDCapNhat._SoDT, MaLoaiNguoiDung:NDCapNhat._MaLoaiNguoiDung
-		//   }
-		  let jsonNDCapNhat = JSON.stringify(NDCapNhat);
-		  console.log(jsonNDCapNhat);
-	  	DSNDService.suaNguoiDungService(jsonNDCapNhat)
+	  	let NDCapNhat = new NguoiDung(TaiKhoanCN, MatKhauNDCN, HoTenCN, SoDTCN, EmailCN, "HV");
+	  	//chuyển về chuỗi json
+	  	DSNDService.suaNguoiDungService(NDCapNhat)
 	  			.done(function(res){
-	  				console.log("thanh cong");
-	  				// window.location.reload();
+	  				// console.log("thanh cong");
+	  				swal({
+						type: 'success',
+						title: 'Thêm Thành Công!'
+					}).then(()=>{
+	  					window.location.reload();
+					})
 	  			})
 	  			.fail(function(err){
-	  				console.log(err);
+	  				// console.log(err);
+	  				swal({
+						type: 'error',
+						title: 'Thông Tin Không Thể Thay Đổi!',
+					})
 	  			});
 	})
 }
+
+//xoá khi click vào nút xoá nhiều ngừi dùng
+getid("btnXoaNhieuND").addEventListener("click", function(){
+	let rowNguoiDung = document.querySelectorAll(".trNguoiDung");
+	rowNguoiDung.forEach( (el) => {
+		if((el.classList[1]) == "choose"){
+			let tkSeXoa = el;
+			DSNDService.xoaNguoiDungService(tkSeXoa.getAttribute("taikhoan"))
+					.done(function(res){
+						swal(
+							'Deleted!',
+							'Your file has been deleted.',
+							'success'
+						).then((result)=>{
+							window.location.reload();
+						})
+					})
+					.fail(function(err){
+						swal({
+							type: 'error',
+							title: 'Người Dùng Không Thể Xoá!',
+						})
+					});
+		}
+	});	
+});
+
+
+
+//tìm kiếm ngừi dùng
+getInputId("timND").addEventListener("keyup", function(){
+	let key:string = (this.value).trim().toLowerCase();
+	let DSNDCanTimKiem = DSNguoiDung.timNguoiDungTheoTen(key);
+	showDSND(DSNDCanTimKiem.DSND, getid("dataNguoiDung"));
+	console.log(DSNguoiDung.DSND);
+	console.log(DSNDCanTimKiem.DSND);
+	let data = "";
+	if(key === "" || key === " " || DSNDCanTimKiem.DSND.length == 0){
+		getid("dataTimKiemNguoiDung").innerHTML = "";
+		getid("tableTimKiemNguoiDung").classList.remove("active");
+	}
+	else{
+		for(let i:number = 0; i < DSNDCanTimKiem.DSND.length; i++){
+			let ndTimKiem = DSNDCanTimKiem.DSND[i];
+			data += `
+				<tr taikhoan=${ndTimKiem._TaiKhoan} class="trNguoiDungTimKiem" data-choose="tr_${ndTimKiem._TaiKhoan}">
+					<td>${i+1}</td>
+					<td>${ndTimKiem._TaiKhoan}</td>
+					<td>${ndTimKiem._HoTen}</td>
+				</tr>
+			`;
+		}
+		getid("tableTimKiemNguoiDung").classList.add("active");
+		getid("dataTimKiemNguoiDung").innerHTML = data;
+
+		let trNDTimKiem = document.querySelectorAll(".trNguoiDungTimKiem");
+		for(let i:number = 0; i < trNDTimKiem.length; i++){
+			trNDTimKiem[i].addEventListener("click", function(){
+				getid("tableTimKiemNguoiDung").classList.remove("active");
+				let tkCanTim = getid(this.getAttribute("data-choose"));
+				tkCanTim.classList.add("choose");
+				window.scroll({
+					top: tkCanTim.offsetTop, 
+					left: 0, 
+					behavior: 'smooth' 
+				})
+			})
+		}
+	}
+});
 
 
 

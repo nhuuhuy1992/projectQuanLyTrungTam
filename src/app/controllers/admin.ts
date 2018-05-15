@@ -10,10 +10,14 @@ import "./../../assets/js/app_index.js";
 import { NguoiDung } from "./../models/NguoiDung";
 import { DanhSachNguoiDungServices } from "./../services/NguoiDungServices";
 import { DanhSachNguoiDung } from "./../models/DanhSachNguoiDung";
-
+import { KhoaHoc } from "../models/KhoaHoc";
+import { KhoaHocServices } from '../services/KhoaHocServices';
+// services
 let DSNguoiDung:DanhSachNguoiDung = new DanhSachNguoiDung();
 let DSNDService:any = new DanhSachNguoiDungServices();
+let DSKHService: any = new KhoaHocServices();
 
+// 
 let getid = el => document.getElementById(el);
 let getInputId = el => <HTMLInputElement>document.getElementById(el);
 
@@ -87,7 +91,15 @@ getid("btnThemNguoiDung").addEventListener("click", function(){
 
 
 
+// Khoa Hoc
 
+DSKHService.layKhoaHocService()
+	.done(res =>{
+		console.log(res)
+	})
+	.fail(
+		err => console.log(err)
+	)
 
 
 

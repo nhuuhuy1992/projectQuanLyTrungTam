@@ -193,20 +193,20 @@ function suaNguoiDungAPI(btns){
 							            <label for="maND">Mã Người Dùng</label>
 							            <select class="custom-select" value="${nd.getAttribute("maloainguoidung")}" id="maCapNhatND">
 							            `;
-								     //      if((<HTMLSelectElement>document.getElementById(`${nd.getAttribute("taikhoan")}`)).value === "hv"){
-								     //      	modalSua += `
+								        //   if((<HTMLSelectElement>document.getElementById(`${nd.getAttribute("taikhoan")}`)).value === "hv"){
+								        //   	modalSua += `
 												
-													// <option value="HV" selected>HV</option>
-													// <option value="GV">GV</option>
-								     //      	`;
-								     //      }
-								     //      else if((<HTMLSelectElement>document.getElementById(`${nd.getAttribute("taikhoan")}`)).value === "GV"){
-								     //      	modalSua += `
-													// <option value="HV">HV</option>
-													// <option value="GV" selected>GV</option>
+										// 			<option value="HV" selected>HV</option>
+										// 			<option value="GV">GV</option>
+								        //   	`;
+								        //   }
+								        //   else if((<HTMLSelectElement>document.getElementById(`${nd.getAttribute("taikhoan")}`)).value === "GV"){
+								        //   	modalSua += `
+										// 			<option value="HV">HV</option>
+										// 			<option value="GV" selected>GV</option>
 												
-								     //      	`;
-								     //      }
+								        //   	`;
+								        //   }
 							            
 							modalSua += `	
 										</select>		
@@ -231,12 +231,17 @@ function xacNhanCapNhatAPI(btn){
 	  	let TaiKhoanCN = getInputId("TaiKhoanCapNhatND").value;
 	  	let EmailCN = getInputId("EmailCapNhatND").value;
 	  	let SoDTCN = parseInt(getInputId("SoDTCapNhatND").value);
-		let maNDCN = (<HTMLSelectElement>document.getElementById("maCapNhatND")).value;
+		// let maNDCN = (<HTMLSelectElement>document.getElementById("maCapNhatND")).value;
+		let maNDCN = 'HV';
 	  	let MatKhauNDCN = getInputId("MatKhauCapNhatND").value;
 
 	  	let NDCapNhat = new NguoiDung(TaiKhoanCN, MatKhauNDCN, HoTenCN, SoDTCN, EmailCN, maNDCN);
-	  	//chuyển về chuỗi json
-	  	let jsonNDCapNhat = JSON.stringify(NDCapNhat);
+		  //chuyển về chuỗi json
+		//   let userUpdate:any={
+		// 	TaiKhoan:NDCapNhat._TaiKhoan, MatKhau:NDCapNhat._MatKhau, Email:NDCapNhat._Email, SoDT:NDCapNhat._SoDT, MaLoaiNguoiDung:NDCapNhat._MaLoaiNguoiDung
+		//   }
+		  let jsonNDCapNhat = JSON.stringify(NDCapNhat);
+		  console.log(jsonNDCapNhat);
 	  	DSNDService.suaNguoiDungService(jsonNDCapNhat)
 	  			.done(function(res){
 	  				console.log("thanh cong");

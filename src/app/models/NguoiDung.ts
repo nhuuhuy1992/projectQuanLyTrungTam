@@ -1,40 +1,40 @@
 export class NguoiDung {
-    private _TaiKhoan:string;
-    private _MatKhau:string;
-    private _HoTen:string;
-    private _Email:string;
-    private _SoDT:number;
-    private _MaLoaiNguoiDung:string;
-    private _TenLoaiNguoiDung:string;    
+    private TaiKhoan:string;
+    private MatKhau:string;
+    private HoTen:string;
+    private Email:string;
+    private SoDT:number;
+    private MaLoaiNguoiDung:string;
+    // private _TenLoaiNguoiDung:string;    
 
-    public get TaiKhoan():string{return this._TaiKhoan}
-    public set TaiKhoan(a:string){this._TaiKhoan = a}
+    public get _TaiKhoan():string{return this.TaiKhoan}
+    public set _TaiKhoan(a:string){this.TaiKhoan = a}
 
-    public get MatKhau():string{return this._MatKhau}
-    public set MatKhau(a:string){this._MatKhau = a}
+    public get _MatKhau():string{return this.MatKhau}
+    public set _MatKhau(a:string){this.MatKhau = a}
 
-    public get HoTen():string{return this._HoTen}
-    public set HoTen(a:string){this._HoTen = a}
+    public get _HoTen():string{return this.HoTen}
+    public set _HoTen(a:string){this.HoTen = a}
 
-    public get SoDT():number{return this._SoDT}
-    public set SoDT(a:number){this._SoDT = a}
+    public get _SoDT():number{return this.SoDT}
+    public set _SoDT(a:number){this.SoDT = a}
 
-    public get Email():string{return this._Email}
-    public set Email(a:string){this._Email = a}
+    public get _Email():string{return this.Email}
+    public set _Email(a:string){this.Email = a}
 
-    public get MaLoaiNguoiDung():string{return this._MaLoaiNguoiDung}
-    public set MaLoaiNguoiDung(a:string){this._MaLoaiNguoiDung = a}
+    public get _MaLoaiNguoiDung():string{return this.MaLoaiNguoiDung}
+    public set _MaLoaiNguoiDung(a:string){this.MaLoaiNguoiDung = a}
     
-    public get TenLoaiNguoiDung():string{return this._TenLoaiNguoiDung}
-    public set TenLoaiNguoiDung(a:string){this._TenLoaiNguoiDung = a}
+    // public get TenLoaiNguoiDung():string{return this._TenLoaiNguoiDung}
+    // public set TenLoaiNguoiDung(a:string){this._TenLoaiNguoiDung = a}
     
-    constructor(TaiKhoan:string, MatKhau:string, HoTen:string, SoDT:number, Email:string, MaLoaiNguoiDung:string, TenLoaiNguoiDung:string){
-        this.TaiKhoan = TaiKhoan;
-        this.MatKhau = MatKhau;
-        this.HoTen = HoTen;
-        this.SoDT = SoDT;
-        this.Email = Email;
-        this.MaLoaiNguoiDung = MaLoaiNguoiDung;
-        this.TenLoaiNguoiDung = TenLoaiNguoiDung;
+    constructor(TaiKhoan:string, MatKhau:string, HoTen:string, SoDT:number, Email:string, MaLoaiNguoiDung:string){
+        this._TaiKhoan = TaiKhoan;
+        this._MatKhau = MatKhau;
+        this._HoTen = HoTen;
+        this._SoDT = SoDT;
+        this._Email = Email;
+        this._MaLoaiNguoiDung = MaLoaiNguoiDung;
+        // this.TenLoaiNguoiDung = TenLoaiNguoiDung;
     }
 }

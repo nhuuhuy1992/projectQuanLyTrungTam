@@ -1,3 +1,26 @@
+th,
+td,
+tr {
+	text-align: center;
+	vertical-align: inherit !important;
+	cursor: pointer;
+}
+
+tr td {
+	font-size: 14px;
+}
+.table-hover tbody tr {
+	&:hover{
+   		background-color: rgba(0,0,0,.1);
+	}
+    	&.choose{
+   		background-color: rgba(211, 16, 16, 0.2);
+    }
+}
+.btn-danger.disabled:hover, .btn-danger:disabled:hover {
+    box-shadow: none;
+    margin-bottom: 0 !important;
+}
 .main__content{
 	padding-left: 8rem;
 	padding-top: 7rem;

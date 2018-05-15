@@ -12,13 +12,23 @@ export class DanhSachNguoiDungServices {
 			dataType : "json"
 		});
 	}
-	themNguoiDungService(nd:NguoiDung):NguoiDung{
+	themNguoiDungService(nd:NguoiDung){
 		return $.ajax({
 			url : " http://sv.myclass.vn/api/QuanLyTrungTam/ThemNguoiDung",
 			type : "POST",
-			data : nd,
-			dataType : "application/json",
-			contentType: 'application/json; charset=utf-8',
+			data : nd
+		});
+	}
+	xoaNguoiDungService(tk:string){
+		return $.ajax({
+			url : `http://sv.myclass.vn/api/QuanLyTrungTam/XoaNguoiDung/${tk}`,
+			type : "DELETE"
+		});
+	}
+	suaNguoiDungService(nd:NguoiDung){
+		return $.ajax({
+			url : "http://sv.myclass.vn/api/QuanLyTrungTam/CapNhatThongTinNguoiDung",
+			type : "PUT"
 		});
 	}
 }

@@ -14,6 +14,6 @@ import "./../../assets/scss/MHDesign.scss";
 
 import "particles.js";
 
-import "./../../assets/js/app.js";
+import "./../../assets/js/app_index.js";
 
 

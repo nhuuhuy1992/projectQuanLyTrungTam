@@ -29,6 +29,7 @@ export class KhoaHoc {
         this.TenKhoaHoc = tenkhoahoc;
         this.MoTa = mota;
         this.HinhAnh = hinhanh;
+        this.LuotXem = luotxem;
         this.NguoiTao= nguoitao
     }
 }

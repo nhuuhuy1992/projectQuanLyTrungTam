@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "animate": "^1.0.0",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.4",
     "babel-preset-env": "^1.7.0",
@@ -33,6 +34,8 @@
     "resolve-url-loader": "^2.3.0",
     "sass-loader": "^7.0.1",
     "style-loader": "^0.21.0",
+    "sweetalert": "^2.1.0",
+    "sweetalert2": "^7.20.1",
     "ts-loader": "^4.3.0",
     "typescript": "^2.8.3",
     "url-loader": "^1.0.1",

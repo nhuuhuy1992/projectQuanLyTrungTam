@@ -26,9 +26,11 @@ export class DanhSachNguoiDungServices {
 		});
 	}
 	suaNguoiDungService(nd:NguoiDung){
+		let ngJSON = JSON.stringify(nd);
 		return $.ajax({
 			url : "http://sv.myclass.vn/api/QuanLyTrungTam/CapNhatThongTinNguoiDung",
-			type : "PUT"
+			type : "PUT",
+			data : nd
 		});
 	}
 }

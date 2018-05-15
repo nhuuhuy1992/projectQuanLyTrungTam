@@ -1,11 +1,8 @@
-th,
-td,
-tr {
+th,td,tr {
 	text-align: center;
 	vertical-align: inherit !important;
 	cursor: pointer;
 }
-
 tr td {
 	font-size: 14px;
 }
@@ -43,7 +40,31 @@ tr td {
 		}
 	}
 }
-
+.blockForm{
+	position: relative;
+}
+#tableTimKiemNguoiDung{
+	@include posi-top-right(absolute, 140%, 0);
+	transition: .4s all;
+	width: 45%;
+	background: #fff;
+	border-radius: 5px;
+	z-index: 15;
+	padding: 10px 0;
+	opacity: 0;
+	visibility: 0;
+	tr{
+		height: 35px;
+	}
+	td, th{
+		width: calc(100% / 3);
+	}
+	&.active{
+		top: 120%;
+		opacity: 1;
+		visibility: 1;
+	}
+}
 
 
 

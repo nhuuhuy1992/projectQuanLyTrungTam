@@ -6,18 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Admin pages</title>
-    <style>
-        th,
-        td,
-        tr {
-            text-align: center;
-            vertical-align: inherit !important;
-        }
-        
-        tr td {
-            font-size: 14px;
-        }
-    </style>
 </head>
 
 <body>
@@ -119,7 +107,7 @@
             </div>
             <div class="row mt-4">
                 <div class="col-12">
-                    <table class="table table-hoverable table-striped tableHocVien">
+                    <table class="table table-hover table-striped tableHocVien">
                         <thead>
                             <tr>
                                 <th>#</th>
@@ -140,7 +128,7 @@
             </div>
         </div>
 
-        <div class="container d-none" id="divKhoaHoc">
+        <div class="container d-block" id="divKhoaHoc">
             <div class="row">
                 <div class="col-12">
                     <h3 class="text-center title__data">Danh Sách Khoá Học</h3>
@@ -172,20 +160,20 @@
             <div class="row mt-4">
                 <div class="col-md-6 col-12">
                     <button class="btn btn-danger border-0 btn-rounded" id="btnXoaHocVien">Xóa Khoá Học</button>
-                    <button class="btn btn-success border-0 btn-rounded" id="btnThemHocVien">Thêm Khoá Học</button>
+                    <button class="btn btn-success border-0 btn-rounded" id="btnModalKhoaHoc" data-toggle="modal" data-target="#modalKhoaHoc">Thêm Khoá Học</button>
                 </div>
             </div>
             <div class="row mt-4">
                 <div class="col-12">
-                    <table class="table table-hoverable table-striped tableKhoaHoc">
+                    <table class="table table-hoverable table-striped tableKhoaHoc" id="tableKhoaHoc">
                         <thead>
                             <tr>
                                 <th>#</th>
                                 <th>Mã</th>
                                 <th>Tên</th>
                                 <th>Lượt Xem</th>
-                                <th>Mô Tả</th>
-                                <th>Hình Ảnh</th>
+                                <!-- <th>Mô Tả</th>
+                                <th>Hình Ảnh</th> -->
                                 <th>Người Tạo</th>
                                 <th>Thao Tác</th>
                             </tr>
@@ -198,7 +186,7 @@
             </div>
         </div>
 
-        <div class="container" id="divNguoiDung">
+        <div class="container  d-none" id="divNguoiDung">
             <div class="row">
                 <div class="col-12">
                     <h3 class="text-center title__data">Danh Sách Người Dùng</h3>
@@ -216,36 +204,49 @@
 							</select>
                         </div>
 
-                        <div class="search">
+                        <div class="search w-25">
                             <div class="input-group">
-                                <div class="form-group mb-0">
+                                <div class="form-group mb-0 w-100">
                                     <label for="searchField" class="mb-0" style="font-size: 13px">Tìm Người Dùng</label>
-                                    <input type="email" class="form-control" style="border-color: #dbdbdb; font-size: 13px" id="searchField">
+                                    <input type="email" class="form-control" placeholder="Nhập Tên..." style="border-color: #dbdbdb; font-size: 13px" id="timND">
+
                                 </div>
+
                             </div>
                         </div>
+                        <table class="z-depth-2 table-hover" id="tableTimKiemNguoiDung">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Tài Khoản</th>
+                                    <th>Tên</th>
+                                </tr>
+                            </thead>
+                            <tbody id="dataTimKiemNguoiDung">
+
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
             <div class="row mt-4">
                 <div class="col-md-6 col-12">
-                    <button class="btn btn-danger border-0 btn-rounded" id="btnXoaHocVien">Xóa Người Dùng</button>
+                    <button class="btn btn-danger border-0 btn-rounded disabled" id="btnXoaNhieuND">Xóa Người Dùng</button>
                     <button class="btn btn-success border-0 btn-rounded" id="btnThemHocVien" data-toggle="modal" data-target="#modalNguoiDung">Thêm Người Dùng</button>
                 </div>
             </div>
             <div class="row mt-4">
                 <div class="col-12">
-                    <table class="table table-hoverable table-striped tableNguoiDung">
+                    <table class="table table-hover tableNguoiDung" id="tableNguoiDung">
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Tài Khoản</th>
-                                <th>Mật Khẩu</th>
-                                <th>Tên</th>
-                                <th>Email</th>
-                                <th>Số Điện Thoại</th>
-                                <th>Mã Người Dùng</th>
-                                <th>Loại Người Dùng</th>
+                                <th data-sort="true">Tài Khoản</th>
+                                <th data-sort="true">Mật Khẩu</th>
+                                <th data-sort="true">Tên</th>
+                                <th data-sort="true">Email</th>
+                                <th data-sort="true">Số Điện Thoại</th>
+                                <th data-sort="true">Mã Người Dùng</th>
                                 <th>Thao Tác</th>
                             </tr>
                         </thead>
@@ -256,7 +257,6 @@
                 </div>
             </div>
         </div>
-
 
 
 
@@ -315,7 +315,6 @@
         </div>
 
 
-
         <div class="modal fade" id="modalNguoiDung" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -360,32 +359,97 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-6 col-12">
+                            <div class="col-12">
                                 <label for="maND">Mã Người Dùng</label>
                                 <select class="custom-select" id="maND">
 									<option value="HV">HV</option>
 									<option value="GV">GV</option>
 								</select>
                             </div>
-                            <div class="col-md-6 col-12">
+                            <!-- <div class="col-md-6 col-12">
                                 <label for="tenLoaiND">Tên Loại Người Dùng</label>
                                 <select class="custom-select" id="tenLoaiND">
 									<option value="Học Viên">Học Viên</option>
 									<option value="Giáo Vụ">Giáo Vụ</option>
 								</select>
-                            </div>
+                            </div> -->
                         </form>
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-danger" data-dismiss="modal">Close</button>
-                        <button class="btn btn-success" id="btnThemNguoiDung">Thêm</button>
+                        <button class="btn btn-success" data-dismiss="modal" id="btnThemNguoiDung">Thêm</button>
                     </div>
                 </div>
             </div>
         </div>
 
 
+        <div class="modal fade" id="modalKhoaHoc" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="modal-title">
+                            <h3>Thêm Khoá Học</h3>
+                        </div>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+                    </div>
+                    <div class="modal-body container">
+                        <form class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="MaKhoaHoc">Mã Khoá Học</label>
+                                    <input type="text" class="form-control" id="MaKhoaHoc" placeholder="Nhập Vào Mã Khoá Học">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="TenKhoaHoc">Tên Khoá Học</label>
+                                    <input type="text" class="form-control" id="TenKhoaHoc" placeholder="Nhập Vào Tên Khoá Học">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="MoTa">Mô Tả</label>
+                                    <textarea name="Mota" id="MoTa" class="form-control" rows="5"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="HinhAnh">Hình Ảnh</label>
+                                    <input type="url" class="form-control" id="HinhAnh" placeholder="Nhập vào đường dẫn hình ảnh">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="LuotXem">Lượt Xem</label>
+                                    <input type="number" class="form-control" id="LuotXem" placeholder="Nhập Số Lượt Xem">
+                                </div>
+                            </div>
 
-
+                            <div class="col-12">
+                                <label for="maND">Người tạo</label>
+                                <select class="custom-select" id="NguoiTao">
+									<option value="HV">HV</option>
+									<option value="GV">GV</option>
+								</select>
+                            </div>
+                            <!-- <div class="col-md-6 col-12">
+                                <label for="tenLoaiND">Tên Loại Người Dùng</label>
+                                <select class="custom-select" id="tenLoaiND">
+									<option value="Học Viên">Học Viên</option>
+									<option value="Giáo Vụ">Giáo Vụ</option>
+								</select>
+                            </div> -->
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-danger" data-dismiss="modal">Close</button>
+                        <button class="btn btn-success" data-dismiss="modal" id="btnThemKhoaHoc">Thêm</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 </body>

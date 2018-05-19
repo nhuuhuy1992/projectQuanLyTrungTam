@@ -10,10 +10,10 @@ import "owl.carousel/dist/assets/owl.theme.default.min.css";
 import "owl.carousel/dist/assets/owl.carousel.min.css";
 import "owl.carousel";
 //style
-import "./../../assets/scss/MHDesign.scss";
+import "./../../assets/scss/index.scss";
 
 import "particles.js";
 
-import "./../../assets/js/app.js";
+import "./../../assets/js/app_index.js";
 
 

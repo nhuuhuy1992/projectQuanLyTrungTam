@@ -16,6 +16,8 @@
 //custom
 @import "custom";
 //layout admin
-@import "layout_admin/sidebar";
+@import "layout_index/form";
+// @import "layout_admin/sidebar";
 @import "layout_admin/header";
-@import "layout_admin/table";
+// @import "layout_admin/tableHocVien";
+@import "layout_user/userProfile"

@@ -43,7 +43,9 @@ formDK.addEventListener("submit", function(){
 				type: 'success',
 				title: 'Đăng Kí Thành Công!',
 			}).then(() => {
-				window.location.reload();
+				luuNguoiDK(res);
+				$("#formDangKy").modal("hide");
+				$(".btn-dangnhap").trigger("click");
 			})
 		})
 		.fail(function(err){
@@ -55,7 +57,36 @@ formDK.addEventListener("submit", function(){
 	}
 	event.preventDefault();
 });
-
+function luuNguoiDK(nd){
+	let json = JSON.stringify(nd);
+	localStorage.setItem("NguoiDung", json);
+}
+function ktNguoiDungDN(){
+	if(localStorage.getItem("NguoiDung")){
+		let json = JSON.parse(localStorage.getItem("NguoiDung"));
+		DSNDServices.dangNhap(json.TaiKhoan, json.MatKhau)
+					.done(function(){
+						$(".btn-dangky").remove();
+						$(".btn-dangnhap").remove();
+						$("#formDangNhap").modal("hide");
+						$(".block-btn-form").append(`
+						<a href="#" class="btn-showInfo btn-contact">
+							<span>Thông Tin</span>
+							<span class="fa fa-user icon icon-info rounded-circle"></span>
+						</a>
+						
+						<a href="#" class="btn-dangXuat btn-contact">
+							<span>Đăng Xuất</span>
+							<span class="fa fa-sign-out icon icon-info rounded-circle"></span>
+						</a>
+						`);
+					})
+					.fail();
+	}
+}
+function xoaNguoiDungLocal(){
+	localStorage.removeItem("NguoiDung");
+}
 //lấy Danh sách 
 DSNDServices.layDSNDService()
 			  .done(function(res){
@@ -83,26 +114,26 @@ formDN.addEventListener("submit", function(){
 
 	DSNDServices.dangNhap(TKDN, passDN)
 			  .done(function(res){
-			  	console.log(DSNguoiDung.DSND);
-			  	console.log(DSNguoiDung.timNguoiDungTheoTK(TKDN));
-			  	console.log(DSNguoiDung.DSND[DSNguoiDung.timNguoiDungTheoTK(TKDN)]._MaLoaiNguoiDung);
 			  	let nguoiDangNhap = DSNguoiDung.DSND[DSNguoiDung.timNguoiDungTheoTK(TKDN)];
-
+				luuNguoiDK(nguoiDangNhap);
 			  	if(nguoiDangNhap._MaLoaiNguoiDung == "HV"){
 			  		console.log("chuyển sang trang hv");
 			  	}
 			  	else if(nguoiDangNhap._MaLoaiNguoiDung == "GV"){
-			  		window.location.reload();
 			  		window.open("http://localhost:9000/admin.html","_blank");
 			  	}
 			  })
 			  .fail(function(err){
 			  	console.log(err);
 			  });
-
+	ktNguoiDungDN();
 	event.preventDefault();
 })
 
+$("body").delegate(".btn-dangXuat", "click", function(){
+	xoaNguoiDungLocal();
+	window.location.reload();
+})
 
 
 

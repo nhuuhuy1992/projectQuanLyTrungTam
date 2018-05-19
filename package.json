@@ -18,6 +18,8 @@
     "bootstrap": "^4.1.1",
     "clean-webpack-plugin": "^0.1.19",
     "css-loader": "^0.28.11",
+    "datatables": "^1.10.13",
+    "datatables.net-bs4": "^1.10.16",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "file-loader": "^1.1.11",
     "font-awesome": "^4.7.0",

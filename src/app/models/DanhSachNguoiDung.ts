@@ -31,6 +31,11 @@ export class DanhSachNguoiDung{
 		}
 		return DSNDCanTim;
 	}
+	locNguoiDung(maloand:string){
+		let dsLoaiND = new DanhSachNguoiDung();
+		dsLoaiND.DSND = this.DSND.filter( nd => nd._MaLoaiNguoiDung === maloand)
+		return dsLoaiND;
+	}
 	xoaNguoiDung(){}
 	suaNguoiDung(){}
 	ghiDanhKhoaHoc(){}

@@ -1,0 +1,18 @@
+.profile {
+    &__header {
+        height: 20em;
+        width: 100%;
+        background: #eee
+    }
+    &__body {
+        margin: -4vw;
+        text-align: center
+    }
+    &__image {
+        border-radius: 50%;
+        width: 150px;
+        height: 150px;
+        overflow: hidden;
+        margin: -40px auto 0
+    }
+}

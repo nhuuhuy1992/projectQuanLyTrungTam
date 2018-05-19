@@ -7,18 +7,17 @@ import "font-awesome/css/font-awesome.min.css";
 import "./../../assets/scss/admin.scss";
 import "./../../assets/js/app_admin.js";
 import swal from "sweetalert2";
-
 import { NguoiDung } from "./../models/NguoiDung";
 import { DanhSachNguoiDungServices } from "./../services/NguoiDungServices";
 import { DanhSachNguoiDung } from "./../models/DanhSachNguoiDung";
 
-let DSNguoiDung:DanhSachNguoiDung = new DanhSachNguoiDung();
-let DSNDService:any = new DanhSachNguoiDungServices();
-
-let getid = el => document.getElementById(el);
-let getInputId = el => <HTMLInputElement>document.getElementById(el);
+const DSNguoiDung:DanhSachNguoiDung = new DanhSachNguoiDung();
+const DSNDService:any = new DanhSachNguoiDungServices();
 
 
+
+const getid = el => document.getElementById(el);
+const getInputId = el => <HTMLInputElement>document.getElementById(el);
 
 
 function showDSND(DSND:Array<NguoiDung>, divLoad){
@@ -245,7 +244,7 @@ function xacNhanCapNhatAPI(btn){
 	  				// console.log("thanh cong");
 	  				swal({
 						type: 'success',
-						title: 'Thêm Thành Công!'
+						title: 'Cập Nhật Thành Công!'
 					}).then(()=>{
 	  					window.location.reload();
 					})

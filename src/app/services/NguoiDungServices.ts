@@ -33,6 +33,22 @@ export class DanhSachNguoiDungServices {
 			data : nd
 		});
 	}
+	dangKy(nd:NguoiDung){
+		return $.ajax({
+			url : "http://sv.myclass.vn/api/QuanLyTrungTam/DangKy",
+			type : "POST",
+			data : nd
+		});
+	}
+
+	dangNhap(tk:string, pass:string){
+		return $.ajax({
+			url : `http://sv.myclass.vn/api/QuanLyTrungTam/DangNhap?taikhoan=${tk}&matkhau=${pass}`,
+			type : "GET"
+		});
+	}
+
+
 }
 
 

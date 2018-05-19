@@ -3,6 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        label.big-err{
+            color: red;
+            position: absolute;
+            top: -66%;
+            transition: .3s all;
+            background: #fff;
+            right: 0;
+            padding: 2px 11px;
+            font-size: 11px;
+            border-radius: 6px;
+            font-family: monts-reg;
+        }
+
+    </style>
 </head>
 <body>
     
@@ -668,35 +683,91 @@
                 <span>Đăng nhập</span>
                 <span class="fa fa-sign-in icon icon-info rounded-circle"></span>
             </a>
-            <a href="#" class="btn-dangnhap btn-contact" data-toggle="modal" data-target="#formTimKiem">
+            <a href="#" class="btn-timKiem btn-contact" data-toggle="modal" data-target="#FormTimKiem">
                 <span>Tìm kiếm...</span>
                 <span class="fa fa-search icon icon-info rounded-circle"></span>
             </a>
         </div>
     </div>
 
-    <div class="modal fade modalTimKiem" id="formTimKiem" role="dialog">
+    <div class="modal fade p-0 modalDangKy modalForm" id="formDangKy" role="dialog">
         <div class="modal-dialog" role="document" style="max-width: initial;">
-            <div class="modal-content border-0" style="background: transparent;">
-                <div class="modal-body container">
-                    <div class="row">
-                        <div class="col-8 m-auto">
-                            <span class="input input--juro">
-								<input class="input__field input__field--juro" type="text" id="inputTen" />
-								<label class="input__label input__label--juro" for="inputTen">
-									<span class="input__label-content input__label-content--juro" style="padding: 2em 1em">Tìm Kiếm Khóa Học</span>
-                            </label>
-                            </span>
+            <div class="modal-content container w-75">
+                <div class="modal-body row p-0">
+                    
+                    <div class="col-lg-6 col-12 m-0 right">
+                        <div class="container">
+                            <form id="register-form" class="row" method="POST">
+                                <div class="col-12 text-center mb-3">
+                                    <h2 class="heading-secondary ">ĐĂNG KÍ</h2>
+                                </div>
+                                <div class="col-12 colInput">
+                                    <span class="input input--jiro ">
+                                        <input name="HoTen" class="input__field input__field--jiro txt" type="text" id="inputHoTenDK" data-thongbao="tbTen"/>
+                                        <label class="input__label input__label--jiro" for="inputHoTenDK">
+                                            <span class="input__label-content input__label-content--jiro">Họ Tên...</span>
+                                        </label>
+                                        <span class="divTB" id="tbTen"></span>
+                                    </span>
+                                </div>
+                                <div class="col-12 colInput">
+                                    <span class="input input--jiro ">
+                                        <input name="tenTaiKhoan" class="input__field input__field--jiro txt" type="text" id="inputTenTKDK"  data-thongbao="tbTK"/>
+                                        <label class="input__label input__label--jiro" for="inputTenTKDK">
+                                            <span class="input__label-content input__label-content--jiro">Tên Tài Khoản</span>
+                                        </label>
+                                        <span class="divTB " id="tbTK"></span>
+                                    </span>
+                                </div>
+                                <div class="col-12 colInput">
+                                     <span class="input input--jiro ">
+                                        <input name="mail" class="input__field input__field--jiro txt" type="text" id="inputEmailDK"  data-thongbao="tbEmail" />
+                                        <label class="input__label input__label--jiro" for="inputEmailDK">
+                                            <span class="input__label-content input__label-content--jiro">Email</span>
+                                        </label>
+                                        <span class="divTB" id="tbEmail"></span>
+                                    </span>
+                                </div>
+                                <div class="col-12 colInput">
+                                     <span class="input input--jiro ">
+                                        <input name="SDT" class="input__field input__field--jiro txt" type="text" id="inputSDTDK"  data-thongbao="tbSDT" />
+                                        <label class="input__label input__label--jiro" for="inputSDTDK">
+                                            <span class="input__label-content input__label-content--jiro">Số Điện Thoại</span>
+                                        </label>
+                                        <span class="divTB " id="tbSDT"></span>
+                                    </span>
+                                </div>
+                                <div class="col-12  colInput">
+                                     <span class="input input--jiro ">
+                                        <input name="matKhau" class="input__field input__field--jiro txt" type="password" id="inputPASSDK"  data-thongbao="tbMK"/>
+                                        <label class="input__label input__label--jiro" for="inputPASSDK">
+                                            <span class="input__label-content input__label-content--jiro">Nhập Mật Khẩu</span>
+                                        </label>
+                                        <span class="divTB " id="tbMK"></span>
+                                    </span>
+                                </div>
+                                <div class="col-12 colInput">
+                                     <span class="input input--jiro ">
+                                        <input name="reMatKhau" class="input__field input__field--jiro txt" type="password" id="inputRePASSDK" data-thongbao="tbReMK" />
+                                        <label class="input__label input__label--jiro" for="inputRePASSDK">
+                                            <span class="input__label-content input__label-content--jiro">Nhập Mật Lại Khẩu</span>
+                                        </label>
+                                        <span class="divTB " id="tbReMK"></span>
+                                    </span>
+                                </div>  
+                                <div class="col-12 colInput text-center">
+                                    <button class="btn btn-primary" type="submit" id="btnDangKy">Đăng Kí</button>
+                                </div>
+                                <ul class="col-12 colInput d-flex justify-content-center colInput--social">
+                                    <li><a href="#" class="fa fa-facebook"></a></li>
+                                    <li><a href="#" class="fa fa-google-plus"></a></li>
+                                    <li><a href="#" class="fa fa-github"></a></li>
+                                </ul>
+                            </form>
+                           
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade p-0 modalDangKy" id="formDangKy" role="dialog">
-        <div class="modal-dialog" role="document" style="max-width: initial;">
-            <div class="modal-content container">
-                <div class="modal-body row p-0">
+                    
                     <div class="col-lg-6 col-12 left d-none d-lg-block">
                         <div class="overlay"></div>
                         <ul class="left__content">
@@ -713,122 +784,70 @@
                                 <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas, nulla.</span>
                             </li>
                         </ul>
-                    </div>
-                    <div class="col-lg-6 col-12 right py-3">
-                        <h5 class="display-4 text-center form-title">Đăng Kí</h5>
-                        <div class="gach aqua-gradient"></div>
-                        <section class="content bgcolor-6 container">
-                            <div class="row">
-                                <div class="col-md-6 col-12 p-md-0 px-3">
-                                    <span class="input input--juro">
-										<input class="input__field input__field--juro" type="text" id="inputHo" data-thongbao="thongBaoHo"/>
-										<label class="input__label input__label--juro" for="inputHo">
-											<span class="input__label-content input__label-content--juro">Họ...</span>
-                                    </label>
-                                    </span>
-                                    <span class="thongBao" id="thongBaoHo">dasdas</span>
-                                </div>
+                    </div><!-- End Left -->
 
-                                <div class="col-md-6 col-12 p-md-0 px-3">
-                                    <span class="input input--juro">
-										<input class="input__field input__field--juro" type="text" id="inputTen" data-thongbao="thongBaoTen"/>
-										<label class="input__label input__label--juro" for="inputTen">
-											<span class="input__label-content input__label-content--juro">Tên...</span>
-                                    </label>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade modalDangNhap  modalForm" id="formDangNhap">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body container">
+                    <div class="row">
+                        <div class="col-12 text-center mb-3">
+                            <h2 class="heading-secondary ">ĐĂNG Nhập</h2>
+                        </div>
+                        <div class="col-12">
+                            <form class="container" id="sign-up-form" method="GET">
+                                <div class="row">
 
-                                    </span>
-                                    <span class="thongBao" id="thongBaoTen"></span>
+                                    <div class="col-12 colInput">
+                                        <span class="input input--jiro ">
+                                            <input name="TKDN" class="input__field input__field--jiro txt" type="text" id="inputTKDN"  data-thongbao="tbEmail" />
+                                            <label class="input__label input__label--jiro" for="inputTKDN">
+                                                <span class="input__label-content input__label-content--jiro">Tài Khoản</span>
+                                            </label>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 colInput">
+                                        <span class="input input--jiro ">
+                                            <input name="password" class="input__field input__field--jiro txt" type="password" id="inputPassDN"  data-thongbao="tbSDT" />
+                                            <label class="input__label input__label--jiro" for="inputPassDN">
+                                                <span class="input__label-content input__label-content--jiro">Mật Khẩu</span>
+                                            </label>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 colInput text-center">
+                                        <button class="btn btn-primary" type="submit" id="btnDangNhap">Đăng Nhập</button>
+                                    </div>
                                 </div>
-                                <div class="col-12 p-md-0 px-3">
-                                    <span class="input input--juro">
-										<input class="input__field input__field--juro" type="text" id="inputEmail" data-thongbao="thongBaoEmail"/>
-										<label class="input__label input__label--juro" for="inputEmail">
-											<span class="input__label-content input__label-content--juro">Email...</span>
-                                    </label>
-
-                                    </span>
-                                    <span class="thongBao" id="thongBaoEmail"></span>
-                                </div>
-                                <div class="col-12 p-md-0 px-3">
-                                    <span class="input input--juro">
-										<input class="input__field input__field--juro" type="text" id="inputSDT" data-thongbao="thongBaoSDT"/>
-										<label class="input__label input__label--juro" for="inputSDT">
-											<span class="input__label-content input__label-content--juro">Số Điện Thoại...</span>
-                                    </label>
-                                    </span>
-                                    <span class="thongBao" id="thongBaoSDT"></span>
-                                </div>
-                                <div class="col-12 p-md-0 px-3">
-                                    <span class="input input--juro">
-										<input class="input__field input__field--juro" type="text" id="inputTenDangNhap" />
-										<label class="input__label input__label--juro" for="inputTenDangNhap">
-											<span class="input__label-content input__label-content--juro">Tên Đăng Nhập...</span>
-                                    </label>
-                                    </span>
-                                    <span class="thongBao" id="thongBaoTenDangNhap"></span>
-                                </div>
-
-                                <div class="col-md-6 col-12 p-md-0 px-3">
-                                    <span class="input input--juro">
-										<input class="input__field input__field--juro" type="password" id="inputMK" />
-										<label class="input__label input__label--juro" for="inputMK">
-											<span class="input__label-content input__label-content--juro">Mật Khẩu...</span>
-                                    </label>
-                                    </span>
-                                    <span class="thongBao" id="thongBaoMK"></span>
-                                </div>
-
-                                <div class="col-md-6 col-12 p-md-0 px-3">
-                                    <span class="input input--juro">
-										<input class="input__field input__field--juro" type="password" id="inputReMK" />
-										<label class="input__label input__label--juro" for="inputReMK">
-											<span class="input__label-content input__label-content--juro">Nhập Lại Mật Khẩu...</span>
-                                    </label>
-                                    </span>
-                                    <span class="thongBao" id="thongBaoReMK"></span>
-                                </div>
-                                <div class="col-12 text-center mt-4">
-                                    <a href="#" class="btn btn-outline-primary m-auto" id="btnDangKy">Đăng Kí</a>
-                                </div>
-                            </div>
-                        </section>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="modal fade modalDangNhap" id="formDangNhap">
+
+    <div class="modal fade modalTimKiem  modalForm" id="FormTimKiem">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header justify-content-center">
-                    <div class="modal-title">
-                        <h4 class=" form-title">Đăng Nhập</h4>
-                        <div class="gach aqua-gradient"></div>
-                    </div>
-                </div>
                 <div class="modal-body container">
                     <div class="row">
-                        <div class="col-12 p-lg-0 px-3">
-                            <span class="input input--juro">
-								<input class="input__field input__field--juro" type="text" id="inputTenDangNhap" />
-								<label class="input__label input__label--juro" for="inputTenDangNhap">
-									<span class="input__label-content input__label-content--juro">Tên Đăng Nhập</span>
-                            </label>
-                            </span>
-                        </div>
-                        <div class="col-12 p-lg-0 px-3">
-                            <span class="input input--juro">
-								<input class="input__field input__field--juro" type="text" id="inputMK" />
-								<label class="input__label input__label--juro" for="inputMK">
-									<span class="input__label-content input__label-content--juro">Mật Khẩu</span>
-                            </label>
-                            </span>
+                        <div class="col-12">
+                            <div class="col-12 colInput">
+                                <span class="input input--jiro">
+                                    <input class="input__field input__field--jiro txt" type="text" id="inputTimKiem"/>
+                                     <label class="input__label input__label--jiro" for="inputTimKiem">
+                                        <span class="input__label-content input__label-content--jiro">Tìm Kiếm Khoá học</span>
+                                    </label>
+                                </span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <a href="#" class="btn btn-outline-primary m-auto">Đăng Nhập</a>
                 </div>
             </div>
         </div>
@@ -981,7 +1000,6 @@
         </div>
     </div>
     <!-- End modal -->
-
 
 </body>
 </html>

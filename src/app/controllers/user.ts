@@ -42,7 +42,7 @@ userAuthService.dangNhapService('nguyentuan','12345')
                                             console.log(makh);
                                             let objKHoaHoc = new KhoaHoc(makh, tenkh,mota,hinhanh,luotxem,nguoitao)
                                             danhSachKhoaHoc.themKhoaHoc(khoahoc)
-                                            showKhoaHoc();
+                                            showKhoaHoc(danhSachKhoaHoc);
                                      }
                                     )
                                 .fail(err => console.log(err))
@@ -66,7 +66,7 @@ function showProfile(hocvien:NguoiDung){
 
 }
 
-function showKhoaHoc(){
+function showKhoaHoc(danhSachKhoaHoc){
     let course = '';
     for(let khoahoc of danhSachKhoaHoc.DSKH){
         course +=`

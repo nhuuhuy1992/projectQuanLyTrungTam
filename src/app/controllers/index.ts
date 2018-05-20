@@ -43,7 +43,7 @@ formDK.addEventListener("submit", function(){
 				type: 'success',
 				title: 'Đăng Kí Thành Công!',
 			}).then(() => {
-				luuNguoiDK(res);
+				// luuNguoiDK(res);
 				$("#formDangKy").modal("hide");
 				$(".btn-dangnhap").trigger("click");
 			})
@@ -65,23 +65,31 @@ function ktNguoiDungDN(){
 	if(localStorage.getItem("NguoiDung")){
 		let json = JSON.parse(localStorage.getItem("NguoiDung"));
 		DSNDServices.dangNhap(json.TaiKhoan, json.MatKhau)
-					.done(function(){
-						$(".btn-dangky").remove();
-						$(".btn-dangnhap").remove();
-						$("#formDangNhap").modal("hide");
-						$(".block-btn-form").append(`
-						<a href="#" class="btn-showInfo btn-contact">
-							<span>Thông Tin</span>
-							<span class="fa fa-user icon icon-info rounded-circle"></span>
+				.done(function(res){
+					let nguoiDangNhap = res[0];
+					let HoTen =  nguoiDangNhap.HoTen
+				    	let TaiKhoan = nguoiDangNhap.TaiKhoan;
+				    	let Email = nguoiDangNhap.Email;
+				    	let SoDT = nguoiDangNhap.SoDT;
+				    	let maND = nguoiDangNhap.MaLoaiNguoiDung
+				    	let MatKhauND = nguoiDangNhap.MatKhau;
+				    	let Obj:NguoiDung = new NguoiDung(TaiKhoan, MatKhauND, HoTen, SoDT, Email, maND);
+					$(".btn-dangky").remove();
+					$(".btn-dangnhap").remove();
+					$("#formDangNhap").modal("hide");
+					$(".block-btn-form").append(`
+						<a href="#" class="btn-showInfo btn-contact" taikhoan="${json.TaiKhoan}">
+						<span>Thông Tin</span>
+						<span class="fa fa-user icon icon-info rounded-circle"></span>
 						</a>
-						
+
 						<a href="#" class="btn-dangXuat btn-contact">
-							<span>Đăng Xuất</span>
-							<span class="fa fa-sign-out icon icon-info rounded-circle"></span>
+						<span>Đăng Xuất</span>
+						<span class="fa fa-sign-out icon icon-info rounded-circle"></span>
 						</a>
 						`);
-					})
-					.fail();
+				})
+				.fail();
 	}
 }
 function xoaNguoiDungLocal(){
@@ -89,54 +97,100 @@ function xoaNguoiDungLocal(){
 }
 //lấy Danh sách 
 DSNDServices.layDSNDService()
-			  .done(function(res){
-				for(let person of res){
-					let HoTen =  person.HoTen
-					let TaiKhoan = person.TaiKhoan;
-					let Email =person.Email;
-					let SoDT = person.SoDT;
-					let maND =person.MaLoaiNguoiDung
-					let MatKhauND = person.MatKhau;
-		  			let personObj:NguoiDung = new NguoiDung(TaiKhoan, MatKhauND, HoTen, SoDT, Email, maND);
-					DSNguoiDung.themNguoiDung(personObj);
-				}
-			})
-			.fail(function(err){console.log(err);});
+.done(function(res){
+	for(let person of res){
+		let HoTen =  person.HoTen
+		let TaiKhoan = person.TaiKhoan;
+		let Email =person.Email;
+		let SoDT = person.SoDT;
+		let maND =person.MaLoaiNguoiDung
+		let MatKhauND = person.MatKhau;
+		let personObj:NguoiDung = new NguoiDung(TaiKhoan, MatKhauND, HoTen, SoDT, Email, maND);
+		DSNguoiDung.themNguoiDung(personObj);
+	}
+})
+.fail(function(err){console.log(err);});
 
 
 
 //đăng Nhập
 formDN.addEventListener("submit", function(){
 
-	let TKDN:string = getInputId("inputTKDN").value;
-	let passDN:string = getInputId("inputPassDN").value;
 
-
-	DSNDServices.dangNhap(TKDN, passDN)
-			  .done(function(res){
-			  	let nguoiDangNhap = DSNguoiDung.DSND[DSNguoiDung.timNguoiDungTheoTK(TKDN)];
-				luuNguoiDK(nguoiDangNhap);
-			  	if(nguoiDangNhap._MaLoaiNguoiDung == "HV"){
-			  		console.log("chuyển sang trang hv");
-			  	}
-			  	else if(nguoiDangNhap._MaLoaiNguoiDung == "GV"){
-			  		window.open("http://localhost:9000/admin.html","_blank");
-			  	}
-			  })
-			  .fail(function(err){
-			  	console.log(err);
-			  });
-	ktNguoiDungDN();
+	if($("#sign-up-form").valid()){
+		let TKDN:string = $("#inputTKDN").val();
+		let passDN:string = $("#inputPassDN").val();
+		DSNDServices.dangNhap(TKDN, passDN)
+				.done(res => {
+					let nguoiDangNhap = res[0];
+					let HoTen =  nguoiDangNhap.HoTen
+				    	let TaiKhoan = nguoiDangNhap.TaiKhoan;
+				    	let Email = nguoiDangNhap.Email;
+				    	let SoDT = nguoiDangNhap.SoDT;
+				    	let maND = nguoiDangNhap.MaLoaiNguoiDung
+				    	let MatKhauND = nguoiDangNhap.MatKhau;
+				    	let Obj:NguoiDung = new NguoiDung(TaiKhoan, MatKhauND, HoTen, SoDT, Email, maND);
+						if(Obj._MaLoaiNguoiDung == "HV"){
+							swal({
+								type: 'success',
+								title: 'Đăng Nhập Thành Công!',
+							}).then(() => {
+								luuNguoiDK(Obj);//luu nguoi dung vao local
+								ktNguoiDungDN();
+							})
+						}
+						else if(Obj._MaLoaiNguoiDung == "GV"){
+							window.open("http://localhost:9000/admin.html","_self");
+						}
+						else{
+							swal({
+								type: 'warning',
+								title: 'Sai Mật Khẩu Hoặc Tên Tài Khoản! Xin Đăng Nhập Lại',
+							})
+						}
+						
+					})
+				.fail(function(err){console.log(err);});
+	}
 	event.preventDefault();
 })
 
 $("body").delegate(".btn-dangXuat", "click", function(){
-	xoaNguoiDungLocal();
-	window.location.reload();
+	swal({
+		title: '<strong>Bạn Muốn Đăng Xuất?</strong>',
+		type: 'warning',
+		showCloseButton: true,
+		showCancelButton: true,
+		focusConfirm: false,
+		confirmButtonText:
+		'<i class="fa fa-thumbs-up"></i>Yes!',
+		cancelButtonText:
+		'<i class="fa fa-thumbs-down"></i> No!',
+		cancelButtonAriaLabel: 'Thumbs down',
+	}).then(() => {
+		xoaNguoiDungLocal();
+		window.location.reload();
+	})
+
 })
-
-
-
+$("body").delegate(".btn-showInfo", "click", function(){
+	console.log($(this).attr("taikhoan"));
+	let taiKhoan:string = $(this).attr("taikhoan");
+	DSNDServices.thongTinNguoiDung(taiKhoan)
+	.done(function(res){
+		// let nguoiDangNhap = res[0];
+		// let HoTen =  nguoiDangNhap.HoTen
+	 //    	let TaiKhoan = nguoiDangNhap.TaiKhoan;
+	 //    	let Email = nguoiDangNhap.Email;
+	 //    	let SoDT = nguoiDangNhap.SoDT;
+	 //    	let maND = nguoiDangNhap.MaLoaiNguoiDung
+	 //    	let MatKhauND = nguoiDangNhap.MatKhau;
+	 //    	let Obj:NguoiDung = new NguoiDung(TaiKhoan, MatKhauND, HoTen, SoDT, Email, maND);
+	 //    	console.log(Obj);
+	})
+	.fail(function(err){console.log(err);});
+})
+ktNguoiDungDN();
 
 
 

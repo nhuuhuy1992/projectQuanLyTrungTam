@@ -31,14 +31,26 @@ export class DanhSachNguoiDung{
 		}
 		return DSNDCanTim;
 	}
-	locNguoiDung(maloand:string){
+	locNguoiDung(maloaind:string){
 		let dsLoaiND = new DanhSachNguoiDung();
-		dsLoaiND.DSND = this.DSND.filter( nd => nd._MaLoaiNguoiDung === maloand)
+		dsLoaiND.DSND = this.DSND.filter( nd => nd._MaLoaiNguoiDung === maloaind)
 		return dsLoaiND;
 	}
-	xoaNguoiDung(){}
-	suaNguoiDung(){}
-	ghiDanhKhoaHoc(){}
+	xoaNguoiDungTheoTk(tk:string){
+		let indexNguoiDungCanXoa = this.timNguoiDungTheoTK(tk);
+		if(indexNguoiDungCanXoa >= 0){
+			this.DSND.splice(indexNguoiDungCanXoa, 1);
+		}
+	}
+	suaNguoiDung(nd:NguoiDung){
+		let viTriNguoiDung:number = this.timNguoiDungTheoTK(nd._TaiKhoan);
+		let nguoiDungChinhSua:NguoiDung = this.DSND[viTriNguoiDung];
+		nguoiDungChinhSua._MatKhau = nd._MatKhau;
+		nguoiDungChinhSua._TaiKhoan = nd._TaiKhoan;
+		nguoiDungChinhSua._HoTen = nd._HoTen;
+		nguoiDungChinhSua._Email = nd._Email;
+		nguoiDungChinhSua._MaLoaiNguoiDung = nd._MaLoaiNguoiDung;
+	}
 }
 
 

@@ -4,7 +4,7 @@
         "**/.svn": true,
         "**/.hg": true,
         "**/CVS": true,
-        "node_modules": false,
+        "node_modules": true,
         ".vscode": true,
         "**/.DS_Store": true
     }

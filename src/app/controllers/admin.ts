@@ -9,6 +9,7 @@ import 'datatables';
 import "./../../assets/js/app_admin.js";
 import swal from "sweetalert2";
 import 'datatables.net-bs4';
+import "../../assets/scss/vendors/animate.css";
 
 import { NguoiDung } from "./../models/NguoiDung";
 import { DanhSachNguoiDungServices } from "./../services/NguoiDungServices";
@@ -41,8 +42,8 @@ function showDSND(DSND:Array<NguoiDung>, divLoad){
 		<td>${motNguoiDung._SoDT}</td>
 		<td>${motNguoiDung._MaLoaiNguoiDung}</td>
 		<td class="d-flex justify-content-center">
-		<button class="icon icon-info rounded-circle border-0 fa fa-times mr-3 btnXoaTungND" style="width: 30px;height: 30px" id="btnXoa_${motNguoiDung._TaiKhoan}" data-toggle="tooltip" title="Xoá"></button>
-		<button class="icon icon-rainbow rounded-circle border-0  fa fa-pencil btnSuaTungND" style="width: 30px;height: 30px" id="btnSua_${motNguoiDung._TaiKhoan}" data-toggle="tooltip" title="Sửa"></button>
+		<button class="icon icon-info rounded-circle border-0 fa fa-times mr-3 btnXoaTungND" style="width: 30px;height: 30px" id="btnXoa_${motNguoiDung._TaiKhoan}"></button>
+		<button class="icon icon-rainbow rounded-circle border-0  fa fa-pencil btnSuaTungND" style="width: 30px;height: 30px" id="btnSua_${motNguoiDung._TaiKhoan}"></button>
 		</td>
 		</tr>
 		`;
@@ -150,7 +151,8 @@ getid("btnThemNguoiDung").addEventListener("click", function(){
 			type: 'success',
 			title: 'Thêm Thành Công!',
 		}).then(()=>{
-			window.location.reload();
+			DSNguoiDung.themNguoiDung(nd);
+			showDSND(DSNguoiDung.DSND, getid("dataNguoiDung"));
 		})
 	})
 	.fail(function(err){
@@ -189,7 +191,13 @@ function xoaNguoiDungAPI(btns){
 							'Your file has been deleted.',
 							'success'
 							).then((result)=>{
-								window.location.reload();
+								let rowCanXoa = $(`#btnXoa_${taiKhoan}`).closest("tr");
+								rowCanXoa.addClass("animated fadeOutDown")
+										.css({"animationDuration":".8s"})
+										.one("webkitAnimationEnd", function(){
+										DSNguoiDung.xoaNguoiDungTheoTk(taiKhoan);
+										showDSND(DSNguoiDung.DSND, getid("dataNguoiDung"));	
+								});
 							})
 						})
 					.fail(function(err){
@@ -306,23 +314,23 @@ function xacNhanCapNhatAPI(btn){
 		let TaiKhoanCN = getInputId("TaiKhoanCapNhatND").value;
 		let EmailCN = getInputId("EmailCapNhatND").value;
 		let SoDTCN = parseInt(getInputId("SoDTCapNhatND").value);
-		// let maNDCN = (<HTMLSelectElement>document.getElementById("maCapNhatND")).value;
+		let maNDCN = (<HTMLSelectElement>document.getElementById("maCapNhatND")).value;
 		let MatKhauNDCN = getInputId("MatKhauCapNhatND").value;
 
-		let NDCapNhat = new NguoiDung(TaiKhoanCN, MatKhauNDCN, HoTenCN, SoDTCN, EmailCN, "HV");
+		let NDCapNhat = new NguoiDung(TaiKhoanCN, MatKhauNDCN, HoTenCN, SoDTCN, EmailCN, maNDCN);
 	  	//chuyển về chuỗi json
 	  	DSNDService.suaNguoiDungService(NDCapNhat)
 	  	.done(function(res){
-	  				// console.log("thanh cong");
 	  				swal({
 	  					type: 'success',
 	  					title: 'Cập Nhật Thành Công!'
 	  				}).then(()=>{
-	  					window.location.reload();
+	  					DSNguoiDung.suaNguoiDung(NDCapNhat);
+						showDSND(DSNguoiDung.DSND, getid("dataNguoiDung"));
+	  					console.log(DSNguoiDung.DSND);
 	  				})
 	  			})
 	  	.fail(function(err){
-	  				// console.log(err);
 	  				swal({
 	  					type: 'error',
 	  					title: 'Thông Tin Không Thể Thay Đổi!',

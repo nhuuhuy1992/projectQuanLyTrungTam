@@ -1,22 +1,30 @@
 import * as $ from "jquery";
 import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import swal from "sweetalert2";
 import "font-awesome/css/font-awesome.min.css";
 import "owl.carousel/dist/assets/owl.theme.default.min.css";
 import "owl.carousel/dist/assets/owl.carousel.min.css";
 import "owl.carousel";
 import "./../../assets/scss/index.scss";
 import "particles.js";
-import swal from "sweetalert2";
 import "./../../assets/js/validation.js";
+import "./../../assets/scss/vendors/animate.css";
 import "./../../assets/js/app_index.js";
-
 import { DanhSachNguoiDungServices } from "./../services/NguoiDungServices";
 import { NguoiDung } from "./../models/NguoiDung";
 import { DanhSachNguoiDung } from "./../models/DanhSachNguoiDung";
 
-
-
+function alert(alert:string, time:number){
+	swal({
+		toast: true,
+		position: 'top-end',
+		showConfirmButton: false,
+		timer: time,
+		type: 'success',
+		title: alert
+	})
+}
 const DSNDServices:any = new DanhSachNguoiDungServices();
 const DSNguoiDung:DanhSachNguoiDung = new DanhSachNguoiDung();
 const getInputId = el => <HTMLInputElement>document.getElementById(el);
@@ -43,7 +51,6 @@ formDK.addEventListener("submit", function(){
 				type: 'success',
 				title: 'Đăng Kí Thành Công!',
 			}).then(() => {
-				// luuNguoiDK(res);
 				$("#formDangKy").modal("hide");
 				$(".btn-dangnhap").trigger("click");
 			})
@@ -137,10 +144,16 @@ formDN.addEventListener("submit", function(){
 							}).then(() => {
 								luuNguoiDK(Obj);//luu nguoi dung vao local
 								ktNguoiDungDN();
+								alert(`Xin Chào <span style="font-size: 20px; color: red; font-weight: bold;">${Obj._HoTen}</span>`, 3000);
 							})
 						}
 						else if(Obj._MaLoaiNguoiDung == "GV"){
-							window.open("http://localhost:9000/admin.html","_self");
+							swal({
+								type: 'success',
+								title: 'Đăng Nhập Thành Công!',
+							}).then(() => {
+								window.open("http://localhost:9000/admin.html","_self");
+							})
 						}
 						else{
 							swal({
@@ -156,6 +169,7 @@ formDN.addEventListener("submit", function(){
 })
 
 $("body").delegate(".btn-dangXuat", "click", function(){
+	event.preventDefault();
 	swal({
 		title: '<strong>Bạn Muốn Đăng Xuất?</strong>',
 		type: 'warning',

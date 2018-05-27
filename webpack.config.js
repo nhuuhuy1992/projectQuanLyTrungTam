@@ -14,7 +14,10 @@ module.exports = {
         path: path.resolve(__dirname, "./dist")
     },
     resolve: {
-        extensions: [".ts", ".tsx", ".js"]
+        extensions: [".ts", ".tsx", ".js"],
+        // alias:{
+        //     CKEDITOR: "ckeditor"
+        // }
     },
     devtool: 'inline-source-map',
     devServer: {
@@ -91,6 +94,10 @@ module.exports = {
                     }
                 }]
             }
+            // {
+            //     test: 'exports-loader?file!./ckeditor',
+            //     loader: 'exports?this.CKEDITOR'
+            //  }
         ]
     },
     plugins: [
@@ -126,7 +133,9 @@ module.exports = {
         new webpack.ProvidePlugin({
             $: 'jquery',
             jQuery: 'jquery',
-            'window.jQuery': 'jquery'
+            'window.jQuery': 'jquery',
+            CKEDITOR: 'ckeditor',
+            'window.CKEDITOR':'ckeditor'
         })
     ]
 };

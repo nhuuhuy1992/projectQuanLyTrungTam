@@ -1,41 +1,41 @@
 import * as $ from "jquery";
 import { NguoiDung } from "./../models/NguoiDung";
-
+const url = "http://sv.myclass.vn/api/QuanLyTrungTam";
 
 export class DanhSachNguoiDungServices {
 
 
 	layDSNDService():Array<NguoiDung>{
 		return $.ajax({
-			url : " http://sv.myclass.vn/api/QuanLyTrungTam/DanhSachNguoiDung",
+			url : `${url}/DanhSachNguoiDung`,
 			type : "GET",
 			dataType : "json"
 		});
 	}
 	themNguoiDungService(nd:NguoiDung){
 		return $.ajax({
-			url : " http://sv.myclass.vn/api/QuanLyTrungTam/ThemNguoiDung",
+			url : `${url}/ThemNguoiDung`,
 			type : "POST",
 			data : nd
 		});
 	}
 	xoaNguoiDungService(tk:string){
 		return $.ajax({
-			url : `http://sv.myclass.vn/api/QuanLyTrungTam/XoaNguoiDung/${tk}`,
+			url : `${url}/XoaNguoiDung/${tk}`,
 			type : "DELETE"
 		});
 	}
 	suaNguoiDungService(nd:NguoiDung){
 		let ngJSON = JSON.stringify(nd);
 		return $.ajax({
-			url : "http://sv.myclass.vn/api/QuanLyTrungTam/CapNhatThongTinNguoiDung",
+			url : `${url}/CapNhatThongTinNguoiDung`,
 			type : "PUT",
 			data : nd
 		});
 	}
 	dangKy(nd:NguoiDung){
 		return $.ajax({
-			url : "http://sv.myclass.vn/api/QuanLyTrungTam/DangKy",
+			url : `${url}/DangKy`,
 			type : "POST",
 			data : nd
 		});
@@ -43,11 +43,16 @@ export class DanhSachNguoiDungServices {
 
 	dangNhap(tk:string, pass:string){
 		return $.ajax({
-			url : `http://sv.myclass.vn/api/QuanLyTrungTam/DangNhap?taikhoan=${tk}&matkhau=${pass}`,
+			url : `${url}/DangNhap?taikhoan=${tk}&matkhau=${pass}`,
 			type : "GET"
 		});
 	}
-
+	thongTinNguoiDung(tk:string){
+		return $.ajax({
+			url : `${url}/ThongTinNguoiDung?taikhoan=${tk}`,
+			type : "GET"
+		});
+	}
 
 }
 

@@ -19,8 +19,15 @@ tr td {
     margin-bottom: 0 !important;
 }
 .main__content{
-	padding-left: 8rem;
-	padding-top: 7rem;
+	margin-left: 11rem;
+	margin-top: 7rem;
+	position: relative;
+	.divData{
+		display: none;
+		&.active{
+			display: block
+		}
+	}
 }
 
 .title__data{

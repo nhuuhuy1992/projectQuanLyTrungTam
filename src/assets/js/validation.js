@@ -11,7 +11,8 @@ $(function(){
 			`*Mật Khẩu Xác Nhận Chưa Đúng`,//5,	
 			`*Mật Khẩu Phải Có Ít Nhất ${note} Ký Tự, Gồm Ít Nhất 1 Kí Tự Số `,//6,	
 			`*Không Có Khoảng trống`,  //7
-			`*Chỉ Chứa Các Kí Tự`  //8
+			`*Chỉ Chứa Các Kí Tự`  ,//8
+			`*Xin Nhập ${note}`  ,//9
 		];
 	}
 
@@ -28,7 +29,7 @@ $(function(){
 		}
 	})
 
-	function validForm(){
+	function validFormDK(){
 		$.validator.addMethod( "lettersonly", function( value, element) {
 		return this.optional( element ) 
 			  || /^[a-zA-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s]+$/i.test( value );
@@ -112,7 +113,37 @@ $(function(){
 			}
 		})
 	}
-	validForm();
+
+	function validFormDN(){
+		$.validator.setDefaults({
+			errorClass : "big-err",
+			hightlight: function(el){
+				$(el)
+				.closest(".input--jiro")
+				.addClass("has-error");
+			}
+		});
+		$("#sign-up-form").validate({
+			rules : {
+				TKDN : {
+					required : true,
+				},
+				passwordDN :{
+					required : true
+				}
+			},
+			messages : {
+				TKDN : {
+					required : notification("Tài Khoản")[9]
+				},
+				passwordDN :{
+					required : notification("Mật Khẩu")[9]
+				}
+			}
+		})
+	}
+	validFormDN();
+	validFormDK();
 });
 
 // function notification(...note){

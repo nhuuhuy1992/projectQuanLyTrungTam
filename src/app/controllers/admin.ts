@@ -4,9 +4,9 @@ import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 //font-awesome
 import "font-awesome/css/font-awesome.min.css";
-
+import DecoupledEditor from './../../assets/js/DecoupledEditor.js'
 import "./../../assets/scss/admin.scss";
- import 'datatables';
+//  import 'datatables';
 import "./../../assets/js/app_admin.js";
 import swal from "sweetalert2";
 
@@ -30,6 +30,16 @@ let DSKHService: any = new KhoaHocServices();
 // 
 let getid = el => document.getElementById(el);
 let getInputId = el => <HTMLInputElement>document.getElementById(el);
+// editor
+let Editor
+DecoupledEditor.then( editor => {
+	Editor = editor
+	console.log(Array.from( editor.ui.componentFactory.names() ))
+
+} )
+.catch( error => {
+    console.error( error );
+} );
 
 
 
@@ -482,6 +492,7 @@ $('body').delegate('.btnSuaKH','click',function(){
 			$('#MaKhoaHoc').val(res.MaKhoaHoc);
 			$('#TenKhoaHoc').val(res.TenKhoaHoc);
 			$('#MoTa').html(res.MoTa);
+			Editor.setData(res.MoTa);
 			$('#HinhAnh').val(res.HinhAnh);
 			$('#LuotXem').val(res.LuotXem)
 			$('#NguoiTao option').each((e)=>{
@@ -544,7 +555,7 @@ $('body').delegate('.btnXoaKH','click',function(){
 			swal(
 				'Xóa Thành Công'
 				).then(()=>{
-					window.location.reload();
+					// window.location.reload();
 				})
 			})
 		.fail((err)=>{

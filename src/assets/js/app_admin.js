@@ -1,6 +1,4 @@
 
-import CKEDITOR from "ckeditor"
-
 $(function() {
     $('[data-toggle="tooltip"]').tooltip();
     // window.onload = function() {
@@ -17,16 +15,7 @@ $(function() {
     //     })
     // }
 
-CKEDITOR.replace('#MoTa', {
-    plugins: [ Essentials, Paragraph, Bold, Italic ],
-    toolbar: [ 'bold', 'italic' ]
-} )
-.then( editor => {
-    console.log( 'Editor was initialized', editor );
-} )
-.catch( error => {
-    console.error( error.stack );
-});
+
     // $('#MoTa').CKEDITOR();
     $(".sidebar__item").click( () => {
         let This = event.currentTarget;
@@ -39,6 +28,7 @@ CKEDITOR.replace('#MoTa', {
         $(dataActive).addClass("active");
         event.preventDefault();
     });
+
 
 
 

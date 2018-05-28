@@ -38,22 +38,12 @@ const DSKhoaHoc = new DanhSachKhoaHoc();
 const DSKHServices = new KhoaHocServices();
 
 //đăng kí
-<<<<<<< HEAD
-formDK.addEventListener("submit", function(){
-	let HoTenDK: string = getInputId("inputHoTenDK").value;
-	let TenTKDK: string = getInputId("inputTenTKDK").value;
-	let EmailDK: string = getInputId("inputEmailDK").value;
-	let SDTDK:   number = parseInt(getInputId("inputSDTDK").value);
-	let PassDK:  string = getInputId("inputPASSDK").value;
-
-=======
 $("#register-form").submit( () => {
 	let HoTenDK: string = $("#inputHoTenDK").val();
 	let TenTKDK: string = $("#inputTenTKDK").val();
 	let EmailDK: string = $("#inputEmailDK").val();
 	let SDTDK: number = $("#inputSDTDK").val();
 	let PassDK: string = $("#inputPASSDK").val();
->>>>>>> e3d99b5ffa484c42d6186b6822d22f7423568d9b
 	let ndDK = new NguoiDung(TenTKDK, PassDK, HoTenDK, SDTDK, EmailDK, "HV");
 
 	if($("#register-form").valid()){
@@ -84,33 +74,6 @@ function ktNguoiDungDN(){
 	if(localStorage.getItem("NguoiDung")){
 		let json = JSON.parse(localStorage.getItem("NguoiDung"));
 		DSNDServices.dangNhap(json.TaiKhoan, json.MatKhau)
-<<<<<<< HEAD
-				.done(function(res){
-					let nguoiDangNhap = res[0];
-					let HoTen         = nguoiDangNhap.HoTen
-					let TaiKhoan      = nguoiDangNhap.TaiKhoan;
-					let Email         = nguoiDangNhap.Email;
-					let SoDT          = nguoiDangNhap.SoDT;
-					let maND          = nguoiDangNhap.MaLoaiNguoiDung
-					let MatKhauND     = nguoiDangNhap.MatKhau;
-					let Obj:            NguoiDung =  new NguoiDung(TaiKhoan, MatKhauND, HoTen, SoDT, Email, maND);
-					$(".btn-dangky").remove();
-					$(".btn-dangnhap").remove();
-					$("#formDangNhap").modal("hide");
-					$(".block-btn-form").append(`
-						<a href="#" class="btn-showInfo btn-contact" taikhoan="${json.TaiKhoan}">
-						<span>Thông Tin</span>
-						<span class="fa fa-user icon icon-info rounded-circle"></span>
-						</a>
-
-						<a href="#" class="btn-dangXuat btn-contact">
-						<span>Đăng Xuất</span>
-						<span class="fa fa-sign-out icon icon-info rounded-circle"></span>
-						</a>
-						`);
-				})
-				.fail();
-=======
 		.done(function(res){
 			let nguoiDangNhap = res[0];
 			let HoTen         = nguoiDangNhap.HoTen
@@ -136,7 +99,6 @@ function ktNguoiDungDN(){
 				`);
 		})
 		.fail();
->>>>>>> e3d99b5ffa484c42d6186b6822d22f7423568d9b
 	}
 }
 function xoaNguoiDungLocal(){
@@ -225,45 +187,6 @@ $("#sign-up-form").submit(function(){
 		let TKDN:string = $("#inputTKDN").val();
 		let passDN:string = $("#inputPassDN").val();
 		DSNDServices.dangNhap(TKDN, passDN)
-<<<<<<< HEAD
-				.done(res => {
-					let nguoiDangNhap = res[0];
-					let HoTen         = nguoiDangNhap.HoTen
-					let TaiKhoan      = nguoiDangNhap.TaiKhoan;
-					let Email         = nguoiDangNhap.Email;
-					let SoDT          = nguoiDangNhap.SoDT;
-					let maND          = nguoiDangNhap.MaLoaiNguoiDung
-					let MatKhauND     = nguoiDangNhap.MatKhau;
-					let Obj:            NguoiDung = new NguoiDung(TaiKhoan, MatKhauND, HoTen, SoDT, Email, maND);
-						if(Obj._MaLoaiNguoiDung == "HV"){
-							swal({
-								type: 'success',
-								title: 'Đăng Nhập Thành Công!',
-							}).then(() => {
-								luuNguoiDK(Obj);//luu nguoi dung vao local
-								ktNguoiDungDN();
-								window.location.href = "/user.html"
-								// alert(`Xin Chào <span style="font-size: 20px; color: red; font-weight: bold;">${Obj._HoTen}</span>`, 3000);
-							})
-						}
-						else if(Obj._MaLoaiNguoiDung == "GV"){
-							swal({
-								type: 'success',
-								title: 'Đăng Nhập Thành Công!',
-							}).then(() => {
-								window.location.href = "/admin.html"
-							})
-						}
-						else{
-							swal({
-								type: 'warning',
-								title: 'Sai Mật Khẩu Hoặc Tên Tài Khoản! Xin Đăng Nhập Lại',
-							})
-						}
-						
-					})
-				.fail(function(err){console.log(err);});
-=======
 		.done(res => {
 			let nguoiDangNhap = res[0];
 			let HoTen         = nguoiDangNhap.HoTen
@@ -300,7 +223,6 @@ $("#sign-up-form").submit(function(){
 			
 		})
 		.fail(function(err){console.log(err);});
->>>>>>> e3d99b5ffa484c42d6186b6822d22f7423568d9b
 	}
 	event.preventDefault();
 })

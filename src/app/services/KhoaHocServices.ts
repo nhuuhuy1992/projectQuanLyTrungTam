@@ -47,4 +47,15 @@ export class KhoaHocServices {
             url:`${url}/LayThongtinKhoaHoc?taikhoan=${taikhoan}`,
         })
     }
+    ghiDanhKH(makh: string, taikhoan:string){
+        let data = JSON.stringify({MaKhoaHoc: makh, TaiKhoan: taikhoan})
+        return $.ajax({
+            type:'POST',
+            url:`${url}/GhiDanhKhoaHoc`,
+            dataType:'json',
+            contentType:'application/json',
+            data: data
+        })
+
+    }
 }

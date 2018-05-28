@@ -13,11 +13,9 @@
 @import "component/heading";
 @import "component/card";
 @import "component/icon";
-//custom
-@import "custom";
-//layout admin
-@import "layout_index/form";
-// @import "layout_admin/sidebar";
+
+@import "layout_index/khoaHoc";
 @import "layout_admin/header";
-// @import "layout_admin/tableHocVien";
-@import "layout_user/userProfile"
+@import "layout_user/userProfile";
+@import "layout_index/form";
+@import "layout_user/custom-user";

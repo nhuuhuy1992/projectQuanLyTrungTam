@@ -168,7 +168,7 @@
                                 <tr>
                                     <th>#</th>
                                     <th data-sort="true">Tài Khoản</th>
-                                    <th data-sort="true">Mật Khẩu</th>
+                                    <!-- <th data-sort="true">Mật Khẩu</th> -->
                                     <th data-sort="true">Tên</th>
                                     <th data-sort="true">Email</th>
                                     <th data-sort="true">Số Điện Thoại</th>
@@ -197,123 +197,199 @@
 
 
             </main>
-            <div class="modal fade" id="modalKhoaHoc" tabindex="-1" role="dialog">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <div class="modal-title">
-                                <h3>Thêm Khoá Học</h3>
-                            </div>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body container">
-                            <form class="row">
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label for="MaKhoaHoc">Mã Khoá Học</label>
-                                        <input type="text" class="form-control" id="MaKhoaHoc" placeholder="Nhập Vào Mã Khoá Học">
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label for="TenKhoaHoc">Tên Khoá Học</label>
-                                        <input type="text" class="form-control" id="TenKhoaHoc" placeholder="Nhập Vào Tên Khoá Học">
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label for="MoTa">Mô Tả</label>
-                                        <textarea name="Mota" id="MoTa" class="form-control" rows="5"></textarea>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label for="HinhAnh">Hình Ảnh</label>
-                                        <input type="url" class="form-control" id="HinhAnh" placeholder="Nhập vào đường dẫn hình ảnh">
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label for="LuotXem">Lượt Xem</label>
-                                        <input type="number" class="form-control" id="LuotXem" placeholder="Nhập Số Lượt Xem">
-                                    </div>
-                                </div>
 
-                                <div class="col-12">
-                                    <label for="maND">Người tạo</label>
-                                    <select class="custom-select" id="NguoiTao">
-                                        <option value="HV">HV</option>
-                                        <option value="GV">GV</option>
-                                    </select>
+        </div>
+        <div class="modal fade" id="modalKhoaHoc" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="modal-title">
+                            <h3>Thêm Khoá Học</h3>
+                        </div>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body container">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="MaKhoaHoc">Mã Khoá Học</label>
+                                    <input type="text" class="form-control" id="MaKhoaHoc" placeholder="Nhập Vào Mã Khoá Học">
                                 </div>
-                            </form>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="TenKhoaHoc">Tên Khoá Học</label>
+                                    <input type="text" class="form-control" id="TenKhoaHoc" placeholder="Nhập Vào Tên Khoá Học">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="MoTa">Mô Tả</label>
+                                    <textarea name="Mota" id="MoTa" class="form-control" rows="5"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="HinhAnh">Hình Ảnh</label>
+                                    <input type="url" class="form-control" id="HinhAnh" placeholder="Nhập vào đường dẫn hình ảnh">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="LuotXem">Lượt Xem</label>
+                                    <input type="number" class="form-control" id="LuotXem" placeholder="Nhập Số Lượt Xem">
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <label for="maND">Người tạo</label>
+                                <select class="custom-select" id="NguoiTao">
+                                    <option value="HV">HV</option>
+                                    <option value="GV">GV</option>
+                                </select>
+                            </div>
                         </div>
-                        <div class="modal-footer">
-                            <button class="btn btn-danger" data-dismiss="modal">Close</button>
-                            <button class="btn btn-success" data-dismiss="modal" id="btnThemKhoaHoc">Thêm</button>
-                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-danger" data-dismiss="modal">Close</button>
+                        <button class="btn btn-success" data-dismiss="modal" id="btnThemKhoaHoc">Thêm</button>
                     </div>
                 </div>
             </div>
-            <div class="modal fade" id="modalNguoiDung" tabindex="-1" role="dialog">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <div class="modal-title">
-                                <h3>Thêm Người Dùng</h3>
+        </div>
+        <div class="modal fade" id="modalNguoiDung" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="modal-title">
+                            <h3>Thêm Người Dùng</h3>
+                        </div>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body container">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="TaiKhoan">Tài Khoản</label>
+                                    <input type="text" class="form-control" id="TaiKhoanND" placeholder="Nhập Vào Tài Khoản">
+                                </div>
                             </div>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body container">
-                            <form class="row">
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label for="TaiKhoan">Tài Khoản</label>
-                                        <input type="text" class="form-control" id="TaiKhoanND" placeholder="Nhập Vào Tài Khoản">
-                                    </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="MatKhauND">Mật Khẩu</label>
+                                    <input type="text" class="form-control" id="MatKhauND" placeholder="Nhập Vào Mật Khẩu">
                                 </div>
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label for="MatKhauND">Mật Khẩu</label>
-                                        <input type="text" class="form-control" id="MatKhauND" placeholder="Nhập Vào Mật Khẩu">
-                                    </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="HoTen">Họ Tên</label>
+                                    <input type="text" class="form-control" id="HoTenND" placeholder="Nhập Họ Tên">
                                 </div>
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label for="HoTen">Họ Tên</label>
-                                        <input type="text" class="form-control" id="HoTenND" placeholder="Nhập Họ Tên">
-                                    </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="Email">Email</label>
+                                    <input type="text" class="form-control" id="EmailND" placeholder="Nhập Email">
                                 </div>
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label for="Email">Email</label>
-                                        <input type="text" class="form-control" id="EmailND" placeholder="Nhập Email">
-                                    </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="SoDT">Số Điện Thoại</label>
+                                    <input type="text" class="form-control" id="SoDTND" placeholder="Nhập Số Điện Thoại">
                                 </div>
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label for="SoDT">Số Điện Thoại</label>
-                                        <input type="text" class="form-control" id="SoDTND" placeholder="Nhập Số Điện Thoại">
-                                    </div>
-                                </div>
+                            </div>
 
-                                <div class="col-12">
-                                    <label for="maND">Mã Người Dùng</label>
-                                    <select class="custom-select" id="maND">
-                                        <option value="HV">HV</option>
-                                        <option value="GV">GV</option>
-                                    </select>
+                            <div class="col-12">
+                                <label for="maND">Mã Người Dùng</label>
+                                <select class="custom-select" id="maND">
+                                    <option value="HV">HV</option>
+                                    <option value="GV">GV</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-danger" data-dismiss="modal">Close</button>
+                        <button class="btn btn-success" data-dismiss="modal" id="btnThemNguoiDung">Thêm</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="modalCapNhatND" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="modal-title">
+                            <h3>Cập nhật thông tin người dùng</h3>
+                        </div>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body container">
+                        <div class="row">
+                            <div class="col-md">
+                                    <div class="row">
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <label for="TaiKhoan">Tài Khoản</label>
+                                                    <input type="text" class="form-control" id="TaiKhoanNDCN" placeholder="Nhập Vào Tài Khoản" disabled> 
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <label for="MatKhauND">Mật Khẩu</label>
+                                                    <input type="password" class="form-control" id="MatKhauNDCN" placeholder="Nhập Vào Mật Khẩu">
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <label for="HoTen">Họ Tên</label>
+                                                    <input type="text" class="form-control" id="HoTenNDCN" placeholder="Nhập Họ Tên">
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <label for="Email">Email</label>
+                                                    <input type="text" class="form-control" id="EmailNDCN" placeholder="Nhập Email">
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <label for="SoDT">Số Điện Thoại</label>
+                                                    <input type="text" class="form-control" id="SoDTNDCN" placeholder="Nhập Số Điện Thoại">
+                                                </div>
+                                            </div>
+                
+                                            <div class="col-12">
+                                                <label for="maND">Mã Người Dùng</label>
+                                                <select class="custom-select" id="maNDCN">
+                                                    <option value="HV">HV</option>
+                                                    <option value="GV">GV</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                            </div>
+                            <div class="col-md-5 khoahocHV">
+                                <h5>Các Khoá Học Đã Đăng ký</h5>
+                                <ul class="list-group" id="listKhoaHoc">
+                               
+                                </ul>
+                                <div class="d-flex flex-column justify-content-between mt-3">
+                                    <select name="" id="listKHoaHocDK"></select>
+                                    <button class="btn btn-primary " id="btnGhiDanh">Ghi Danh</button>
                                 </div>
-                            </form>
+                            </div>
                         </div>
-                        <div class="modal-footer">
-                            <button class="btn btn-danger" data-dismiss="modal">Close</button>
-                            <button class="btn btn-success" data-dismiss="modal" id="btnThemNguoiDung">Thêm</button>
-                        </div>
+                        
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-danger" data-dismiss="modal">Close</button>
+                        <button class="btn btn-success" data-dismiss="modal" id="btnCapNhatND">Cập Nhật</button>
                     </div>
                 </div>
             </div>

@@ -53,7 +53,14 @@ export class DanhSachNguoiDungServices {
 			type : "GET"
 		});
 	}
-
+	capNhatThongTinNguoiDung(nd:NguoiDung){
+		let ngJSON = JSON.stringify(nd);
+		return $.ajax({
+			url : `${url}/CapNhatThongTinNguoiDung`,
+			data : nd,
+			type : "PUT"
+		});
+	}
 }
 
 

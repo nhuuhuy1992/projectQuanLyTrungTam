@@ -34,7 +34,6 @@ let getInputId = el => <HTMLInputElement>document.getElementById(el);
 let Editor
 DecoupledEditor.then( editor => {
 	Editor = editor
-	console.log(Array.from( editor.ui.componentFactory.names() ))
 
 } )
 .catch( error => {

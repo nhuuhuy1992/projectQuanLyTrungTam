@@ -3,8 +3,8 @@ import 'froala-editor/css/froala_editor.min.css';
 import 'froala-editor/css/froala_editor.pkgd.min.css';
 import 'froala-editor/css/plugins/code_view.css';
 import 'froala-editor/js/plugins/code_view.min.js';
-import 'froala-editor/css/plugins/video.min.css';
-import 'froala-editor/js/plugins/video.min.js';
+// import 'froala-editor/css/plugins/video.min.css';
+// import 'froala-editor/js/plugins/video.min.js';
 import 'froala-editor/js/plugins/code_beautifier.min.js';
 import 'froala-editor/css/plugins/colors.min.css';
 import 'froala-editor/js/plugins/colors.min.js';
@@ -28,6 +28,8 @@ export default $('#MoTa').froalaEditor({
         wrap_line_length: 0
       },
       videoAllowedProviders: ['youtube', 'vimeo'],
+      enter: $.FroalaEditor.ENTER_BR,
+        videoMove: true
 
   });
   

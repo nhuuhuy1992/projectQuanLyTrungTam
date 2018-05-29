@@ -4,11 +4,12 @@ import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 //font-awesome
 import "font-awesome/css/font-awesome.min.css";
-import DecoupledEditor from './../../assets/js/DecoupledEditor.js'
+import swal from "sweetalert2";
+import 'froala-editor';
 import "./../../assets/scss/admin.scss";
 //  import 'datatables';
 import "./../../assets/js/app_admin.js";
-import swal from "sweetalert2";
+import "./../../assets/js/froalaEditor.js";
 
 
 // Require Editor CSS files.
@@ -31,15 +32,14 @@ let DSKHService: any = new KhoaHocServices();
 let getid = el => document.getElementById(el);
 let getInputId = el => <HTMLInputElement>document.getElementById(el);
 // editor
-let Editor
-DecoupledEditor.then( editor => {
-	Editor = editor
+// let Editor
+// DecoupledEditor.then( editor => {
+// 	Editor = editor
 
-} )
-.catch( error => {
-    console.error( error );
-} );
-
+// } )
+// .catch( error => {
+//     console.error( error );
+// } );
 
 
 function showDSND(DSND:Array<NguoiDung>, divLoad){
@@ -451,7 +451,7 @@ $('#btnModalKhoaHoc').click(() =>{
 $('body').delegate('#btnThemKhoaHoc','click',function(){
 	let MaKhoaHoc:string = $('#MaKhoaHoc').val();
 	let TenKhoaHoc: string = $('#TenKhoaHoc').val();
-	let MoTa: string = $('#MoTa').val();
+	let MoTa: string =  $('#MoTa').froalaEditor('html.get');
 	let HinhAnh: string = $('#HinhAnh').val();
 	let LuotXem: number = parseFloat($('#LuotXem').val());
 	let NguoiTao: string = $('#NguoiTao').val();
@@ -490,8 +490,9 @@ $('body').delegate('.btnSuaKH','click',function(){
 			$("#modalKhoaHoc .modal-footer").html(modal_footer);
 			$('#MaKhoaHoc').val(res.MaKhoaHoc);
 			$('#TenKhoaHoc').val(res.TenKhoaHoc);
-			$('#MoTa').html(res.MoTa);
-			Editor.setData(res.MoTa);
+			// $('#MoTa').html(res.MoTa);
+			$('#MoTa').froalaEditor('html.set',res.MoTa);
+			// Editor.setData(res.MoTa);
 			$('#HinhAnh').val(res.HinhAnh);
 			$('#LuotXem').val(res.LuotXem)
 			$('#NguoiTao option').each((e)=>{
@@ -511,7 +512,7 @@ $('body').delegate('.btnSuaKH','click',function(){
 $('body').delegate('#btnCapNhatKH','click',()=>{
 	let MaKhoaHoc:string = $('#MaKhoaHoc').val();
 	let TenKhoaHoc: string = $('#TenKhoaHoc').val();
-	let MoTa: string = $('#MoTa').val();
+	let MoTa: string = $('#MoTa').froalaEditor('html.get');
 	let HinhAnh: string = $('#HinhAnh').val();
 	let LuotXem: number = parseFloat($('#LuotXem').val());
 	let NguoiTao: string = $('#NguoiTao').val();
@@ -587,3 +588,5 @@ $('body').delegate('#btnGhiDanh','click',function(){
 	.fail()
 })
 
+
+  

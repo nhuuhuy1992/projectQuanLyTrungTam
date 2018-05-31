@@ -109,7 +109,7 @@ module.exports = {
             minify: {
                 collapseWhitespace: false //bo khoang trong
             },
-            hash: false, //thay doi nhung duong link trong file index 
+            hash: false, //thay doi nhung duong link trong file index
         }),
         new HtmlWebpackPlugin({
             filename: 'admin.html',
@@ -118,7 +118,7 @@ module.exports = {
             minify: {
                 collapseWhitespace: false //bo khoang trong
             },
-            hash: false, //thay doi nhung duong link trong file index 
+            hash: false, //thay doi nhung duong link trong file index
         }),
         new HtmlWebpackPlugin({
             filename: 'user.html',
@@ -127,7 +127,7 @@ module.exports = {
             minify: {
                 collapseWhitespace: false //bo khoang trong
             },
-            hash: false, //thay doi nhung duong link trong file index 
+            hash: false, //thay doi nhung duong link trong file index
         }),
         new ExtractTextPlugin("[name].css"),
         new webpack.ProvidePlugin({

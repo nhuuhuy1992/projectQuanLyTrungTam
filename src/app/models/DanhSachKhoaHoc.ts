@@ -5,7 +5,7 @@ export class DanhSachKhoaHoc{
 
 	themKhoaHoc(khoahoc:KhoaHoc){
 		this.DSKH.push(khoahoc);
-	}   
+	}
 	timIndexKHTheoTen(tenKH:string){
 		let indexKH:number = -1;
 		for(let i:number = 0; i < this.DSKH.length; i++){

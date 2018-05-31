@@ -7,21 +7,15 @@ function paginate(data, entry, div, callback){
 	$(div).next('.pagination').html('');
 	if(length/entry === 0 ){
 		for(let i = 1; i < length/entry ; i++){
-			if(i==1){
-				pagination += `<li class="page-item active"><a class="page-link" >${i}</a></li>`
-			}else{
+		
 			pagination += `<li class="page-item" ><a class="page-link" >${i}</a></li>`
 				
-			}
 		}
 	}else{
 		for(let i = 1; i < length/entry +1 ; i++){
-			if(i==1){
-				pagination += `<li class="page-item active"><a class="page-link" >${i}</a></li>`
-			}else{
+	
 			pagination += `<li class="page-item"><a class="page-link" >${i}</a></li>`
 				
-			}
 		}
 	}
 
@@ -62,8 +56,24 @@ function compareValues(key, order='asc') {
   }
 
   function renderTable(data,element,table,callback){
+	let pageItem = 	$(table).next('.pagination').find('.page-item');
+		let flag = false;
+		let index = 0;
+		pageItem.each(function(i){
+			if($(this).hasClass('active')){
+				flag = true;
+				index = i;
+				return true;
+			} 
+		})
 	paginate(data,$(element).val(), table,callback);
-	$(table).next('.pagination').find('.page-item.active > .page-link').click();
+	
+	if(flag){
+		// $(table).next('.pagination').find('.page-item.active > .page-link').click();
+		$(table).next('.pagination').find('.page-item').eq(index).children('.page-link').click();
+	}else{
+		$(table).next('.pagination').find('.page-item').eq(0).children('.page-link').click();
+	}
 }
 
 

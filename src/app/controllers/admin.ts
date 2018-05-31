@@ -543,32 +543,38 @@ $('body').delegate('#btnGhiDanh','click',function(){
 
 $('#tableKhoaHoc th').click(function(){
 	let key = $(this).data('sort');
-	if($(this).hasClass('asc')){
-		$(this).removeClass('asc');
-		$(this).addClass('desc');
-		danhSachKhoaHoc.DSKH.sort(compareValues(key,'desc'))
+	if(key){
+		if($(this).hasClass('asc')){
+			$(this).removeClass('asc');
+			$(this).addClass('desc');
+			danhSachKhoaHoc.DSKH.sort(compareValues(key,'desc'))
+			
+		}else{
+			$(this).removeClass('desc');
+			$(this).addClass('asc');
+			danhSachKhoaHoc.DSKH.sort(compareValues(key))
+			}
 		
-	}else{
-		$(this).removeClass('desc');
-		$(this).addClass('asc');
-		danhSachKhoaHoc.DSKH.sort(compareValues(key))
-		}
+		$('#tableKhoaHoc').next('.pagination').find('.page-item.active > .page-link').click();
+	}
 	
-	$('#tableKhoaHoc').next('.pagination').find('.page-item.active > .page-link').click();
 })
 
 
 $('#tableNguoiDung th').click(function(){
 	let key = $(this).data('sort');
-	if($(this).hasClass('asc')){
-		$(this).removeClass('asc');
-		$(this).addClass('desc');
-		DSNguoiDung.DSND.sort(compareValues(key,'desc'))
-		
-	}else{
-		$(this).removeClass('desc');
-		$(this).addClass('asc');
-		DSNguoiDung.DSND.sort(compareValues(key))
-		}
-	$('#tableNguoiDung').next('.pagination').find('.page-item.active > .page-link').click();
+	if(key){
+		if($(this).hasClass('asc')){
+			$(this).removeClass('asc');
+			$(this).addClass('desc');
+			DSNguoiDung.DSND.sort(compareValues(key,'desc'))
+			
+		}else{
+			$(this).removeClass('desc');
+			$(this).addClass('asc');
+			DSNguoiDung.DSND.sort(compareValues(key))
+			}
+		$('#tableNguoiDung').next('.pagination').find('.page-item.active > .page-link').click();
+	}
+	
 })

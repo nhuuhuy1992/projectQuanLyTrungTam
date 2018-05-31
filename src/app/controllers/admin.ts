@@ -34,7 +34,7 @@ $('#showEntriesUser').change(function(){
 	showEntries(DSNguoiDung.DSND,'#showEntriesUser','#tableNguoiDung',showDSND);
 })
 $('#showEntriesKH').change(function(){
-	showEntries(danhSachKhoaHoc.DSKH,'#showEntriesKHr','#tableKhoaHoc',showKH);
+	showEntries(danhSachKhoaHoc.DSKH,'#showEntriesKH','#tableKhoaHoc',showKH);
 })
 
 function showDSND(DSND:Array<NguoiDung>, divLoad, entry = 0){

@@ -37,7 +37,7 @@ function pageOnClick( data, callback,entry,div ) {
 		
 		 let numpage= parseFloat($(this).html());
 		let newArr = $(data).slice((numpage-1)*entry,numpage*entry);
-		callback(newArr,$(div).find('tbody'),(numpage-1)*entry);
+		callback(newArr,div,(numpage-1)*entry);
 	})
 }
 
@@ -61,10 +61,10 @@ function compareValues(key, order='asc') {
 	};
   }
 
-  function showEntries(data,element,table,callback){
+  function renderTable(data,element,table,callback){
 	paginate(data,$(element).val(), table,callback);
 	$(table).next('.pagination').find('.page-item.active > .page-link').click();
 }
 
 
-export  {paginate, compareValues, showEntries, pageOnClick}
+export  {paginate, compareValues, renderTable, pageOnClick}

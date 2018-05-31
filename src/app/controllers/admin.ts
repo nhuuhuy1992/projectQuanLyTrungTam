@@ -10,7 +10,7 @@ import "./../../assets/js/froalaEditor.js";
 import "../../assets/scss/vendors/animate.css";
 import "./../../assets/scss/admin.scss";
 import "./../../assets/js/app_admin.js";
-import { paginate, showEntries, compareValues, pageOnClick }  from "../../assets/js/table.js";
+import { paginate, renderTable, compareValues, pageOnClick }  from "../../assets/js/table.js";
 import { NguoiDung } from "./../models/NguoiDung";
 import { DanhSachNguoiDungServices } from "./../services/NguoiDungServices";
 import { DanhSachNguoiDung } from "./../models/DanhSachNguoiDung";
@@ -24,20 +24,21 @@ let DSKHService: any = new KhoaHocServices();
 let getid = el => document.getElementById(el);
 let getInputId = el => <HTMLInputElement>document.getElementById(el);
 
-let showEntriesUser = $('#showEntriesUser').val();
-let showEntriesKH = $('#showEntriesKH').val();
+let showEntriesUser = $('#showEntriesUser');
+let showEntriesKH = $('#showEntriesKH');
 
 
 $('#showEntriesUser').change(function(){
-	showEntries(DSNguoiDung.DSND,'#showEntriesUser','#tableNguoiDung',showDSND);
+	renderTable(DSNguoiDung.DSND,'#showEntriesUser','#tableNguoiDung',showDSND);
 })
 $('#showEntriesKH').change(function(){
-	showEntries(danhSachKhoaHoc.DSKH,'#showEntriesKHr','#tableKhoaHoc',showKH);
+	renderTable(danhSachKhoaHoc.DSKH,'#showEntriesKH','#tableKhoaHoc',showKH);
 })
 
 function showDSND(DSND:Array<NguoiDung>, divLoad, entry = 0){
 	let data:string = "";
-	$(divLoad).html('');
+	let table = $(divLoad).find('tbody');
+	table.html();
 	for(let i:number = 0; i < DSND.length; i++){
 		let motNguoiDung = DSND[i];
 		data += `
@@ -67,7 +68,7 @@ function showDSND(DSND:Array<NguoiDung>, divLoad, entry = 0){
 		</tr>
 		`;
 	}
-	$(divLoad).html(data);
+	table.html(data);
 	xoaNguoiDungAPI(".btnXoaTungND");
 	suaKhiClickVaoRow();
 }
@@ -100,8 +101,8 @@ DSNDService.layDSNDService()
 		DSNguoiDung.themNguoiDung(personObj);
 		// console.log(getPaginatedItems(DSNguoiDung.DSND,1))
 	}
-	paginate( DSNguoiDung.DSND,showEntriesUser, `#tableNguoiDung`,showDSND);
-	$('#tableNguoiDung').next('.pagination').find('.page-item.active > .page-link').click();
+	renderTable(DSNguoiDung.DSND,'#showEntriesUser','#tableNguoiDung',showDSND);
+
 	hienThiDSGV(DSNguoiDung);
 })
 .fail(function(err){console.log(err);});
@@ -123,7 +124,10 @@ $("#btnThemNguoiDung").click(function(){
 			title: 'Thêm Thành Công!',
 		}).then(() => {
 			DSNguoiDung.themNguoiDung(nd);
-			showDSND(DSNguoiDung.DSND, "#dataNguoiDung");
+			// showDSND(DSNguoiDung.DSND, "#dataNguoiDung");
+			// paginate( danhSachKhoaHoc.DSKH,showEntriesKH, '#tableKhoaHoc',showKH);
+			renderTable(DSNguoiDung.DSND,'#showEntriesUser','#tableNguoiDung',showDSND);
+			
 		})
 	})
 	.fail(function(err){
@@ -162,10 +166,11 @@ function xoaNguoiDungAPI(btns){
 							).then((result)=>{
 								let rowCanXoa = $(`#btnXoa_${taiKhoan}`).closest("tr");
 								rowCanXoa.addClass("animated fadeOutDown")
-								.css({"animationDuration":".8s"})
-								.one("webkitAnimationEnd", function(){
-									DSNguoiDung.xoaNguoiDungTheoTk(taiKhoan);
-									showDSND(DSNguoiDung.DSND, "#dataNguoiDung");	
+										.css({"animationDuration":".8s"})
+										.one("webkitAnimationEnd", function(){
+										DSNguoiDung.xoaNguoiDungTheoTk(taiKhoan);
+										// showDSND(DSNguoiDung.DSND, "#dataNguoiDung");
+										renderTable(DSNguoiDung.DSND,'#showEntriesUser','#tableNguoiDung',showDSND);	
 								});
 							})
 						})
@@ -227,14 +232,17 @@ $('#btnCapNhatND').click(function(){
 	  //chuyển về chuỗi json
 	  DSNDService.suaNguoiDungService(NDCapNhat)
 	  .done(function(res){
-	  	swal({
-	  		type: 'success',
-	  		title: 'Cập Nhật Thành Công!'
-	  	}).then(()=>{
-	  		DSNguoiDung.suaNguoiDung(NDCapNhat);
-	  		showDSND(DSNguoiDung.DSND, "#dataNguoiDung");
-	  	})
-	  })
+				  swal({
+					  type: 'success',
+					  title: 'Cập Nhật Thành Công!'
+				  }).then(()=>{
+					  DSNguoiDung.suaNguoiDung(NDCapNhat);
+					// showDSND(DSNguoiDung.DSND, "#dataNguoiDung");
+					//  paginate( danhSachKhoaHoc.DSKH,showEntriesKH, '#tableKhoaHoc',showKH);
+					renderTable(DSNguoiDung.DSND,'#showEntriesUser','#tableNguoiDung',showDSND);
+					
+				  })
+			  })
 	  .fail(function(err){
 	  	swal({
 	  		type: 'error',
@@ -369,6 +377,8 @@ $("body").delegate(".suaTimKiem", "click", function(){
 let danhSachKhoaHoc = new DanhSachKhoaHoc();
 function showKH(DSKH:Array<KhoaHoc>, divLoad, entry = 0){
 	let data:string = "";
+	let table = $(divLoad).find('tbody')
+	table.html('');
 	for(let i:number = 0; i < DSKH.length; i++){
 		let khoahoc = DSKH[i];
 		data += `
@@ -386,17 +396,18 @@ function showKH(DSKH:Array<KhoaHoc>, divLoad, entry = 0){
 		`;
 	}
 
-	$(divLoad).html(data);
+	table.html(data);
+	// xoaNguoiDungAPI(".btnXoaTungND");
+	// suaNguoiDungAPI(".btnSuaTungND");
 }
-
 DSKHService.layKhoaHocService()
 .done(res =>{
 	danhSachKhoaHoc.DSKH = res.map(kh =>{
 		let khObject = new KhoaHoc(kh.MaKhoaHoc, kh.TenKhoaHoc,kh.MoTa,kh.HinhAnh,kh.LuotXem,kh.NguoiTao)
 		return khObject;
 	})
-	paginate( danhSachKhoaHoc.DSKH,showEntriesKH, '#tableKhoaHoc',showKH);
-	$('#tableKhoaHoc').next('.pagination').find('.page-item.active > .page-link').click();
+	renderTable(danhSachKhoaHoc.DSKH,'#showEntriesKH','#tableKhoaHoc',showKH);
+	
 	// showKH(danhSachKhoaHoc.DSKH, '#dataKhoaHoc')
 
 })
@@ -455,7 +466,9 @@ $('body').delegate('#btnThemKhoaHoc','click',function(){
 		}).then(()=>{
 			// window.location.reload();
 			danhSachKhoaHoc.themKhoaHoc(khoahoc);
-			paginate( danhSachKhoaHoc.DSKH,showEntriesKH, '#tableKhoaHoc',showKH);
+			// paginate( danhSachKhoaHoc.DSKH,showEntriesKH, '#tableKhoaHoc',showKH);
+			renderTable(danhSachKhoaHoc.DSKH,'#showEntriesKH','#tableKhoaHoc',showKH);
+			
 			// showKH(danhSachKhoaHoc.DSKH, '#dataKhoaHoc')
 		})
 	})
@@ -521,7 +534,9 @@ $('body').delegate('#btnCapNhatKH','click',()=>{
 			// window.location.reload();
 			danhSachKhoaHoc.suaKhoaHoc(khoahoc);
 			// showKH(danhSachKhoaHoc.DSKH, '#dataKhoaHoc')
-			paginate( danhSachKhoaHoc.DSKH,showEntriesKH, '#tableKhoaHoc',showKH);
+			// paginate( danhSachKhoaHoc.DSKH,showEntriesKH, '#tableKhoaHoc',showKH);
+			renderTable(danhSachKhoaHoc.DSKH,'#showEntriesKH','#tableKhoaHoc',showKH);
+			
 		})
 	})
 	.fail(function(err){

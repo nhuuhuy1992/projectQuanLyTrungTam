@@ -64,11 +64,11 @@
             <div class="col-12">
                 <div class="blockForm d-flex justify-content-between align-items-center">
                     <div class="show d-flex align-content-center w-25">
-                        <select class="custom-select" style="width: 100%;border-color: #f3f3f3; font-size: 13px" id="showEntries">
-                            <option selected disabled>Show Entries...</option>
-                            <option value="1">10</option>
-                            <option value="2">25</option>
-                            <option value="3">50</option>
+                        <select class="custom-select" style="width: 100%;border-color: #f3f3f3; font-size: 13px" id="showEntriesKH">
+                            <option  disabled>Show Entries...</option>
+                            <option selected value="10">10</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
                         </select>
                     </div>
 
@@ -85,7 +85,7 @@
         </div>
         <div class="row mt-4">
             <div class="col-md-6 col-12">
-                <button class="btn btn-danger border-0 btn-rounded" id="btnXoaHocVien">Xóa Khoá Học</button>
+                <button class="btn btn-danger border-0 btn-rounded" >Xóa Khoá Học</button>
                 <button class="btn btn-success border-0 btn-rounded" id="btnModalKhoaHoc" data-toggle="modal" data-target="#modalKhoaHoc">Thêm Khoá Học</button>
             </div>
         </div>
@@ -94,14 +94,15 @@
                 <table class="table table-hoverable table-striped tableKhoaHoc" id="tableKhoaHoc">
                     <thead>
                         <tr>
-                            <th>#</th>
-                            <th>Mã</th>
-                            <th>Tên</th>
-                            <th>Lượt Xem</th>
+                            <th >#</th>
+                            <th class="both" data-sort="MaKhoaHoc">Mã</th>
+                            <th class="both" data-sort="TenKhoaHoc">Tên</th>
                                 <!-- <th>Mô Tả</th>
                                     <th>Hình Ảnh</th> -->
-                                    <th>Người Tạo</th>
-                                    <th>Thao Tác</th>
+                            <th class="both" data-sort="NguoiTao">Người Tạo</th>
+                            <th class="both" data-sort="LuotXem">Lượt Xem</th>
+                            
+                            <th>Thao Tác</th>
                                 </tr>
                             </thead>
                             <tbody id="dataKhoaHoc">
@@ -122,11 +123,11 @@
                     <div class="col-12">
                         <div class="blockForm d-flex justify-content-between align-items-center">
                             <div class="show d-flex align-content-center w-25">
-                                <select class="custom-select" style="width: 100%;border-color: #f3f3f3; font-size: 13px" id="showEntries">
-                                    <option selected disabled>Show Entries...</option>
-                                    <option value="1">10</option>
-                                    <option value="2">25</option>
-                                    <option value="3">50</option>
+                                <select class="custom-select" style="width: 100%;border-color: #f3f3f3; font-size: 13px" id="showEntriesUser">
+                                    <option  disabled>Show Entries...</option>
+                                    <option value="10" selected>10</option>
+                                    <option value="25">25</option>
+                                    <option value="50">50</option>
                                 </select>
                             </div>
 
@@ -163,16 +164,17 @@
                 </div>
                 <div class="row mt-4">
                     <div class="col-12">
+                        
                         <table class="table table-hover tableNguoiDung" id="tableNguoiDung">
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th data-sort="true">Tài Khoản</th>
+                                    <th class="both" data-sort="_TaiKhoan">Tài Khoản</th>
                                     <!-- <th data-sort="true">Mật Khẩu</th> -->
-                                    <th data-sort="true">Tên</th>
-                                    <th data-sort="true">Email</th>
-                                    <th data-sort="true">Số Điện Thoại</th>
-                                    <th data-sort="true">Mã Người Dùng</th>
+                                    <th class="both" data-sort="_HoTen">Tên</th>
+                                    <th class="both" data-sort="_Email">Email</th>
+                                    <th class="both" data-sort="_SoDT">Số Điện Thoại</th>
+                                    <th class="both" data-sort="_MaLoaiNguoiDung">Mã Người Dùng</th>
                                     <th>Thao Tác</th>
                                 </tr>
                             </thead>

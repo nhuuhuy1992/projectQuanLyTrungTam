@@ -29,7 +29,13 @@ export class DanhSachKhoaHoc{
 	slKhoaHoc(){
 		return this.DSKH.length;
 	}
-	xoaKhoaHoc(){}
-	suaKhoaHoc(){}
+	xoaKhoaHoc(makh:string){
+		let index = this.DSKH.findIndex( khoahoc => khoahoc.MaKhoaHoc === makh);
+		if( index > -1 ) this.DSKH.splice(index,1);
+	}
+	suaKhoaHoc(khoahoc: KhoaHoc){
+		let index = this.DSKH.findIndex( kh => kh.MaKhoaHoc === khoahoc.MaKhoaHoc);
+		if(index > -1) this.DSKH[index] = khoahoc
+	}
 
 }

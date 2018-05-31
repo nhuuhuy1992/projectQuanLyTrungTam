@@ -6,17 +6,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "font-awesome/css/font-awesome.min.css";
 import swal from "sweetalert2";
 import 'froala-editor';
-import "./../../assets/scss/admin.scss";
-//  import 'datatables';
-import "./../../assets/js/app_admin.js";
 import "./../../assets/js/froalaEditor.js";
-
-
-// Require Editor CSS files.
-
-// import 'datatables.net-bs4';
 import "../../assets/scss/vendors/animate.css";
-
+import "./../../assets/scss/admin.scss";
+import "./../../assets/js/app_admin.js";
+import { paginate, showEntries, compareValues, pageOnClick }  from "../../assets/js/table.js";
 import { NguoiDung } from "./../models/NguoiDung";
 import { DanhSachNguoiDungServices } from "./../services/NguoiDungServices";
 import { DanhSachNguoiDung } from "./../models/DanhSachNguoiDung";
@@ -31,24 +25,26 @@ let DSKHService: any = new KhoaHocServices();
 // 
 let getid = el => document.getElementById(el);
 let getInputId = el => <HTMLInputElement>document.getElementById(el);
-// editor
-// let Editor
-// DecoupledEditor.then( editor => {
-// 	Editor = editor
 
-// } )
-// .catch( error => {
-//     console.error( error );
-// } );
+let showEntriesUser = $('#showEntriesUser').val();
+let showEntriesKH = $('#showEntriesKH').val();
 
 
-function showDSND(DSND:Array<NguoiDung>, divLoad){
+$('#showEntriesUser').change(function(){
+	showEntries(DSNguoiDung.DSND,'#showEntriesUser','#tableNguoiDung',showDSND);
+})
+$('#showEntriesKH').change(function(){
+	showEntries(danhSachKhoaHoc.DSKH,'#showEntriesKHr','#tableKhoaHoc',showKH);
+})
+
+function showDSND(DSND:Array<NguoiDung>, divLoad, entry = 0){
 	let data:string = "";
-	for(let i:number = 0; i < DSNguoiDung.DSND.length; i++){
-		let motNguoiDung = DSNguoiDung.DSND[i];
+	$(divLoad).html('');
+	for(let i:number = 0; i < DSND.length; i++){
+		let motNguoiDung = DSND[i];
 		data += `
 		<tr TaiKhoan="${motNguoiDung._TaiKhoan}"  HoTen="${motNguoiDung._HoTen}" Email="${motNguoiDung._Email}" SoDT=${motNguoiDung._SoDT} MaLoaiNguoiDung="${motNguoiDung._MaLoaiNguoiDung}" matkhau="${motNguoiDung._MatKhau}" id="tr_${motNguoiDung._TaiKhoan}" class="trNguoiDung">
-		<td>${i+1}</td>
+		<td>${entry+i+1}</td>
 		<td>${motNguoiDung._TaiKhoan}</td>
 		<td>${motNguoiDung._HoTen}</td>
 		<td>${motNguoiDung._Email}</td>
@@ -61,73 +57,12 @@ function showDSND(DSND:Array<NguoiDung>, divLoad){
 		</tr>
 		`;
 	}
-	divLoad.innerHTML = data;
+	$(divLoad).html(data);
 	xoaNguoiDungAPI(".btnXoaTungND");
-	// suaNguoiDungAPI(".btnSuaTungND");
 }
 
-// let optionTableNguoiDung = {
-	// Internationalisation. For more info refer to http://datatables.net/manual/i18n
-	// "language": {
-	// 	"aria": {
-	// 		"sortAscending": ": activate to sort column ascending",
-	// 		"sortDescending": ": activate to sort column descending"
-	// 	},
-	// 	"emptyTable": "No data available in table",
-	// 	"info": "Showing _START_ to _END_ of _TOTAL_ records",
-	// 	"infoEmpty": "No records found",
-	// 	"infoFiltered": "(filtered1 from _MAX_ total records)",
-	// 	"lengthMenu": "Show _MENU_ records",
-	// 	"search": "Search:",
-	// 	"zeroRecords": "No matching records found",
-	// 	"paginate": {
-	// 		"previous": "Prev",
-	// 		"next": "Next",
-	// 		"last": "Last",
-	// 		"first": "First"
-	// 	}
-	// },
 
-	// "bStateSave": true, // save datatable state(pagination, sort, etc) in cookie.
-
-	// "columns": [{
-	// 	"orderable": false
-	// }, {
-	// 	"orderable": true
-	// }, {
-	// 	"orderable": true
-	// }, {
-	// 	"orderable": true
-	// }, {
-	// 	"orderable": true
-	// }, {
-	// 	"orderable": true
-	// },
-	// {
-	// 	"orderable": true
-	// },
-	// {
-	// 	"orderable": false
-	// }
-	// ],
-	// "lengthMenu": [
-	// [5, 15, 20, -1],
-	// 	[5, 15, 20, "All"] // change per page values here
-	// 	],
-	// // set the initial value
-	// "pageLength": 5,
-	// "pagingType": "full_numbers",
-	// "columnDefs": [{ // set default column settings
-	// 	'orderable': false,
-	// 	'targets': [0]
-	// }, {
-	// 	"searchable": false,
-	// 	"targets": [0]
-	// }],
-	// "order": [
-	// [1, "asc"]
-	// 	] // set first column as a default sort by asc
-	// }
+	
 //lấy danh sách người dùng api
 DSNDService.layDSNDService()
 .done(function(res){
@@ -140,8 +75,12 @@ DSNDService.layDSNDService()
 		let MatKhauND = person.MatKhau;
 		let personObj:  NguoiDung = new NguoiDung(TaiKhoan, MatKhauND, HoTen, SoDT, Email, maND);
 		DSNguoiDung.themNguoiDung(personObj);
+		// console.log(getPaginatedItems(DSNguoiDung.DSND,1))
 	}
-	showDSND(DSNguoiDung.DSND, getid("dataNguoiDung"));
+	paginate( DSNguoiDung.DSND,showEntriesUser, `#tableNguoiDung`,showDSND);
+	$('#tableNguoiDung').next('.pagination').find('.page-item.active > .page-link').click();
+	console.log($('#tableNguoiDung').next('.pagination').find('.page-item.active .page-link').html());
+	// showDSND(DSNguoiDung.DSND, "#dataNguoiDung");
 	// $('#tableNguoiDung').DataTable(optionTableNguoiDung);
 
 	hienThiDSGV(DSNguoiDung);
@@ -165,7 +104,7 @@ getid("btnThemNguoiDung").addEventListener("click", function(){
 			title: 'Thêm Thành Công!',
 		}).then(() => {
 			DSNguoiDung.themNguoiDung(nd);
-			showDSND(DSNguoiDung.DSND, getid("dataNguoiDung"));
+			showDSND(DSNguoiDung.DSND, "#dataNguoiDung");
 		})
 	})
 	.fail(function(err){
@@ -209,7 +148,7 @@ function xoaNguoiDungAPI(btns){
 										.css({"animationDuration":".8s"})
 										.one("webkitAnimationEnd", function(){
 										DSNguoiDung.xoaNguoiDungTheoTk(taiKhoan);
-										showDSND(DSNguoiDung.DSND, getid("dataNguoiDung"));	
+										showDSND(DSNguoiDung.DSND, "#dataNguoiDung");	
 								});
 							})
 						})
@@ -228,7 +167,7 @@ function xoaNguoiDungAPI(btns){
 }
 
 //Sửa Thông Tin Người Dùng
-function showDSKHDK(taikhoan){
+function showDSKHDK(taikhoan:string){
 	DSKHService.layThongTinKH(taikhoan)
 	.done(
 		res =>{
@@ -276,7 +215,7 @@ $('#btnCapNhatND').click(function(){
 					  title: 'Cập Nhật Thành Công!'
 				  }).then(()=>{
 					  DSNguoiDung.suaNguoiDung(NDCapNhat);
-					showDSND(DSNguoiDung.DSND, getid("dataNguoiDung"));
+					showDSND(DSNguoiDung.DSND, "#dataNguoiDung");
 				  })
 			  })
 	  .fail(function(err){
@@ -341,7 +280,7 @@ getid("btnXoaNhieuND").addEventListener("click", function(){
 getInputId("timND").addEventListener("keyup", function(){
 	let key:string = (this.value).trim().toLowerCase();
 	let DSNDCanTimKiem = DSNguoiDung.timNguoiDungTheoTen(key);
-	showDSND(DSNDCanTimKiem.DSND, getid("dataNguoiDung"));
+	showDSND(DSNDCanTimKiem.DSND, "#dataNguoiDung");
 
 	let data = "";
 	if(key === "" || key === " " || DSNDCanTimKiem.DSND.length == 0){
@@ -380,12 +319,14 @@ getInputId("timND").addEventListener("keyup", function(){
 
 // Khoa Hoc
 let danhSachKhoaHoc = new DanhSachKhoaHoc();
-function showKH(DSKH:Array<KhoaHoc>, divLoad){
+function showKH(DSKH:Array<KhoaHoc>, divLoad, entry = 0){
 	let data:string = "";
-	DSKH.forEach((khoahoc:KhoaHoc, i) => {
+	console.log( DSKH )
+	for(let i:number = 0; i < DSKH.length; i++){
+		let khoahoc = DSKH[i];
 		data += `
 		<tr MaKhoaHoc="${khoahoc.MaKhoaHoc}"  class="trKhoaHoc">
-		<td>${i+1}</td>
+		<td>${entry+ i+1}</td>
 		<td>${khoahoc.MaKhoaHoc}</td>
 		<td>${khoahoc.TenKhoaHoc}</td>
 		<td>${khoahoc.NguoiTao}</td>
@@ -397,7 +338,7 @@ function showKH(DSKH:Array<KhoaHoc>, divLoad){
 		</tr>
 		`;
 	}
-	);
+
 	$(divLoad).html(data);
 	// xoaNguoiDungAPI(".btnXoaTungND");
 	// suaNguoiDungAPI(".btnSuaTungND");
@@ -409,7 +350,9 @@ DSKHService.layKhoaHocService()
 		let khObject = new KhoaHoc(kh.MaKhoaHoc, kh.TenKhoaHoc,kh.MoTa,kh.HinhAnh,kh.LuotXem,kh.NguoiTao)
 		return khObject;
 	})
-	showKH(danhSachKhoaHoc.DSKH, '#dataKhoaHoc')
+	paginate( danhSachKhoaHoc.DSKH,showEntriesKH, '#tableKhoaHoc',showKH);
+	$('#tableKhoaHoc').next('.pagination').find('.page-item.active > .page-link').click();
+	// showKH(danhSachKhoaHoc.DSKH, '#dataKhoaHoc')
 
 })
 .fail(
@@ -431,10 +374,12 @@ function hienThiDSGV(dsnd:DanhSachNguoiDung){
 function resetFormKH(){
 	$('#MaKhoaHoc').val('');
 	$('#TenKhoaHoc').val('');
-	$('#MoTa').val('');
+	$('#MoTa').froalaEditor('html.set','');
 	$('#HinhAnh').val('');
 	$('#LuotXem').val('')
 	$('#NguoiTao').val('');
+	$('#MaKhoaHoc').attr('disabled',false);
+	
 }
 
 
@@ -463,7 +408,10 @@ $('body').delegate('#btnThemKhoaHoc','click',function(){
 			type: 'success',
 			title: 'Thêm Thành Công!',
 		}).then(()=>{
-			window.location.reload();
+			// window.location.reload();
+			danhSachKhoaHoc.themKhoaHoc(khoahoc);
+			paginate( danhSachKhoaHoc.DSKH,showEntriesKH, '#tableKhoaHoc',showKH);
+			// showKH(danhSachKhoaHoc.DSKH, '#dataKhoaHoc')
 		})
 	})
 	.fail(function(err){
@@ -489,6 +437,7 @@ $('body').delegate('.btnSuaKH','click',function(){
 			`
 			$("#modalKhoaHoc .modal-footer").html(modal_footer);
 			$('#MaKhoaHoc').val(res.MaKhoaHoc);
+			$('#MaKhoaHoc').attr('disabled','disabled');
 			$('#TenKhoaHoc').val(res.TenKhoaHoc);
 			// $('#MoTa').html(res.MoTa);
 			$('#MoTa').froalaEditor('html.set',res.MoTa);
@@ -500,7 +449,7 @@ $('body').delegate('.btnSuaKH','click',function(){
 				if(res.NguoiTao === self.html() )
 				{
 					self.attr('selected','true')
-					console.log($('#NguoiTao option').eq(e).html());
+					// console.log($('#NguoiTao option').eq(e).html());
 					
 				}
 			})
@@ -524,7 +473,10 @@ $('body').delegate('#btnCapNhatKH','click',()=>{
 			type: 'success',
 			title: 'Cập Nhật Thành Công!',
 		}).then(()=>{
-			window.location.reload();
+			// window.location.reload();
+			danhSachKhoaHoc.suaKhoaHoc(khoahoc);
+			// showKH(danhSachKhoaHoc.DSKH, '#dataKhoaHoc')
+			paginate( danhSachKhoaHoc.DSKH,showEntriesKH, '#tableKhoaHoc',showKH);
 		})
 	})
 	.fail(function(err){
@@ -556,13 +508,14 @@ $('body').delegate('.btnXoaKH','click',function(){
 				'Xóa Thành Công'
 				).then(()=>{
 					// window.location.reload();
+					danhSachKhoaHoc.xoaKhoaHoc(idKH);
+				// showKH(danhSachKhoaHoc.DSKH, '#dataKhoaHoc')
+				paginate( danhSachKhoaHoc.DSKH,showEntriesKH, '#tableKhoaHoc',showKH);
 				})
 			})
-		.fail((err)=>{
-			swal(
-				'Xóa thất bại'
-				);
-		})
+			.fail((err)=>{
+				console.log(err)
+			})
 		
 	})
 	
@@ -588,5 +541,34 @@ $('body').delegate('#btnGhiDanh','click',function(){
 	.fail()
 })
 
+$('#tableKhoaHoc th').click(function(){
+	let key = $(this).data('sort');
+	if($(this).hasClass('asc')){
+		$(this).removeClass('asc');
+		$(this).addClass('desc');
+		danhSachKhoaHoc.DSKH.sort(compareValues(key,'desc'))
+		
+	}else{
+		$(this).removeClass('desc');
+		$(this).addClass('asc');
+		danhSachKhoaHoc.DSKH.sort(compareValues(key))
+		}
+	
+	$('#tableKhoaHoc').next('.pagination').find('.page-item.active > .page-link').click();
+})
 
-  
+
+$('#tableNguoiDung th').click(function(){
+	let key = $(this).data('sort');
+	if($(this).hasClass('asc')){
+		$(this).removeClass('asc');
+		$(this).addClass('desc');
+		DSNguoiDung.DSND.sort(compareValues(key,'desc'))
+		
+	}else{
+		$(this).removeClass('desc');
+		$(this).addClass('asc');
+		DSNguoiDung.DSND.sort(compareValues(key))
+		}
+	$('#tableNguoiDung').next('.pagination').find('.page-item.active > .page-link').click();
+})

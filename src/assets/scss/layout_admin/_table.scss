@@ -53,7 +53,7 @@ tr td {
 #tableTimKiemNguoiDung{
 	@include posi-top-right(absolute, 140%, 0);
 	transition: .4s all;
-	width: 45%;
+	width: 55%;
 	background: #fff;
 	border-radius: 5px;
 	z-index: 15;
@@ -71,6 +71,9 @@ tr td {
 		opacity: 1;
 		visibility: 1;
 	}
+}
+.iconTimKiem{
+	font-size: 20px;
 }
 .table thead th{
 	background-repeat: no-repeat;

@@ -21,8 +21,6 @@ import { DanhSachKhoaHoc } from "../models/DanhSachKhoaHoc";
 let DSNguoiDung:DanhSachNguoiDung = new DanhSachNguoiDung();
 let DSNDService:any = new DanhSachNguoiDungServices();
 let DSKHService: any = new KhoaHocServices();
-
-// 
 let getid = el => document.getElementById(el);
 let getInputId = el => <HTMLInputElement>document.getElementById(el);
 
@@ -43,7 +41,18 @@ function showDSND(DSND:Array<NguoiDung>, divLoad, entry = 0){
 	for(let i:number = 0; i < DSND.length; i++){
 		let motNguoiDung = DSND[i];
 		data += `
-		<tr TaiKhoan="${motNguoiDung._TaiKhoan}"  HoTen="${motNguoiDung._HoTen}" Email="${motNguoiDung._Email}" SoDT=${motNguoiDung._SoDT} MaLoaiNguoiDung="${motNguoiDung._MaLoaiNguoiDung}" matkhau="${motNguoiDung._MatKhau}" id="tr_${motNguoiDung._TaiKhoan}" class="trNguoiDung">
+		<tr 
+		TaiKhoan="${motNguoiDung._TaiKhoan}"  
+		HoTen="${motNguoiDung._HoTen}" 
+		Email="${motNguoiDung._Email}" 
+		SoDT=${motNguoiDung._SoDT} 
+		MaLoaiNguoiDung="${motNguoiDung._MaLoaiNguoiDung}" 
+		matkhau="${motNguoiDung._MatKhau}" 
+		id="tr_${motNguoiDung._TaiKhoan}" 
+		class="trNguoiDung">
+		<td>
+		<input type="checkbox" class="cbxNguoiDung" TaiKhoan="${motNguoiDung._TaiKhoan}" />
+		</td>
 		<td>${entry+i+1}</td>
 		<td>${motNguoiDung._TaiKhoan}</td>
 		<td>${motNguoiDung._HoTen}</td>
@@ -51,18 +60,32 @@ function showDSND(DSND:Array<NguoiDung>, divLoad, entry = 0){
 		<td>${motNguoiDung._SoDT}</td>
 		<td>${motNguoiDung._MaLoaiNguoiDung}</td>
 		<td class="d-flex justify-content-center">
-		<button class="icon icon-info rounded-circle border-0 fa fa-times mr-3 btnXoaTungND" style="width: 30px;height: 30px" id="btnXoa_${motNguoiDung._TaiKhoan}"></button>
-		<button class="icon icon-rainbow rounded-circle border-0  fa fa-pencil btnCapNhatND" style="width: 30px;height: 30px" data-toggle="modal" data-target="#modalCapNhatND" data-id="${motNguoiDung._TaiKhoan}"></button>
+		<button type="button" class="icon icon-peach rounded-circle border-0 fa fa-trash text-danger mr-3 btnXoaTungND" style="width: 30px;height: 30px" id="btnXoa_${motNguoiDung._TaiKhoan}"></button>
+		<button type="button" class="icon icon-blue rounded-circle border-0  fa fa-pencil btnCapNhatND" style="width: 30px;height: 30px" data-toggle="modal" data-target="#modalCapNhatND" data-id="${motNguoiDung._TaiKhoan}" id="btnSua_${motNguoiDung._TaiKhoan}">
+		</button>
 		</td>
 		</tr>
 		`;
 	}
 	$(divLoad).html(data);
 	xoaNguoiDungAPI(".btnXoaTungND");
+	suaKhiClickVaoRow();
 }
+function suaKhiClickVaoRow(){
+	let trNguoidung = document.querySelectorAll(".trNguoiDung");	
+	for(let i = 0; i < trNguoidung.length; i++){
+		trNguoidung[i].addEventListener("click", function() {
+			if($(event.target).attr("type") === "checkbox" || $(event.target).attr("type") === "button"){
+				return false;
+			}
+			else{
+				let child = getid(`btnSua_${this.getAttribute("taikhoan")}`);
+				$(child).trigger("click");
+			}
 
-
-	
+		})
+	}
+}
 //lấy danh sách người dùng api
 DSNDService.layDSNDService()
 .done(function(res){
@@ -79,16 +102,12 @@ DSNDService.layDSNDService()
 	}
 	paginate( DSNguoiDung.DSND,showEntriesUser, `#tableNguoiDung`,showDSND);
 	$('#tableNguoiDung').next('.pagination').find('.page-item.active > .page-link').click();
-	console.log($('#tableNguoiDung').next('.pagination').find('.page-item.active .page-link').html());
-	// showDSND(DSNguoiDung.DSND, "#dataNguoiDung");
-	// $('#tableNguoiDung').DataTable(optionTableNguoiDung);
-
 	hienThiDSGV(DSNguoiDung);
 })
 .fail(function(err){console.log(err);});
 
 //thêm người dùng vào danh sách người dùng api
-getid("btnThemNguoiDung").addEventListener("click", function(){
+$("#btnThemNguoiDung").click(function(){
 	let HoTen     = getInputId("HoTenND").value;
 	let TaiKhoan  = getInputId("TaiKhoanND").value;
 	let Email     = getInputId("EmailND").value;
@@ -114,9 +133,7 @@ getid("btnThemNguoiDung").addEventListener("click", function(){
   					title: 'Thêm Thất Bại!',
   				})
   			});
-
-});
-
+})
 //xoá người dùng api
 function xoaNguoiDungAPI(btns){
 	let Arrbtn = document.querySelectorAll(btns);
@@ -145,10 +162,10 @@ function xoaNguoiDungAPI(btns){
 							).then((result)=>{
 								let rowCanXoa = $(`#btnXoa_${taiKhoan}`).closest("tr");
 								rowCanXoa.addClass("animated fadeOutDown")
-										.css({"animationDuration":".8s"})
-										.one("webkitAnimationEnd", function(){
-										DSNguoiDung.xoaNguoiDungTheoTk(taiKhoan);
-										showDSND(DSNguoiDung.DSND, "#dataNguoiDung");	
+								.css({"animationDuration":".8s"})
+								.one("webkitAnimationEnd", function(){
+									DSNguoiDung.xoaNguoiDungTheoTk(taiKhoan);
+									showDSND(DSNguoiDung.DSND, "#dataNguoiDung");	
 								});
 							})
 						})
@@ -175,26 +192,26 @@ function showDSKHDK(taikhoan:string){
 			let khChuaDk: string ='';
 			let danhSachKhoaHocDK = new DanhSachKhoaHoc();
 			if( typeof res !== 'string'){
-			
+
 				res.forEach((khoahoc)=>{
 					khoahocdk+= `<li class="list-group-item">${khoahoc.TenKhoaHoc}</li>`
 				})
-		
-			danhSachKhoaHocDK.DSKH = danhSachKhoaHoc.DSKH.filter(kh1 => res.some(kh2 => kh1.MaKhoaHoc !== kh2.MaKhoaHoc))
-		
+
+				danhSachKhoaHocDK.DSKH = danhSachKhoaHoc.DSKH.filter(kh1 => res.some(kh2 => kh1.MaKhoaHoc !== kh2.MaKhoaHoc))
+
 			}else{
 				khoahocdk = 'Chưa có khoá học';
 				danhSachKhoaHocDK.DSKH = danhSachKhoaHoc.DSKH
 			}
 
 			$('#listKhoaHoc').html(khoahocdk);
-		
+
 			danhSachKhoaHocDK.DSKH.forEach((khoahoc:KhoaHoc)=>{
 				khChuaDk +=`<option value="${khoahoc.MaKhoaHoc}">${khoahoc.TenKhoaHoc}</option>`
 			})
 			$('#listKHoaHocDK').html(khChuaDk);
 		}
-	)
+		)
 	.fail(err => console.log(err))
 }
 
@@ -210,21 +227,22 @@ $('#btnCapNhatND').click(function(){
 	  //chuyển về chuỗi json
 	  DSNDService.suaNguoiDungService(NDCapNhat)
 	  .done(function(res){
-				  swal({
-					  type: 'success',
-					  title: 'Cập Nhật Thành Công!'
-				  }).then(()=>{
-					  DSNguoiDung.suaNguoiDung(NDCapNhat);
-					showDSND(DSNguoiDung.DSND, "#dataNguoiDung");
-				  })
-			  })
+	  	swal({
+	  		type: 'success',
+	  		title: 'Cập Nhật Thành Công!'
+	  	}).then(()=>{
+	  		DSNguoiDung.suaNguoiDung(NDCapNhat);
+	  		showDSND(DSNguoiDung.DSND, "#dataNguoiDung");
+	  	})
+	  })
 	  .fail(function(err){
-				  swal({
-					  type: 'error',
-					  title: 'Thông Tin Không Thể Thay Đổi!',
-				  })
-			  });
-})
+	  	swal({
+	  		type: 'error',
+	  		title: 'Thông Tin Không Thể Thay Đổi!',
+	  	})
+	  });
+	})
+
 $('body').delegate('.btnCapNhatND','click',function(){
 	let id:string = $(this).attr('data-id');
 	let nguoidung:NguoiDung = DSNguoiDung.DSND.find(user => user._TaiKhoan === id );
@@ -248,32 +266,61 @@ $('body').delegate('.btnCapNhatND','click',function(){
 		showDSKHDK(nguoidung._TaiKhoan);
 	}
 })
+$("#btnXoaNhieuND").click(function(){
+	event.preventDefault();
+	let cbx = $(".cbxNguoiDung");
+	if(!cbx.is(":checked")){
+		swal({
+			type: 'error',
+			title: 'Xin Chọn Người Dùng Cần Xoá!',
+			toast: true,
+			position: 'top-end',
+			showConfirmButton: false,
+			timer: 2000
+		})
+		return false;
+	}
+	for(let i = 0; i < cbx.length; i++){
+		if($(cbx[i]).is(":checked")){
+			let ndCanXoa = $(cbx[i]).attr("taikhoan");
+			swal({
+				title:                 '<strong>Bạn Có Chắc Xoá Người Dùng Này?</strong>',
+				type:                  'warning',
+				showCloseButton:       true,
+				showCancelButton:      true,
+				focusConfirm:          false,
+				confirmButtonText:     
+				'<i class="fa fa-thumbs-up"></i>Yes!',
+				cancelButtonText:      
+				'<i class="fa fa-thumbs-down"></i> No!',
+				cancelButtonAriaLabel: 'Thumbs down',
+			}).then(res => {
+				if(res.value){
+					DSNDService.xoaNguoiDungService(ndCanXoa)
+					.done(res => {
+						swal(
+							'Deleted!',
+							'Your file has been deleted.',
+							'success'
+							).then(res => {
+								DSNguoiDung.xoaNguoiDungTheoTk($(cbx[i]).attr("taikhoan"));
+								showDSND(DSNguoiDung.DSND, "#dataNguoiDung");
+								console.log(DSNguoiDung.DSND);
+							})
 
-//xoá khi click vào nút xoá nhiều ngừi dùng
-getid("btnXoaNhieuND").addEventListener("click", function(){
-	let rowNguoiDung = document.querySelectorAll(".trNguoiDung");
-	rowNguoiDung.forEach( (el) => {
-		if((el.classList[1]) == "choose"){
-			let tkSeXoa = el;
-			DSNDService.xoaNguoiDungService(tkSeXoa.getAttribute("taikhoan"))
-			.done(function(res){
-				swal(
-					'Xoá Thành Công',
-					'success'
-					).then((result)=>{
-						window.location.reload();
+						})
+					.fail(err => {
+						swal({
+							type: 'error',
+							title: 'Không Thể Xoá Người Dùng Này!',
+						})
 					})
-				})
-			.fail(function(err){
-				swal({
-					type: 'error',
-					title: 'Người Dùng Không Thể Xoá!',
-				})
-			});
+				}
+			})
 		}
-	});	
-});
-
+	}
+	
+})
 
 
 //tìm kiếm ngừi dùng
@@ -292,36 +339,36 @@ getInputId("timND").addEventListener("keyup", function(){
 			let ndTimKiem = DSNDCanTimKiem.DSND[i];
 			data += `
 			<tr taikhoan=${ndTimKiem._TaiKhoan} class="trNguoiDungTimKiem" data-choose="tr_${ndTimKiem._TaiKhoan}">
-			<td>${i+1}</td>
-			<td>${ndTimKiem._TaiKhoan}</td>
-			<td>${ndTimKiem._HoTen}</td>
+				<td>${i+1}</td>
+				<td>${ndTimKiem._TaiKhoan}</td>
+				<td>${ndTimKiem._HoTen}</td>
+				<td>
+					<i class="fa fa-trash text-danger mr-2 iconTimKiem xoaTimKiem" taikhoan="${ndTimKiem._TaiKhoan}">
+					</i>
+					<i class="fa fa-pencil text-primary iconTimKiem suaTimKiem" taikhoan="${ndTimKiem._TaiKhoan}">
+					</i>
+				</td>
 			</tr>
 			`;
 		}
 		getid("tableTimKiemNguoiDung").classList.add("active");
 		getid("dataTimKiemNguoiDung").innerHTML = data;
-
-		let trNDTimKiem = document.querySelectorAll(".trNguoiDungTimKiem");
-		for(let i:number = 0; i < trNDTimKiem.length; i++){
-			trNDTimKiem[i].addEventListener("click", function(){
-				getid("tableTimKiemNguoiDung").classList.remove("active");
-				let tkCanTim = getid(this.getAttribute("data-choose"));
-				tkCanTim.classList.add("choose");
-				window.scroll({
-					top: tkCanTim.offsetTop, 
-					left: 0, 
-					behavior: 'smooth' 
-				})
-			})
-		}
 	}
 });
-
+$("body").delegate(".xoaTimKiem", "click", function(){
+	let tkCanXoa = $(this).attr("taikhoan");
+	console.log(tkCanXoa);
+	$(`#btnXoa_${tkCanXoa}`).trigger("click");
+})
+$("body").delegate(".suaTimKiem", "click", function(){
+	let tkCanXoa = $(this).attr("taikhoan");
+	console.log(tkCanXoa);
+	$(`#btnSua_${tkCanXoa}`).trigger("click");
+})
 // Khoa Hoc
 let danhSachKhoaHoc = new DanhSachKhoaHoc();
 function showKH(DSKH:Array<KhoaHoc>, divLoad, entry = 0){
 	let data:string = "";
-	console.log( DSKH )
 	for(let i:number = 0; i < DSKH.length; i++){
 		let khoahoc = DSKH[i];
 		data += `
@@ -340,8 +387,6 @@ function showKH(DSKH:Array<KhoaHoc>, divLoad, entry = 0){
 	}
 
 	$(divLoad).html(data);
-	// xoaNguoiDungAPI(".btnXoaTungND");
-	// suaNguoiDungAPI(".btnSuaTungND");
 }
 
 DSKHService.layKhoaHocService()
@@ -511,11 +556,11 @@ $('body').delegate('.btnXoaKH','click',function(){
 					danhSachKhoaHoc.xoaKhoaHoc(idKH);
 				// showKH(danhSachKhoaHoc.DSKH, '#dataKhoaHoc')
 				paginate( danhSachKhoaHoc.DSKH,showEntriesKH, '#tableKhoaHoc',showKH);
-				})
 			})
-			.fail((err)=>{
-				console.log(err)
 			})
+		.fail((err)=>{
+			console.log(err)
+		})
 		
 	})
 	
@@ -537,7 +582,7 @@ $('body').delegate('#btnGhiDanh','click',function(){
 				})
 			}
 		}
-	)
+		)
 	.fail()
 })
 
@@ -553,7 +598,7 @@ $('#tableKhoaHoc th').click(function(){
 			$(this).removeClass('desc');
 			$(this).addClass('asc');
 			danhSachKhoaHoc.DSKH.sort(compareValues(key))
-			}
+		}
 		
 		$('#tableKhoaHoc').next('.pagination').find('.page-item.active > .page-link').click();
 	}
@@ -573,7 +618,7 @@ $('#tableNguoiDung th').click(function(){
 			$(this).removeClass('desc');
 			$(this).addClass('asc');
 			DSNguoiDung.DSND.sort(compareValues(key))
-			}
+		}
 		$('#tableNguoiDung').next('.pagination').find('.page-item.active > .page-link').click();
 	}
 	

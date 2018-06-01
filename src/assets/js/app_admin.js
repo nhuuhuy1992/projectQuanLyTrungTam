@@ -1,9 +1,6 @@
 
-// import CKEDITOR from "ckeditor"
-
 $(function() {
     $('[data-toggle="tooltip"]').tooltip();
-    // window.onload = function() {
     //     $(".table-hover tbody tr").click(function() {
     //         console.log("ata");
     //         $(this).toggleClass("choose");
@@ -39,6 +36,7 @@ $(".sidebar__item").click( () => {
     $(dataActive).addClass("active");
     event.preventDefault();
 });
+
 
 
 

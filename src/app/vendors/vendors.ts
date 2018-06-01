@@ -1,0 +1,10 @@
+import * as $ from "jquery";
+import "bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "font-awesome/css/font-awesome.min.css";
+import swal from "sweetalert2";
+import 'froala-editor';
+import "./../../assets/js/froalaEditor.js";
+import "../../assets/scss/vendors/animate.css";
+import "./../../assets/scss/admin.scss";
+import "./../../assets/js/app_admin.js";

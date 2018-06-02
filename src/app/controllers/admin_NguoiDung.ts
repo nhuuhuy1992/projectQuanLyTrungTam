@@ -16,7 +16,7 @@ import { KhoaHoc } from "../models/KhoaHoc";
 import { KhoaHocServices } from '../services/KhoaHocServices';
 import { DanhSachKhoaHoc } from "../models/DanhSachKhoaHoc";
 
-import { suaKhiClickVaoRow, alertFail, alertSuccess, resetForm } from "./../models/dependInjection";
+import { suaKhiClickVaoRow, alertFail, alertSuccess, resetForm } from "./dependInjection";
 
 
 let getid = el => document.getElementById(el);

@@ -1,13 +1,13 @@
 import * as $ from "jquery";
 import swal from "sweetalert2";
 
-import { NguoiDung } from "./NguoiDung";
-import { DanhSachNguoiDung } from "./DanhSachNguoiDung";
+import { NguoiDung } from "../models/NguoiDung";
+import { DanhSachNguoiDung } from "../models/DanhSachNguoiDung";
 import { DanhSachNguoiDungServices } from "./../services/NguoiDungServices";
 
-import { KhoaHoc } from "./KhoaHoc";
+import { KhoaHoc } from "../models/KhoaHoc";
 import { KhoaHocServices } from '../services/KhoaHocServices';
-import { DanhSachKhoaHoc } from "./DanhSachKhoaHoc";
+import { DanhSachKhoaHoc } from "../models/DanhSachKhoaHoc";
 
 
 export function getDataNDServices(){

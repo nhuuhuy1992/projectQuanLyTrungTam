@@ -5,7 +5,7 @@ import "font-awesome/css/font-awesome.min.css";
 import swal from "sweetalert2";
 import 'froala-editor';
 import "./../../assets/js/froalaEditor.js";
-import "../../assets/scss/vendors/animate.css";
+import "../vendors/animate.css";
 import "./../../assets/scss/admin.scss";
 import "./../../assets/js/app_admin.js";
 import { paginate, renderTable, compareValues, pageOnClick }  from "../../assets/js/table.js";
@@ -18,13 +18,17 @@ import { DanhSachKhoaHoc } from "../models/DanhSachKhoaHoc";
 
 import { suaKhiClickVaoRow, alertFail, alertSuccess, resetForm } from "./../models/dependInjection";
 
-let DSNguoiDung:DanhSachNguoiDung = new DanhSachNguoiDung();
-let DSNDService:any = new DanhSachNguoiDungServices();
-let DSKHService: any = new KhoaHocServices();
+
 let getid = el => document.getElementById(el);
 let getInputId = el => <HTMLInputElement>document.getElementById(el);
 
+
+let DSNguoiDung:DanhSachNguoiDung = new DanhSachNguoiDung();
 let danhSachKhoaHoc = new DanhSachKhoaHoc();
+let DSNDService:any = new DanhSachNguoiDungServices();
+let DSKHService: any = new KhoaHocServices();
+
+
 function showDSKHDK(taikhoan:string){
 	DSKHService.layThongTinKH(taikhoan)
 	.done(
@@ -55,37 +59,15 @@ function showDSKHDK(taikhoan:string){
 		)
 	.fail(err => console.log(err))
 }
-function showKH(DSKH:Array<KhoaHoc>, divLoad, entry = 0){
-	let data:string = "";
-	let table = $(divLoad).find('tbody')
-	table.html('');
-	for(let i:number = 0; i < DSKH.length; i++){
-		let khoahoc = DSKH[i];
-		data += `
-		<tr MaKhoaHoc="${khoahoc.MaKhoaHoc}"  class="trKhoaHoc">
-		<td>${entry+ i+1}</td>
-		<td>${khoahoc.MaKhoaHoc}</td>
-		<td>${khoahoc.TenKhoaHoc}</td>
-		<td>${khoahoc.NguoiTao}</td>
-		<td>${khoahoc.LuotXem}</td>
-		<td class="d-flex justify-content-center">
-		<button class="icon icon-info rounded-circle border-0 fa fa-times mr-3 btnXoaKH" style="width: 30px;height: 30px"    data-id="${khoahoc.MaKhoaHoc}" data-toggle="tooltip" title="Xoá"></button>
-		<button class="icon icon-rainbow rounded-circle border-0  fa fa-pencil btnSuaKH" style="width: 30px;height: 30px"   data-id="${khoahoc.MaKhoaHoc}" data-toggle="tooltip" title="Sửa"></button>
-		</td>
-		</tr>
-		`;
-	}
-	table.html(data);
-}
 DSKHService.layKhoaHocService()
-.done(res =>{
-	danhSachKhoaHoc.DSKH = res.map(kh =>{
-		let khObject = new KhoaHoc(kh.MaKhoaHoc, kh.TenKhoaHoc,kh.MoTa,kh.HinhAnh,kh.LuotXem,kh.NguoiTao)
-		return khObject;
+	.done(res =>{
+		danhSachKhoaHoc.DSKH = res.map(kh =>{
+			let khObject = new KhoaHoc(kh.MaKhoaHoc, kh.TenKhoaHoc,kh.MoTa,kh.HinhAnh,kh.LuotXem,kh.NguoiTao)
+			return khObject;
+		})
+		// renderTable(danhSachKhoaHoc.DSKH,'#showEntriesKH','#tableKhoaHoc',showKH);
 	})
-	renderTable(danhSachKhoaHoc.DSKH,'#showEntriesKH','#tableKhoaHoc',showKH);
-})
-.fail();
+	.fail();
 let showEntriesUser = $('#showEntriesUser');
 $('#showEntriesUser').change(function(){
 	renderTable(DSNguoiDung.DSND,'#showEntriesUser','#tableNguoiDung',showDSND);
@@ -144,7 +126,6 @@ DSNDService.layDSNDService()
 		hienThiDSGV(DSNguoiDung);
 	})
 	.fail(function(err){console.log(err);});
-
 
 $("#btnThemNguoiDung").click(function(){
 	let HoTen:string     = $("#HoTenND").val();
@@ -309,7 +290,7 @@ $("#btnXoaNhieuND").click(function(){
 
 //tìm kiếm ngừi dùng
 $("#timND").keyup(function(){
-	let key:string = (this.value).trim().toLowerCase();
+	let key:string = $(this).val().trim().toLowerCase();
 	let DSNDCanTimKiem = DSNguoiDung.timNguoiDungTheoTen(key);
 	let data = "";
 	if(key === "" || key === " " || DSNDCanTimKiem.DSND.length == 0){
@@ -337,14 +318,13 @@ $("#timND").keyup(function(){
 		$("#tableTimKiemNguoiDung").addClass("active");
 	}
 })
-$("body").delegate(".xoaTimKiem", "click", function(){
-	let tkCanXoa = $(this).attr("taikhoan");
-	$(`#btnXoa_${tkCanXoa}`).trigger("click");
-})
-$("body").delegate(".suaTimKiem", "click", function(){
-	let tkCanXoa = $(this).attr("taikhoan");
-	$(`#btnSua_${tkCanXoa}`).trigger("click");
-})
+// $("body").delegate(".xoaTimKiem", "click", function(){
+// 	xoaNguoiDungAPI(".xoaTimKiem");
+// })
+// $("body").delegate(".suaTimKiem", "click", function(){
+// 	let tkCanXoa = $(this).attr("taikhoan");
+// 	$(`#btnSua_${tkCanXoa}`).trigger("click");
+// })
 
 $('#tableNguoiDung th').click(function(){
 	let key = $(this).data('sort');

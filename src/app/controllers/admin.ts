@@ -2,6 +2,7 @@ import * as $ from "jquery";
 import swal from "sweetalert2";
 import "./../models/admin_NguoiDung";
 import "./../models/admin_KhoaHoc";
+import "./../models/admin_dashboard";
 $("#itemDangXuat").click(function(){
 	event.preventDefault();
 	swal({

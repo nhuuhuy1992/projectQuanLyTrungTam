@@ -7,6 +7,7 @@ export class DanhSachNguoiDungServices {
 
 	layDSNDService():Array<NguoiDung>{
 		return $.ajax({
+			async:false,
 			url : `${url}/DanhSachNguoiDung`,
 			type : "GET",
 			dataType : "json"

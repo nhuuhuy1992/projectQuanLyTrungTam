@@ -5,7 +5,7 @@ import "font-awesome/css/font-awesome.min.css";
 import swal from "sweetalert2";
 import 'froala-editor';
 import "./../../assets/js/froalaEditor.js";
-import "../../assets/scss/vendors/animate.css";
+import "../vendors/animate.css";
 import "./../../assets/scss/admin.scss";
 import "./../../assets/js/app_admin.js";
 //obj
@@ -87,7 +87,6 @@ DSKHService.layKhoaHocService()
 			let khObject = new KhoaHoc(kh.MaKhoaHoc, kh.TenKhoaHoc,kh.MoTa,kh.HinhAnh,kh.LuotXem,kh.NguoiTao)
 			return khObject;
 		});
-
 		renderTable(danhSachKhoaHoc.DSKH,'#showEntriesKH','#tableKhoaHoc',showKH);
 	})
 	.fail(err => console.log(err))
@@ -179,7 +178,7 @@ $('body').delegate('.btnXoaKH','click',function(){
 
 })
 $("#timKH").keyup(function(){
-	let key = $(this).val().trim().toLowerCase();
+	let key:string = $(this).val().trim().toLowerCase();
 	let DSKHCanTim = danhSachKhoaHoc.timKhoaHocTheoTen(key);
 	let data = "";
 	if(key === "" || DSKHCanTim.DSKH.length == 0){

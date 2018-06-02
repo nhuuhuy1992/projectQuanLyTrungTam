@@ -1,11 +1,22 @@
 import { NguoiDung } from './NguoiDung';
-import { DanhSachNguoiDungServices } from "./../services/NguoiDungServices";
-// import { HocVien } from './HocVien';
 export class DanhSachNguoiDung{
 	DSND:Array<NguoiDung> = [];
-	// DSHV:Array<HocVien> = [];
+	DSHV:Array<NguoiDung> = [];
+
+	timHocVien(){
+		for(let i:number = 0; i < this.slNguoiDung(); i++){
+			let ND:NguoiDung = this.DSND[i];
+			if(ND._MaLoaiNguoiDung === "HV"){
+				this.themHocVien(ND);
+			}
+		}
+	}
+
 	themNguoiDung(nd:NguoiDung){
 		this.DSND.push(nd);
+	}
+	themHocVien(nd:NguoiDung){
+		this.DSHV.push(nd);
 	}
 	timNguoiDungTheoTK(tk:string):number{
 		let indexND = -1;
@@ -21,12 +32,15 @@ export class DanhSachNguoiDung{
 	slNguoiDung():number{
 		return this.DSND.length;
 	}
+	slHocVien():number{
+		return this.DSHV.length;
+	}
 	timNguoiDungTheoTen(tuKhoaTen:string):DanhSachNguoiDung{
 		let DSNDCanTim:DanhSachNguoiDung = new DanhSachNguoiDung();
-		for(let i:number = 0; i < this.slNguoiDung(); i++){
-			let nd:NguoiDung = this.DSND[i];
-			if(nd._HoTen.toLowerCase().search(tuKhoaTen) !== -1){
-				DSNDCanTim.themNguoiDung(nd);
+		for(let i = 0; i < this.slNguoiDung(); i++){
+			let ndCanTim = this.DSND[i];
+			if(ndCanTim._HoTen.toLowerCase().trim().search(tuKhoaTen) !== -1){
+				DSNDCanTim.themNguoiDung(ndCanTim);
 			}
 		}
 		return DSNDCanTim;

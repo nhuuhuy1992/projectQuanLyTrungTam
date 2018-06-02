@@ -5,6 +5,7 @@ export class KhoaHocServices {
     layKhoaHocService(){
         
         return $.ajax({
+            async: false,
             type: 'GET',
             url:`${url}/DanhSachKhoaHoc`,
             dataType:'json'

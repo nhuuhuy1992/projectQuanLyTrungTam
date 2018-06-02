@@ -31,115 +31,115 @@
                     <i class="fa fa-envelope-o">
                         <span class="badge badge-success rounded-circle">7</span>
                     </i>
-                     <i class="fa fa-bell-o">
+                    <i class="fa fa-bell-o">
                         <span class="badge badge-success rounded-circle">3</span>
                     </i>
-                     <i class="fa fa-comment-o">
+                    <i class="fa fa-comment-o">
                         <span class="badge badge-success rounded-circle">1</span>
                     </i>
-                  <a href="#" class="d-flex justify-content-center align-items-center divAdmin">
-                    <strong id="adminName">Admin</strong>
-                    <span class="avatar">
-                        <img src="../../../assets/images/user.png" alt="">
-                    </span>
-                </a>
-            </span>
-        </div>
-    </div>
-</header>
-<!-- End Header -->
-
-
-<nav class="sidebar--admin">
-    <ul class="sidebar__nav w-100">
-        <li class="sidebar__item" data-tab="divDashboard">
-            <a href="#" class="sidebar__link">
-                <i class="fa fa-home"></i>
-                <span class="heading-secondary">Dashboard</span>
-            </a>
-        </li>
-        <li class="sidebar__item" data-tab="divNguoiDung">
-            <a href="#" class="sidebar__link">
-                <i class="fa fa-users"></i>
-                <span class="heading-secondary">Users</span>
-            </a>
-        </li>
-        <li class="sidebar__item active" data-tab="divKhoaHoc">
-            <a href="#" class="sidebar__link">
-                <i class="fa fa-book"></i>
-                <span class="heading-secondary">Courses</span>
-            </a>
-        </li>
-    </ul>
-    <div id="itemDangXuat">
-        <a href="#" class="sidebar__link">
-            <i class="fa fa-sign-out"></i>
-            <span class="heading-secondary">Sign Out</span>
-        </a>
-    </div>
-</nav>
-
-<main class="main__content">
-    <div class="container divData active" id="divKhoaHoc">
-        <div class="row">
-            <div class="col-12 mb-5 text-center">
-                <h3 class="text-center title__data heading-secondary">Danh Sách Khoá Học</h3>
+                    <a href="#" class="d-flex justify-content-center align-items-center divAdmin">
+                        <strong id="adminName">Admin</strong>
+                        <span class="avatar">
+                            <img src="../../../assets/images/user.png" alt="">
+                        </span>
+                    </a>
+                </span>
             </div>
         </div>
-        <div class="row">
-            <div class="col-12">
-                <div class="blockForm d-flex justify-content-between align-items-center">
-                    <div class="show d-flex align-content-center w-25">
-                        <select class="custom-select" style="width: 100%;border-color: #f3f3f3; font-size: 13px" id="showEntriesKH">
-                            <option  disabled>Show Entries...</option>
-                            <option selected value="10">10</option>
-                            <option value="25">25</option>
-                            <option value="50">50</option>
-                        </select>
-                    </div>
+    </header>
+    <!-- End Header -->
 
-                    <div class="search">
-                        <div class="input-group">
-                            <div class="form-group mb-0">
-                                <label for="timKH" class="mb-0" style="font-size: 13px">Tìm Khoá Học</label>
-                                <input type="text" class="form-control" style="border-color: #dbdbdb; font-size: 13px" id="timKH" placeholder="Nhập Tên Khoá Học">
-                            </div>
-                        </div>
-                    </div>
 
-                    <table class="z-depth-2 table-hover tableTimKiem" id="tableTimKiemKhoaHoc">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Mã</th>
-                                <th>Tên Khoá Học</th>
-                                <th>Thao Tác</th>
-                            </tr>
-                        </thead>
-                        <tbody id="dataTimKiemKhoaHoc">
+    <nav class="sidebar--admin">
+        <ul class="sidebar__nav w-100">
+            <li class="sidebar__item active" data-tab="divDashboard">
+                <a href="#" class="sidebar__link">
+                    <i class="fa fa-home"></i>
+                    <span class="heading-secondary">Dashboard</span>
+                </a>
+            </li>
+            <li class="sidebar__item" data-tab="divNguoiDung">
+                <a href="#" class="sidebar__link">
+                    <i class="fa fa-users"></i>
+                    <span class="heading-secondary">Users</span>
+                </a>
+            </li>
+            <li class="sidebar__item" data-tab="divKhoaHoc">
+                <a href="#" class="sidebar__link">
+                    <i class="fa fa-book"></i>
+                    <span class="heading-secondary">Courses</span>
+                </a>
+            </li>
+        </ul>
+        <div id="itemDangXuat">
+            <a href="#" class="sidebar__link">
+                <i class="fa fa-sign-out"></i>
+                <span class="heading-secondary">Sign Out</span>
+            </a>
+        </div>
+    </nav>
 
-                        </tbody>
-                    </table>
+    <main class="main__content">
+        <div class="container divData" id="divKhoaHoc">
+            <div class="row">
+                <div class="col-12 mb-5 text-center">
+                    <h3 class="text-center title__data heading-secondary">Danh Sách Khoá Học</h3>
                 </div>
             </div>
-        </div>
-         <div class="row mt-4">
-            <div class="col-md-6 col-12">
-                <button class="btn btn-outline-danger  btn-rounded" id="btnXoaNhieuKH"><i class="fa fa-trash"></i>
-                </button>
-                <button class="btn btn-outline-success  btn-rounded" id="btnModalKhoaHoc" data-toggle="modal" data-target="#modalKhoaHoc">
-                    <i class="fa fa-plus"></i>
-                </button>
+            <div class="row">
+                <div class="col-12">
+                    <div class="blockForm d-flex justify-content-between align-items-center">
+                        <div class="show d-flex align-content-center w-25">
+                            <select class="custom-select" style="width: 100%;border-color: #f3f3f3; font-size: 13px" id="showEntriesKH">
+                                <option  disabled>Show Entries...</option>
+                                <option selected value="10">10</option>
+                                <option value="25">25</option>
+                                <option value="50">50</option>
+                            </select>
+                        </div>
+
+                        <div class="search">
+                            <div class="input-group">
+                                <div class="form-group mb-0">
+                                    <label for="timKH" class="mb-0" style="font-size: 13px">Tìm Khoá Học</label>
+                                    <input type="text" class="form-control" style="border-color: #dbdbdb; font-size: 13px" id="timKH" placeholder="Nhập Tên Khoá Học">
+                                </div>
+                            </div>
+                        </div>
+
+                        <table class="z-depth-2 table-hover tableTimKiem" id="tableTimKiemKhoaHoc">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Mã</th>
+                                    <th>Tên Khoá Học</th>
+                                    <th>Thao Tác</th>
+                                </tr>
+                            </thead>
+                            <tbody id="dataTimKiemKhoaHoc">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="row mt-4">
-            <div class="col-12 p-0">
-                <table class="table table-hoverable table-striped tableData z-depth-2" id="tableKhoaHoc">
-                    <thead>
-                        <tr>
-                            <th >#</th>
-                            <th class="both" data-sort="MaKhoaHoc">Mã</th>
-                            <th class="both" data-sort="TenKhoaHoc">Tên</th>
+            <div class="row mt-4">
+                <div class="col-md-6 col-12">
+                    <button class="btn btn-outline-danger  btn-rounded" id="btnXoaNhieuKH"><i class="fa fa-trash"></i>
+                    </button>
+                    <button class="btn btn-outline-success  btn-rounded" id="btnModalKhoaHoc" data-toggle="modal" data-target="#modalKhoaHoc">
+                        <i class="fa fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-12 p-0">
+                    <table class="table table-hoverable table-striped tableData z-depth-2" id="tableKhoaHoc">
+                        <thead>
+                            <tr>
+                                <th >#</th>
+                                <th class="both" data-sort="MaKhoaHoc">Mã</th>
+                                <th class="both" data-sort="TenKhoaHoc">Tên</th>
                                 <!-- <th>Mô Tả</th>
                                     <th>Hình Ảnh</th> -->
                                     <th class="both" data-sort="NguoiTao">Người Tạo</th>
@@ -234,23 +234,96 @@
                         </table>
                     </div>
                 </div>
+            </div>
 
-
-
-
-
-
-                <div class="container divData" id="divDashboard">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit hic, maiores odio rerum voluptate nesciunt illum! Error molestias libero tenetur, aspernatur quia qui ut reiciendis animi, ipsam nihil amet in?</p>
+            <div class="container divData active" id="divDashboard">
+                <div class="row">
+                    <div class="col-12 text-center mb-4">
+                        <h3 class="text-center heading-secondary">Biểu Đồ Thống Kê</h3>
+                    </div>
                 </div>
+                <div class="row my-2">
+                    <div class="col-12">
+                        <h3 class="font-weight-bold">Overview</h3>
+                    </div>
+                </div>
+                <div class="row mt-5">
+                    <div class="col-sm-6 col-lg-3">
+                        <div class="overview-item overview-item--c1 thongke thongKeUser">
+                            <div class="overview__inner">
+                                <div class="overview-box clearfix">
+                                    <div class="icon">
+                                        <i class="fa fa-users"></i>
+                                    </div>
+                                    <div class="text">
+                                        <h2 id="mountND"></h2>
+                                        <span>Người Dùng</span>
+                                    </div>
+                                </div>
+                                <div class="overview-chart">
+                                    <canvas id="widgetChart1"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-3">
+                        <div class="overview-item overview-item--c2 thongke thongKeHocVien">
+                            <div class="overview__inner">
+                                <div class="overview-box clearfix">
+                                    <div class="icon">
+                                        <i class="fa fa-graduation-cap"></i>
+                                    </div>
+                                    <div class="text">
+                                        <h2 id="mountHV"></h2>
+                                        <span>Học Viên</span>
+                                    </div>
+                                </div>
+                                <div class="overview-chart">
+                                    <canvas id="widgetChart2"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-3">
+                        <div class="overview-item overview-item--c3 thongke thongKeKhoaHoc">
+                            <div class="overview__inner">
+                                <div class="overview-box clearfix">
+                                    <div class="icon">
+                                        <i class="fa fa-book"></i>
+                                    </div>
+                                    <div class="text">
+                                        <h2 id="mountKH"></h2>
+                                        <span>Khoá Học</span>
+                                    </div>
+                                </div>
+                                <div class="overview-chart">
+                                    <canvas id="widgetChart3"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-3">
+                        <div class="overview-item overview-item--c4 thongke thongKeView">
+                            <div class="overview__inner">
+                                <div class="overview-box clearfix">
+                                    <div class="icon">
+                                        <i class="fa fa-eye"></i>
+                                    </div>
+                                    <div class="text">
+                                        <h2 id="mountView"></h2>
+                                        <span>Lượt Xem</span>
+                                    </div>
+                                </div>
+                                <div class="overview-chart">
+                                    <canvas id="widgetChart4"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
 
-
-
-
-
-            </main>
-
-        </div>
         <div class="modal fade" id="modalKhoaHoc" tabindex="-1" role="dialog" style="overflow-y: auto!important">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">

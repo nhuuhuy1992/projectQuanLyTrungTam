@@ -37,5 +37,12 @@ export class DanhSachKhoaHoc{
 		let index = this.DSKH.findIndex( kh => kh.MaKhoaHoc === khoahoc.MaKhoaHoc);
 		if(index > -1) this.DSKH[index] = khoahoc
 	}
-
+	soView():number{
+		let tongView:number = 0;
+		for(let i = 0; i < this.slKhoaHoc(); i++){
+			let kh:KhoaHoc = this.DSKH[i];
+			tongView += Number(kh.LuotXem);
+		}
+		return tongView;
+	}
 }

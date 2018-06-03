@@ -14,7 +14,7 @@ import { KhoaHoc } from "../models/KhoaHoc";
 import { KhoaHocServices } from '../services/KhoaHocServices';
 import { DanhSachKhoaHoc } from "../models/DanhSachKhoaHoc";
 //DI
-import { suaKhiClickVaoRow, alertFail, alertSuccess, resetForm } from "./../models/dependInjection";
+import { suaKhiClickVaoRow, alertFail, alertSuccess, resetForm } from "./dependInjection";
 // services
 let DSKHService: any = new KhoaHocServices();
 // let DSKhoaHoc = new DanhSachKhoaHoc();

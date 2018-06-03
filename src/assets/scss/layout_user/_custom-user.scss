@@ -1,34 +1,39 @@
-body{
-	font-family: monts-reg;
+body {
+    font-family: monts-reg;
 }
-header.fixed-top{
-	z-index: 1200;
+
+header.fixed-top {
+    z-index: 1200;
 }
-#userName{
-	font-size: 30px;
-	font-family: monts-reg !important;
+
+#userName {
+    font-size: 30px;
+    font-family: monts-reg !important;
 }
-#sdt{
-	font-size: 25px;
-	color: lightblue;
-	font-family: lato-reg;
-	color: #354348;
+
+// #sdt{
+// 	font-size: 25px;
+// 	color: lightblue;
+// 	font-family: lato-reg;
+// 	color: #354348;
+// }
+.heading-secondary {
+    margin-top: 50px;
+    // font-size: 50px !important;
+    font-family: lato-reg;
 }
-.heading-secondary{
-	margin-top: 50px;
-	font-size: 50px !important;
-	font-family: lato-reg;
-}
-.noti-kh{
-	    font-size: 26px;
+
+.noti-kh {
+    font-size: 26px;
     font-family: monts-thin;
 }
-#modalCapNhatND{
-	.heading-secondary{
-	    font-size: 2rem !important;
-	    font-family: monts-reg;
-		&:after{
-			display: none;
-		}
-	}
+
+#modalCapNhatND {
+    .heading-secondary {
+        font-size: 2rem !important;
+        font-family: monts-reg;
+        &:after {
+            display: none;
+        }
+    }
 }

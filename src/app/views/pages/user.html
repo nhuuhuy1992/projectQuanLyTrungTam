@@ -1,188 +1,202 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 </head>
+
 <body id="page-top">
 
-   <header class="header fixed-top">
-    <div class="container-fluid header__content px-3 d-flex align-items-center justify-content-between">
-        <a href="index.html" class="header__logo header__left h-100 d-flex align-items-center">
-            <img src="../../../assets/images/logo.png" class="img-fluid" width="130" alt="">
-        </a>
-        <div class="nofication header__right">
-            <span class="h-100 d-flex align-items-center">
+    <header class="header fixed-top">
+        <div class="container-fluid header__content px-3 d-flex align-items-center justify-content-between">
+            <a href="index.html" class="header__logo header__left h-100 d-flex align-items-center">
+                <img src="../../../assets/images/logo.png" class="img-fluid" width="130" alt="">
+            </a>
+            <div class="nofication header__right">
+                <span class="h-100 d-flex align-items-center">
                <i class="fa fa-envelope">
                   <span class="badge badge-success rounded-circle">7</span>
-              </i>
-              <a href="#">
-                <strong id="TaiKhoan"></strong>
-            </a>
-        </span>
-    </div>
-</div>
-</header>
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
-    <a class="navbar-brand js-scroll-trigger" href="#page-top">
-        <span class="d-block d-lg-none">Start Bootstrap</span>
-        <span class="d-none d-lg-block">
+                </i>
+                <a href="#">
+                    <strong id="TaiKhoan"></strong>
+                </a>
+                </span>
+            </div>
+        </div>
+    </header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">
+            <span class="d-block d-lg-none">Start Bootstrap</span>
+            <span class="d-none d-lg-block">
             <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="../../../assets/images/profile.jpg" alt="">
         </span>
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        </a>
+        <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="#about">Thông Tin</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="#skills">Khoá Học Của Tôi</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" id="btnCapNhat" href="#" data-toggle="modal" data-target="#modalCapNhatND">Sửa Thông Tin</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="#" id="DangXuatND">Đăng Xuất</a>
-            </li>
-        </ul>
-    </div>
-</nav>
-
-<!-- Modal -->
-<div class="modal fade modalForm" id="modalCapNhatND" tabindex="-1" role="dialog" aria-hidden="true" style="z-index: 1300">
-  <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: initial;">
-    <div class="modal-content container w-50">
-        <div class="modal-header row p-0">
-            <div class="col-12 mt-4">
-                <h5 class="modal-title display-4 heading-secondary mt-0">
-                    Sửa Thông Tin
-                </h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-        </div>
-        <div class="row py-3">
-            <div class="col-12">
-               <form class="modal-body container">
-                    <div class="row">
-                        <div class="col-12 colInput">
-                            <span class="input input--jiro input--filled">
-                                <input class="input__field input__field--jiro txt" type="text" id="inputTenTKCapNhat" disabled />
-                                <label class="input__label input__label--jiro">
-                                    <span class="input__label-content input__label-content--jiro">Tên Tài Khoản</span>
-                                </label>
-                            </span>
-                        </div>
-                        <div class="col-12 colInput">
-                            <span class="input input--jiro input">
-                                <input class="input__field input__field--jiro txt" type="text" id="inputTenCapNhap"/>
-                                <label class="input__label input__label--jiro">
-                                    <span class="input__label-content input__label-content--jiro">Tên Người Dùng</span>
-                                </label>
-                            </span>
-                        </div>
-                         <div class="col-12 colInput">
-                            <span class="input input--jiro input">
-                                <input class="input__field input__field--jiro txt" type="text" id="inputEmailCapNhat"/>
-                                <label class="input__label input__label--jiro">
-                                    <span class="input__label-content input__label-content--jiro">Email</span>
-                                </label>
-                            </span>
-                        </div>
-                        <div class="col-12 colInput">
-                            <span class="input input--jiro input">
-                                <input class="input__field input__field--jiro txt" type="text" id="inputSDTCapNhat"/>
-                                <label class="input__label input__label--jiro">
-                                    <span class="input__label-content input__label-content--jiro">Số Điện Thoại</span>
-                                </label>
-                            </span>
-                        </div>
-                         <div class="col-12 colInput">
-                            <span class="input input--jiro input">
-                                <input class="input__field input__field--jiro txt" type="password" id="inputMKCapNhat"/>
-                                <label class="input__label input__label--jiro">
-                                    <span class="input__label-content input__label-content--jiro">Mật Khẩu</span>
-                                </label>
-                            </span>
-                        </div>
-                    </div>
-                </form>
-            </div>
-
-        </div>
-
-        
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" id="btnXacNhanCapNhat">Save changes</button>
-        </div>
-    </div>
-</div>
-</div>
-
-
-<div class="container-fluid p-0">
-
-    <section class="resume-section p-3 p-lg-5 d-flex d-column" id="about">
-        <div class="my-auto">
-            <h2 class="mb-3 display-4 heading-secondary">Thông Tin Cá Nhân</h2>
-            <h1 class="mb-0 text-primary" id="userName"></h1>
-            <div class="subheading mb-3" id="">
-                <a href="mailto:name@email.com" id="emailND"></a>
-            </div>
-            <div id="sdt" class="mb-3">
-
-            </div>
-            <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore tempora nihil doloremque saepe eos natus incidunt minus voluptatum consequatur maiores vero fugiat, nemo perspiciatis earum voluptates porro sapiente sint culpa. Ab, quibusdam assumenda? Cupiditate eum neque expedita consequuntur culpa! Dolorum suscipit ullam delectus, reiciendis ab, libero cumque magni molestiae est, beatae ipsa architecto, iste repudiandae minus totam eos. Eveniet minus nulla, adipisci magnam nesciunt sapiente incidunt repellat cumque ratione est animi ipsa, doloremque debitis voluptatibus reiciendis facilis magni, corporis cupiditate. Voluptates consequatur facilis asperiores error dolorem maxime eaque, voluptatum deserunt rem quidem. Accusamus eum cupiditate accusantium corporis iusto, nobis magni!</p>
-            <ul class="list-inline list-social-icons mb-0">
-                <li class="list-inline-item">
-                    <a href="#">
-                        <span class="fa-stack fa-lg">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
-                        </span>
-                    </a>
+    </button> -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#about">Thông Tin</a>
                 </li>
-                <li class="list-inline-item">
-                    <a href="#">
-                        <span class="fa-stack fa-lg">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                        </span>
-                    </a>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#skills">Khoá Học Của Tôi</a>
                 </li>
-                <li class="list-inline-item">
-                    <a href="#">
-                        <span class="fa-stack fa-lg">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
-                        </span>
-                    </a>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" id="btnCapNhat" href="#" data-toggle="modal" data-target="#modalCapNhatND">Sửa Thông Tin</a>
                 </li>
-                <li class="list-inline-item">
-                    <a href="#">
-                        <span class="fa-stack fa-lg">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                        </span>
-                    </a>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#" id="DangXuatND">Đăng Xuất</a>
                 </li>
             </ul>
         </div>
-    </section>
-    <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="skills">
-        <div class="my-auto">
-            <h2 class="mb-5 display-4 heading-secondary">Khoá Học Của Tôi</h2>
-            <div class="container">
-                <div class="row" id="listKH">
+    </nav>
+
+
+
+
+    <div class="container-fluid p-0 text-center">
+
+        <section class="resume-section p-3 p-lg-5 d-flex d-column" id="about">
+            <div class="my-auto">
+                <h2 class="mb-3 display-4 heading-secondary">Thông Tin Cá Nhân</h2>
+                <h1 class="mb-0 text-primary" id="userName"></h1>
+                <div class="d-flex flex-wrap justify-content-center">
+                    <div class="subheading m-3">
+                        <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                        <a href="mailto:name@email.com" id="emailND"></a>
+                    </div>
+                    <div class="m-3 subheading">
+                        <i class="fa fa-phone  "></i>
+                        <a href="" id="sdt"></a>
+                    </div>
+                </div>
+
+                <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore tempora nihil doloremque saepe eos natus incidunt minus voluptatum consequatur maiores vero fugiat, nemo perspiciatis earum voluptates porro sapiente sint culpa. Ab, quibusdam
+                    assumenda? Cupiditate eum neque expedita consequuntur culpa! Dolorum suscipit ullam delectus, reiciendis ab, libero cumque magni molestiae est, beatae ipsa architecto, iste repudiandae minus totam eos. Eveniet minus nulla, adipisci
+                    magnam nesciunt sapiente incidunt repellat cumque ratione est animi ipsa, doloremque debitis voluptatibus reiciendis facilis magni, corporis cupiditate. Voluptates consequatur facilis asperiores error dolorem maxime eaque, voluptatum
+                    deserunt rem quidem. Accusamus eum cupiditate accusantium corporis iusto, nobis magni!</p>
+                <ul class="list-inline list-social-icons mb-0">
+                    <li class="list-inline-item">
+                        <a href="#">
+                            <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                        </span>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="#">
+                            <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                        </span>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="#">
+                            <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                        </span>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="#">
+                            <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                        </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="skills">
+            <div class="my-auto">
+                <h2 class="mb-5 display-4 heading-secondary">Khoá Học Của Tôi</h2>
+                <div class="container">
+                    <div class="row" id="listKH">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Modal -->
+        <div class="modal fade modalForm" id="modalCapNhatND" tabindex="-1" role="dialog" aria-hidden="true" style="z-index: 1300">
+            <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: initial;">
+                <div class="modal-content container w-50">
+                    <div class="modal-header row p-0">
+                        <div class="col-12 mt-4">
+                            <h5 class="modal-title display-4 heading-secondary mt-0">
+                                Sửa Thông Tin
+                            </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                        </div>
+                    </div>
+                    <div class="row py-3">
+                        <div class="col-12">
+                            <form class="modal-body container">
+                                <div class="row">
+                                    <div class="col-12 colInput">
+                                        <span class="input input--jiro input--filled">
+                                <input class="input__field input__field--jiro txt" type="text" id="inputTenTKCapNhat" disabled />
+                                <label class="input__label input__label--jiro">
+                                    <span class="input__label-content input__label-content--jiro">Tên Tài Khoản</span>
+                                        </label>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 colInput">
+                                        <span class="input input--jiro input">
+                                <input class="input__field input__field--jiro txt" type="text" id="inputTenCapNhap"/>
+                                <label class="input__label input__label--jiro">
+                                    <span class="input__label-content input__label-content--jiro">Tên Người Dùng</span>
+                                        </label>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 colInput">
+                                        <span class="input input--jiro input">
+                                <input class="input__field input__field--jiro txt" type="text" id="inputEmailCapNhat"/>
+                                <label class="input__label input__label--jiro">
+                                    <span class="input__label-content input__label-content--jiro">Email</span>
+                                        </label>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 colInput">
+                                        <span class="input input--jiro input">
+                                <input class="input__field input__field--jiro txt" type="text" id="inputSDTCapNhat"/>
+                                <label class="input__label input__label--jiro">
+                                    <span class="input__label-content input__label-content--jiro">Số Điện Thoại</span>
+                                        </label>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 colInput">
+                                        <span class="input input--jiro input">
+                                <input class="input__field input__field--jiro txt" type="password" id="inputMKCapNhat"/>
+                                <label class="input__label input__label--jiro">
+                                    <span class="input__label-content input__label-content--jiro">Mật Khẩu</span>
+                                        </label>
+                                        </span>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="btnXacNhanCapNhat">Save changes</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </section>
+
+
 </body>
+
 </html>

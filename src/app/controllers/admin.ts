@@ -1,8 +1,8 @@
 import * as $ from "jquery";
 import swal from "sweetalert2";
-import "./../models/admin_NguoiDung";
-import "./../models/admin_KhoaHoc";
-import "./../models/admin_dashboard";
+import "./admin_NguoiDung";
+import "./admin_KhoaHoc";
+import "./admin_dashboard";
 $("#itemDangXuat").click(function(){
 	event.preventDefault();
 	swal({

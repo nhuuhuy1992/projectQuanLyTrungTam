@@ -9,7 +9,7 @@ import "owl.carousel";
 import "./../../assets/scss/index.scss";
 import "particles.js";
 import "./../../assets/js/validation.js";
-import "./../../assets/scss/vendors/animate.css";
+import "./../vendors/animate.css";
 import "./../../assets/js/app_index.js";
 import * as WOW from "wow.js";
 import { DanhSachNguoiDungServices } from "./../services/NguoiDungServices";

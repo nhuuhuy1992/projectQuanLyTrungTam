@@ -1,0 +1,15 @@
+.khoaHoc {
+    // &__filter {
+    //     border: 1px solid darkgray;
+    //     padding-top: .5rem
+    // }
+    &__one-block {
+        .card-img-top {
+            height: 193px;
+            background-color: darkgrey
+        }
+        .card-body {
+            min-height: 245px
+        }
+    }
+}

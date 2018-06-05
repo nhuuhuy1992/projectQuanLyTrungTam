@@ -193,27 +193,12 @@ $("#timKH").keyup(function(){
 				<td>${i+1}</td>
 				<td>${khTimKiem.MaKhoaHoc}</td>
 				<td>${khTimKiem.TenKhoaHoc}</td>
-				<td>
-					<button style="background: transparent; font-size: 25px; cursor: pointer" class="border-0 fa fa-trash text-danger mr-2 iconTimKiem xoaTimKiemKH" MaKhoaHoc="${khTimKiem.MaKhoaHoc}" id="">
-					</button>
-					<button style="background: transparent; font-size: 22px; cursor: pointer" class="border-0 fa fa-pencil text-primary iconTimKiem suaTimKiemKH" MaKhoaHoc="${khTimKiem.MaKhoaHoc}" id="">
-					</button>
-				</td>
 			</tr>
 			`;
 		}
 		$("#dataTimKiemKhoaHoc").html(data);
 		$("#tableTimKiemKhoaHoc").addClass("active");
 	}
-})
-$("body").delegate(".xoaTimKiemKH", "click", function(){
-	let objCanXoa = $(this).attr("MaKhoaHoc");
-	$(`#btnXoaKH_${objCanXoa}`).trigger("click");
-	console.log($(`#btnXoaKH_${objCanXoa}`));
-})
-$("body").delegate(".suaTimKiemKH", "click", function(){
-	let objCanXoa = $(this).attr("MaKhoaHoc");
-	$(`#btnSuaKH_${objCanXoa}`).trigger("click");
 })
 $('body').delegate('#btnCapNhatKH','click',()=>{
 	let MaKhoaHoc:string = $('#MaKhoaHoc').val();

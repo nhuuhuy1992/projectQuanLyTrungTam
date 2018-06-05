@@ -1,0 +1,114 @@
+$text-color: #fff;
+.navbar{
+	@include posi-top-left(fixed, 0, 0);
+	z-index: 2000;
+	width: 100%;
+	padding: 0 3rem;
+	background: transparent;
+	&__content{
+		@include flex(space-between, center, row, wrap);
+		width: 50%;
+		@include tablet{
+			width: 100%;
+		}
+		.nav-res{
+			.navbar-brand{
+				font-size: 1.6rem;
+				font-family: monts-thin;
+				color: #fff;
+			}
+			.navbar-toggler{
+				border: none;
+				outline: none;
+				color: #fff;
+			}
+			@include tablet{
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+			}
+		}
+	}
+	&.active{
+		background: #58a8c1e8;
+	}
+	.menu-right{
+		.nav-item{
+			display: flex;
+			align-items:center;
+			font-size: 14px;
+			margin: 0 1rem;
+			transition: .3s all;
+			@include mobile{
+				margin-bottom: 10px;
+
+			}
+			.nav-link{
+				color: $text-color;
+				padding-left: 0 !important;
+				padding-right: 0 !important;
+				position: relative;
+				font-weight: thin;
+				&:after{
+					@include posi-top-left(absolute, 83%, 0);
+					@include size(100%, 2px);
+					border-radius: 1em;
+					background: $text-color;
+					transition: .3s all;
+					content: "";
+					transform: scale(0);
+				}
+				&:hover{
+					&:after{
+						transform: scale(1);
+
+					}
+				}
+			}
+			&.active{
+				.nav-link{
+					font-weight: 900;
+					&:after{
+						transform: scale(1);
+
+					}
+				}
+			}
+		}
+		.divInfo{
+			margin-left: 1rem;
+			cursor: pointer;
+			.nav-link{
+				&:after{
+					display: none
+				}
+			}
+			.divIcon{
+				.fa{
+					@include size(35px, 35px);
+					@include flex(center, center, row, wrap);
+					background: #fff;
+					color: #C2C5C9 !important;
+					border-radius: 50%;
+				}
+			}
+			span.fa{
+				font-size: 1rem;
+				color: #fff;
+				margin-left: 10px;
+				animation: infinite alternate fadeInDown 1s;
+				position: relative;
+    				top: 8px;
+			}
+			.userName{
+				font-size: 1.5rem;
+				font-family: bold;
+				font-family: monts-reg;
+				margin-right: 5px;
+			}
+			&:hover{
+				filter: saturate(8);
+			}
+		}
+	}
+}

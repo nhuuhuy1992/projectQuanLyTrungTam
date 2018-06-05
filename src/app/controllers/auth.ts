@@ -2,17 +2,9 @@ import * as $ from "jquery";
 import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import swal from "sweetalert2";
-import "font-awesome/css/font-awesome.min.css";
-import "owl.carousel/dist/assets/owl.theme.default.min.css";
-import "owl.carousel/dist/assets/owl.carousel.min.css";
-import "owl.carousel";
 import "./../../assets/scss/index.scss";
-import "particles.js";
 import "./../../assets/js/validation.js";
 import "./../vendors/animate.css";
-import "./../../assets/js/sidebar.js"
-import "./../../assets/js/app_index.js";
-import * as WOW from "wow.js";
 import { DanhSachNguoiDungServices } from "./../services/NguoiDungServices";
 import { KhoaHoc } from "./../models/KhoaHoc";
 import { NguoiDung } from "./../models/NguoiDung";
@@ -20,7 +12,6 @@ import { DanhSachNguoiDung } from "./../models/DanhSachNguoiDung";
 import { DanhSachKhoaHoc } from "./../models/DanhSachKhoaHoc";
 import { KhoaHocServices } from "./../services/KhoaHocServices";
 
-new WOW().init();
 
 function alert(alert:string, time:number){
 	swal({

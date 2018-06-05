@@ -7,7 +7,8 @@ module.exports = {
     entry: {
         index: "./src/app/controllers/index.ts",
         admin: "./src/app/controllers/admin.ts",
-        user: "./src/app/controllers/user.ts"
+        user: "./src/app/controllers/user.ts",
+        khoahoc: "./src/app/controllers/khoahoc.ts"
     },
     output: {
         filename: "js/[name].js",
@@ -129,13 +130,22 @@ module.exports = {
             },
             hash: false, //thay doi nhung duong link trong file index 
         }),
+        new HtmlWebpackPlugin({
+            filename: 'khoahoc.html',
+            template: './src/app/views/pages/khoahoc.html',
+            chunks: ['khoahoc'],
+            minify: {
+                collapseWhitespace: false //bo khoang trong
+            },
+            hash: false, //thay doi nhung duong link trong file index 
+        }),
         new ExtractTextPlugin("[name].css"),
         new webpack.ProvidePlugin({
             $: 'jquery',
             jQuery: 'jquery',
             'window.jQuery': 'jquery',
             CKEDITOR: 'ckeditor',
-            'window.CKEDITOR':'ckeditor'
+            'window.CKEDITOR': 'ckeditor'
         })
     ]
 };

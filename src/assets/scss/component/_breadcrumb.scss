@@ -1,0 +1,11 @@
+.breadcrumb {
+    &-item {
+        color: #2be6ab;
+        &:hover {
+            color: #2be6ab;
+        }
+    }
+    &-item.active {
+        color: #fff;
+    }
+}

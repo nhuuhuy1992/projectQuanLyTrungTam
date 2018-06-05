@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Khoa hoc - CyberSoft</title>
+</head>
+
+<body>
+    <header class="navbar fixed-top px-1 px-md-4">
+        <a href="#" class="navbar__logo"><img src="../../../assets/images/logo.png" alt=""></a>
+    </header>
+    <!-- End navbar -->
+    <!-- Burger-icon -->
+    <div class="burger-icon purple-gradient fixed fixed-right border-0">
+        <div class="burger"></div>
+    </div>
+    <nav class="sidebar">
+        <div class="sidebar__content">
+            <div class="sidebar__top text-center">
+                <a href="#" class="mb-3"><img src="../../../assets/images/logo.png" alt=""></a>
+                <h3 class="text-center">CYBERSOFT</h3>
+            </div>
+            <ul class="sidebar__menu w-100 my-5">
+                <li class="sidebar__item">
+                    <a href="/" class="sidebar__link">
+                        <i class="fa fa-home"></i> Trang Chủ
+                    </a>
+                </li>
+
+                <li class="sidebar__item">
+                    <a href="#khoaHoc-page" class="sidebar__link">
+                        <i class="fa fa-briefcase"></i> Khóa Học
+                    </a>
+                </li>
+
+            </ul>
+            <ul class="sidebar__social d-flex justify-content-center flex-column align-items-center">
+                <li>
+                    <h3 class="text-white mb-2">Social</h3>
+                </li>
+                <li>
+                    <a href="#" class="fa fa-facebook" target="_blank"></a>
+                    <a href="#" class="fa fa-youtube" target="_blank"></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <main>
+        <section class="slider" id="slider-page">
+            <div class="overlay"></div>
+            <div class="container">
+                <div class="slider__content">
+                    <h2>CYBERSOFT</h2>
+                    <h5>TRUNG TÂM ĐÀO TẠO CHUYÊN GIA LẬP TRÌNH.</h5>
+                    <nav class="breadcrumb  justify-content-center bg-transparent">
+                        <a class="breadcrumb-item" href="/">Trang Chủ</a>
+                        <span class="breadcrumb-item active">Khoá Học</span>
+                    </nav>
+                </div>
+            </div>
+        </section>
+        <section class="khoaHoc " id="khoaHoc-page">
+            <div class="khoaHoc__title title text-center">
+                <h2 class="display-4 mt-5 heading-secondary">Khóa Học</h2>
+            </div>
+            <div class="container">
+                <div class="khoaHoc__filter d-flex justify-content-end ">
+                    <div class="show">
+                        <label for="" class="font-weight-bold"> Hiển thị:
+                        <select class="custom-select " style="width:50%;border-color: #776a6a; font-size: 17px" id="showEntriesKH">
+                                    <option  disabled>Show Entries...</option>
+                                    <option selected value="9">9</option>
+                                    <option value="24">24</option>
+                                    <option value="45">45</option>
+                         </select>
+                        </label>
+                    </div>
+                    <div class="short ml-2">
+                        <label for="" class="font-weight-bold">Sắp xếp :
+                        <select class="custom-select" style="width:50%;border-color: #776a6a; font-size: 17px" id="sortKH">
+                                <option selected value="TenKhoaHoc_asc" >Tên A-Z</option>
+                                <option  value="TenKhoaHoc_desc" >Tên Z-A</option>
+                                <option value="LuotXem_asc" > Lượt xem tăng dần</option>
+                                <option value="LuotXem_desc" >Lượt xem giảm dần</option>
+                     </select>
+                    </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="khoaHoc__content">
+                <div class="container">
+                    <div class="row ListKhoaHoc">
+                    </div>
+                </div>
+        </section>
+    </main>
+    <footer class="footer pt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="footer__block">
+                        <a href="/" title="CyberSoft" class="footer__logo">
+                            <h3>CYBERSOFT</h3>
+                        </a>
+                        <div class="footer__content mt-3">
+                            <p>CyberSoft Academy là học viện tiên phong tại Việt Nam áp dụng phương pháp đào tạo Active Learning và Flipped Learning thông qua các dự án thực tiễn trong lĩnh vực đào tạo CNTT. Học viên sẽ đóng vai trò là một Scrum member trong
+                                mô hình Agile để trở thành một lập trình chuyên nghiệp, đáp ứng mọi nhu cầu tuyển dụng của Doanh nghiệp</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="block-footer block-footer-margin">
+                        <h3 class="footer__title"><span>THÔNG TIN</span></h3>
+                        <ul class="footer__menu">
+                            <li class="footer__item"><a href=""><span>Trang chủ</span></a></li>
+                            <li class="footer__item"><a href=""><span>Giới thiệu</span></a></li>
+                            <li class="footer__item"><a href=""><span>Khoá học</span></a>
+                            </li>
+                            <li class="footer__item"><a href=""><span>Giảng viên</span></a></li>
+                            <li class="footer__item"><a href=""><span>Cảm nhận học viên</span></a></li>
+
+                            <li class="footer__item"><a href=""><span>Liên hệ</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="footer__block">
+                        <h3 class="footer__title"><span>LIÊN HỆ </span></h3>
+                        <ul class="footer__info">
+                            <li class="footer__item">
+                                <b>ĐC:</b> 459 Sư Vạn Hạnh, Quận 10 - HCM </li>
+                            <li class="footer__item">
+                                <b>T:</b> +84 961.05.10.14 </li>
+                            <li class="footer__item">
+                                <b>E:</b> info@cybersoft.edu.vn </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class=" footer__copyright text-center py-3">
+            <p>© Bản quyền CyberSoft 2017. Empower by MyClass.vn</p>
+        </div>
+    </footer>
+    <div class="block-form">
+        <div class="block-btn-form">
+            <a href="#" class="btn-dangky btn-contact" data-toggle="modal" data-target="#formDangKy">
+                <span>Đăng ký</span>
+                <span class="fa fa-book icon icon-rainbow rounded-circle"></span>
+            </a>
+            <a href="#" class="btn-dangnhap btn-contact" data-toggle="modal" data-target="#formDangNhap">
+                <span>Đăng nhập</span>
+                <span class="fa fa-sign-in icon icon-peach rounded-circle"></span>
+            </a>
+            <a href="#" class="btn-timKiem btn-contact" data-toggle="modal" data-target="#FormTimKiem">
+                <span>Tìm kiếm...</span>
+                <span class="fa fa-search icon icon-purple rounded-circle"></span>
+            </a>
+        </div>
+    </div>
+    <div class="modal fade p-0 modalDangKy modalForm" id="formDangKy" role="dialog">
+        <div class="modal-dialog" role="document" style="max-width: initial;">
+            <div class="modal-content container w-75">
+
+                <div class="modal-body row p-0">
+
+                    <div class="col-lg-6 col-12 m-0 right">
+                        <div class="container">
+                            <form id="register-form" class="row" method="POST">
+                                <div class="col-12 text-center mb-3">
+                                    <h2 class="heading-secondary ">ĐĂNG KÍ</h2>
+                                </div>
+                                <div class="col-12 colInput">
+                                    <span class="input input--jiro ">
+                                            <input name="HoTen" class="input__field input__field--jiro txt" type="text" id="inputHoTenDK" data-thongbao="tbTen"/>
+                                            <label class="input__label input__label--jiro" for="inputHoTenDK">
+                                                <span class="input__label-content input__label-content--jiro">Họ Tên...</span>
+                                    </label>
+                                    <span class="divTB" id="tbTen"></span>
+                                    </span>
+                                </div>
+                                <div class="col-12 colInput">
+                                    <span class="input input--jiro ">
+                                            <input name="tenTaiKhoan" class="input__field input__field--jiro txt" type="text" id="inputTenTKDK"  data-thongbao="tbTK"/>
+                                            <label class="input__label input__label--jiro" for="inputTenTKDK">
+                                                <span class="input__label-content input__label-content--jiro">Tên Tài Khoản</span>
+                                    </label>
+                                    <span class="divTB " id="tbTK"></span>
+                                    </span>
+                                </div>
+                                <div class="col-12 colInput">
+                                    <span class="input input--jiro ">
+                                        <input name="mail" class="input__field input__field--jiro txt" type="text" id="inputEmailDK"  data-thongbao="tbEmail" />
+                                        <label class="input__label input__label--jiro" for="inputEmailDK">
+                                            <span class="input__label-content input__label-content--jiro">Email</span>
+                                    </label>
+                                    <span class="divTB" id="tbEmail"></span>
+                                    </span>
+                                </div>
+                                <div class="col-12 colInput">
+                                    <span class="input input--jiro ">
+                                    <input name="SDT" class="input__field input__field--jiro txt" type="text" id="inputSDTDK"  data-thongbao="tbSDT" />
+                                    <label class="input__label input__label--jiro" for="inputSDTDK">
+                                        <span class="input__label-content input__label-content--jiro">Số Điện Thoại</span>
+                                    </label>
+                                    <span class="divTB " id="tbSDT"></span>
+                                    </span>
+                                </div>
+                                <div class="col-12  colInput">
+                                    <span class="input input--jiro ">
+                                <input name="matKhau" class="input__field input__field--jiro txt" type="password" id="inputPASSDK"  data-thongbao="tbMK"/>
+                                <label class="input__label input__label--jiro" for="inputPASSDK">
+                                    <span class="input__label-content input__label-content--jiro">Nhập Mật Khẩu</span>
+                                    </label>
+                                    <span class="divTB " id="tbMK"></span>
+                                    </span>
+                                </div>
+                                <div class="col-12 colInput">
+                                    <span class="input input--jiro ">
+                            <input name="reMatKhau" class="input__field input__field--jiro txt" type="password" id="inputRePASSDK" data-thongbao="tbReMK" />
+                            <label class="input__label input__label--jiro" for="inputRePASSDK">
+                                <span class="input__label-content input__label-content--jiro">Nhập Mật Lại Khẩu</span>
+                                    </label>
+                                    <span class="divTB " id="tbReMK"></span>
+                                    </span>
+                                </div>
+                                <div class="col-12 colInput text-center">
+                                    <button class="btn btn-primary" type="submit" id="btnDangKy">Đăng Kí</button>
+                                </div>
+                                <ul class="col-12 colInput d-flex justify-content-center colInput--social">
+                                    <li>
+                                        <a href="#" class="fa fa-facebook"></a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="fa fa-google-plus"></a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="fa fa-github"></a>
+                                    </li>
+                                </ul>
+                            </form>
+
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-12 left d-none d-lg-block">
+                        <div class="overlay"></div>
+                        <ul class="left__content">
+                            <li class="mb-3">
+                                <i class="mr-3 fa fa-home"></i>
+                                <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas, nulla.</span>
+                            </li>
+                            <li class="mb-3">
+                                <i class="mr-3 fa fa-home"></i>
+                                <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas, nulla.</span>
+                            </li>
+                            <li class="mb-3">
+                                <i class="mr-3 fa fa-home"></i>
+                                <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas, nulla.</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- End Left -->
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade modalDangNhap  modalForm" id="formDangNhap">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body container">
+                    <div class="row">
+                        <div class="col-12 text-center mb-3">
+                            <h2 class="heading-secondary ">ĐĂNG Nhập</h2>
+                        </div>
+                        <div class="col-12">
+                            <form class="container" id="sign-up-form">
+                                <div class="row">
+
+                                    <div class="col-12 colInput">
+                                        <span class="input input--jiro ">
+                                <input name="TKDN" class="input__field input__field--jiro txt" type="text" id="inputTKDN"/>
+                                <label class="input__label input__label--jiro" for="inputTKDN">
+                                    <span class="input__label-content input__label-content--jiro">Tài Khoản</span>
+                                        </label>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 colInput">
+                                        <span class="input input--jiro ">
+                                <input name="passwordDN" class="input__field input__field--jiro txt" type="password" id="inputPassDN"/>
+                                <label class="input__label input__label--jiro" for="inputPassDN">
+                                    <span class="input__label-content input__label-content--jiro">Mật Khẩu</span>
+                                        </label>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 colInput text-center">
+                                        <button class="btn btn-primary" type="submit" id="btnDangNhap">Đăng Nhập</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade modalTimKiem  modalForm" id="FormTimKiem">
+        <div class="modal-dialog" style="max-width: 650px !important">
+            <div class="modal-content">
+                <div class="modal-body container pb-0 px-0">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="col-12 colInput">
+                                <span class="input input--jiro">
+                        <input class="input__field input__field--jiro txt" type="text" id="inputTimKiem"/>
+                        <label class="input__label input__label--jiro" for="inputTimKiem">
+                            <span class="input__label-content input__label-content--jiro">Tìm Kiếm Khoá học</span>
+                                </label>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="block-kh">
+                        <!-- <h2 class="resultFind">Kết Quả Tìm Kiếm: 9</h2> -->
+                        <!-- <div class="one-block-kh">
+                <div class="info-left">
+                    <img src="./../../../assets/images/kh1.jpeg" class="img-fluid" alt="">
+                </div>
+                <div class="info-right">
+                    <h2 class="tenKhoaTim">FrontEnd 1</h2>
+                    <div class="khoaHoc__type indigo-color">
+                        <h5>Lâp Trình - Thiết Kế Website</h5>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="one-block-kh">
+                <div class="info-left">
+                    <img src="./../../../assets/images/kh1.jpeg" class="img-fluid" alt="">
+                </div>
+                <div class="info-right">
+                    <h2 class="tenKhoaTim">FrontEnd 1</h2>
+                    <div class="khoaHoc__type indigo-color">
+                        <h5>Lâp Trình - Thiết Kế Website</h5>
+                    </div>
+                </div>
+            </div> -->
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>

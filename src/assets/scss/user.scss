@@ -1,3 +1,4 @@
+$main-color:#1641b5;
 //helpers
 @import "helpers/variables";
 @import "helpers/mixin";
@@ -13,9 +14,13 @@
 @import "component/heading";
 @import "component/card";
 @import "component/icon";
-
 @import "layout_index/khoaHoc";
-@import "layout_admin/header";
-@import "layout_user/userProfile";
+// @import "layout_admin/header";
+// @import "layout_user/userProfile";
 @import "layout_index/form";
-@import "layout_user/custom-user";
+// @import "layout_user/custom-user";
+@import "layout_user/navbar";
+@import "layout_index/footer";
+@import "layout_user/slider";
+@import "layout_user/modalSuaNguoiDung";
+@import "layout_khoahoc/custom-listKhoaHoc";

@@ -1,4 +1,10 @@
+
 $mainColorAdmin: #4664b4;
+body{
+	@include tablet{
+		overflow: scroll;
+	}
+}
 th,td,tr {
 	text-align: center;
 	vertical-align: inherit !important;
@@ -24,8 +30,15 @@ tr td {
 	margin-top: 3rem;
 	padding: 3rem 0;
 	position: relative;
+	@include tablet{
+		margin: 0;
+		padding: 8rem 0;
+	}
 	.divData{
 		display: none;
+		@include tablet{
+			max-width: 615px;
+		}
 		&.active{
 			display: block
 		}
@@ -61,11 +74,20 @@ tr td {
 	padding: 10px 0;
 	opacity: 0;
 	visibility: 0;
+	@include tablet{
+		width: 100%;
+	}
 	tr{
 		height: 35px;
+		@include tablet{
+			font-size: 13px;
+		}
 	}
 	td, th{
-		width: calc(100% /4);
+		width: calc(100% / 3);
+		@include tablet{
+			font-size: 12px;		
+		}
 	}
 	&.active{
 		top: 120%;

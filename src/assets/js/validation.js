@@ -13,10 +13,10 @@ $(function(){
 			`*Không Có Khoảng trống`,  //7
 			`*Chỉ Chứa Các Kí Tự`  ,//8
 			`*Xin Nhập ${note}`  ,//9
+			`*Số Điện Thoại Phải Nhiều Hơn ${note} Số`  ,//10
+			`*Số Điện Thoại Phải ít Hơn ${note} số`  ,//11
 		];
 	}
-
-
 	$(".txt").on("focus", function(){
 		$(this).closest(".input--jiro").addClass("input--filled");
 	});
@@ -87,7 +87,7 @@ $(function(){
 				}
 			},
 			messages : {
-				email : {
+				mail : {
 					required : notification("email")[0],
 					email : notification("email")[1]
 				},
@@ -142,8 +142,168 @@ $(function(){
 			}
 		})
 	}
-	validFormDN();
+
+	function validFormThemND(){
+		$.validator.addMethod( "lettersonly", function( value, element) {
+			return this.optional( element ) 
+				  || /^[a-zA-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s]+$/i.test( value );
+			}, notification()[8]);
+		$.validator.addMethod( "nowhitespace", function( val, el) {
+			return this.optional( el ) 
+					|| /^\S+$/i.test( val );
+		}, notification()[8]);
+
+		$.validator.addMethod("strongPass", function(val, el){
+			return this.optional(el)
+				|| val.length >= 6
+				&& /\d/.test(val)
+				&& /[a-z]/i.test(val);
+		}, notification("6")[6]);
+		$.validator.setDefaults({
+			errorClass : "big-err",
+		});
+		$("#formThemNguoiDung").validate({
+			rules : {
+				emailThem : {
+					required : true,
+					email : true
+				},
+				tenThem : {
+					required : true,
+					lettersonly : true
+				},
+				TKThem : {
+					required : true,
+					maxlength: 20,
+					minlength: 6,
+					nowhitespace : true,
+				},
+				SDTThem : {
+					required : true,
+					number : true
+				},
+				MKThem : {
+					required : true,
+					strongPass : true,
+					nowhitespace : true
+				}
+			},
+			messages : {
+				emailThem : {
+					required : notification("email")[0],
+					email : notification("email")[1]
+				},
+				tenThem : {
+					required : notification("họ tên")[0],
+				},
+				TKThem : {
+					required : notification("Tên Tài Khoản")[0],
+					maxlength : notification("20")[2],
+					minlength : notification("6")[3],
+				},
+				SDTThem : {
+					required : notification("Số Điện Thoại")[0],
+					number : notification("Số Điện Thoại")[1]
+				},
+				MKThem : {
+					required : notification("Mật Khẩu")[0],
+				}
+			}
+		})
+	}
+	function validFormCapNhatND(){
+		$.validator.addMethod("strongPass", function(val, el){
+			return this.optional(el)
+				|| val.length >= 6
+				&& /\d/.test(val)
+				&& /[a-z]/i.test(val);
+		}, notification("6")[6]);
+		$.validator.addMethod( "lettersonly", function( value, element) {
+			return this.optional( element ) 
+				  || /^[a-zA-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s]+$/i.test( value );
+			}, notification()[8]);
+		$.validator.setDefaults({
+			errorClass : "big-err",
+		});
+		$("#formCapNhatND").validate({
+			rules : {
+				mkCapNhat : {
+					required: true,
+					strongPass : true,
+					nowhitespace : true
+				},
+				tenCapNhat: {
+					required: true,
+					maxlength: 20,
+					minlength: 6,
+					lettersonly : true
+				},
+				emailCapNhat: {
+					required: true,
+					email : true
+				},
+				sdtCapNhat: {
+					required: true,
+				}
+			},
+			messages : {
+				mkCapNhat : {
+					required : notification("Tài Khoản")[0]
+				},
+				tenCapNhat :{
+					required :  notification("Mật Khẩu")[0],
+					maxlength : notification("20")[2],
+					minlength : notification("6")[3]
+				},
+				emailCapNhat :{
+					required :  notification("email")[0],
+					email : notification("email")[1]
+				},
+				sdtCapNhat :{
+					required :  notification("Số Điện Thoại")[0],
+				}
+			}
+		})
+	}
+
+	function validFormThemKH(){
+		$("#formThemKH").validate({
+			rules : {
+				maKH : {
+					required: true,
+				},
+				tenKH: {
+					required: true,
+				},
+				MoTa: {
+					required: true,
+				},
+				hinhKH: {
+					required: true,
+				}
+			},
+			messages : {
+				maKH : {
+					required : notification("Mã Khoá Học")[0]
+				},
+				tenKH :{
+					required :  notification("Tên Khoá Học")[0],
+				},
+				MoTa :{
+					required :  notification("Mô Tả")[0],
+				},
+				hinhKH :{
+					required :  notification("Đường Dẫn Hình Ảnh")[0],
+				}
+			}
+		})
+	}
+
 	validFormDK();
+	validFormThemND();
+	validFormDN();
+	validFormCapNhatND();
+	validFormThemKH();
 });
 
 

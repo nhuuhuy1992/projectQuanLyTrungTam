@@ -4,13 +4,20 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "font-awesome/css/font-awesome.min.css";
 import "./../../assets/scss/khoahoc.scss";
 import "./../../assets/js/sidebar.js"
-import "./auth.ts"
+// import "./auth.ts";
 import { paginate, renderTable, compareValues, pageOnClick }  from "../../assets/js/table.js";
 import { KhoaHoc } from "../models/KhoaHoc";
 import { KhoaHocServices } from '../services/KhoaHocServices';
 import { DanhSachKhoaHoc } from "../models/DanhSachKhoaHoc";
+import { DangNhapNguoiDung, DangKiNguoiDung, DangXuatNguoiDung, ktNguoiDungDN, showThongTinNguoiDung } from "./authentication";
 const DSKHService: any = new KhoaHocServices();
 let danhSachKhoaHoc = new DanhSachKhoaHoc();
+
+ktNguoiDungDN();
+DangNhapNguoiDung();
+DangKiNguoiDung();
+DangXuatNguoiDung();
+showThongTinNguoiDung();
 
 function showKH(DSKH:Array<KhoaHoc>, divLoad, entry = 0){
 	let dataKH = "";
@@ -58,7 +65,6 @@ DSKHService.layKhoaHocService()
 
 $('#sortKH').change(function(){
     let keyArr = $(this).val().split('_');
-    
     danhSachKhoaHoc.DSKH.sort(compareValues(keyArr[0],keyArr[1]))
     renderTable(danhSachKhoaHoc.DSKH,'#showEntriesKH','.ListKhoaHoc',showKH);
 })

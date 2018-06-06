@@ -9,28 +9,22 @@ import { KhoaHoc } from "../models/KhoaHoc";
 import { KhoaHocServices } from '../services/KhoaHocServices';
 import { DanhSachKhoaHoc } from "../models/DanhSachKhoaHoc";
 
+const DSKhoaHoc = new DanhSachKhoaHoc();
+const DSKHService: any = new KhoaHocServices();
+const DSNDServices:any = new DanhSachNguoiDungServices();
+const DSNguoiDung = new DanhSachNguoiDung();
 
 export function getDataNDServices(){
-	const DSNDServices:any = new DanhSachNguoiDungServices();
-	const DSNguoiDung = new DanhSachNguoiDung();
 	return DSNDServices.layDSNDService()
 				.done( function(res) {
 					for(let person of res){
-						let HoTen     = person.HoTen
-						let TaiKhoan  = person.TaiKhoan;
-						let Email     = person.Email;
-						let SoDT      = person.SoDT;
-						let maND      = person.MaLoaiNguoiDung
-						let MatKhauND = person.MatKhau;
-						let personObj:  NguoiDung = new NguoiDung(TaiKhoan, MatKhauND, HoTen, SoDT, Email, maND);
+						let personObj:  NguoiDung = new NguoiDung(person.TaiKhoan,  person.MatKhau, person.HoTen, person.SoDT,  person.Email, person.MaLoaiNguoiDung);
 						DSNguoiDung.themNguoiDung(personObj);
 					}
 				})
 				.fail();
 }
 export function getDataKHServices(){
-	const DSKhoaHoc = new DanhSachKhoaHoc();
-	const DSKHService: any = new KhoaHocServices();
 	return DSKHService.layKhoaHocService()
 	.done(res =>{
 		for(let kh of res){
@@ -39,6 +33,12 @@ export function getDataKHServices(){
 			}
 	})
 	.fail()
+}
+export function nhanNDServices(){
+	return getDataNDServices().responseJSON;
+}
+export function nhanKHServices(){
+	return getDataKHServices().responseJSON;
 }
 export function suaKhiClickVaoRow(thisTR, obj ,thisAttr){
 	let tr = document.querySelectorAll(thisTR);
@@ -71,15 +71,46 @@ export function resetForm(str){
 		$("#SoDTND").val("");
 	}
 }
-export function alertSuccess(...noti){
+export function alertSuccess(noti){
 	return swal({
 		type:  'success',
 		title: `${noti}`,
 	})
 }
-export function alertFail(...noti){
+export function alertFail(noti){
 	return swal({
 		type: 'error',
 		title: `${noti}`,
 	})
 }
+export function alertDangXuat(){
+	return swal({
+		title: '<strong>Bạn Muốn Đăng Xuất?</strong>',
+		type: 'warning',
+		showCloseButton: true,
+		showCancelButton: true,
+		focusConfirm: false,
+		confirmButtonText:
+		'<i class="fa fa-thumbs-up"></i>Yes!',
+		cancelButtonText:
+		'<i class="fa fa-thumbs-down"></i> No!',
+		cancelButtonAriaLabel: 'Thumbs down',
+	})
+}
+
+export function alertXoa(noti){
+	return swal({
+		title:                 `<strong>Bạn Có Muốn Xoá ${noti}?</strong>`,
+		type:                  'warning',
+		showCloseButton:       true,
+		showCancelButton:      true,
+		focusConfirm:          false,
+		confirmButtonText:
+		'<i class="fa fa-thumbs-up"></i>Yes!',
+		cancelButtonText:
+		'<i class="fa fa-thumbs-down"></i> No!',
+		cancelButtonAriaLabel: 'Thumbs down',
+	})
+}
+
+

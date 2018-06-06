@@ -6,13 +6,34 @@ $mainSize: 5rem;
 	@include flex(space-between, center, column, wrap);
 	background: $mainColorAdmin;
 	padding-top: 10px;
+	z-index: 4;
 	overflow: hidden;
+	@include tablet(){
+		padding-top: 0;
+		width: 100%;
+		top: calc(100% - 5rem);
+		height: $mainSize;
+		flex-direction: row;
+	}
+	.sidebar__nav{
+		width: 100%;
+		@include tablet{
+			width: 75%;
+			display: flex;
+		}
+	}
 	.sidebar__item, #itemDangXuat{
+		@include tablet{
+			width: calc(100% / 3);
+		}
 		.sidebar__link{
 			@include flex(center, center, column, wrap);
 			@include size($mainSize, $mainSize);
 			transition:.2s all linear;
 			font-family: monts-reg;
+			@include tablet{
+				width: auto;
+			}
 			i{
 				color: #fff;
 				font-size: 20px;
@@ -41,5 +62,9 @@ $mainSize: 5rem;
 	}
 	#itemDangXuat{
 		margin-bottom: $mainSize;
+		@include tablet{
+			width: 25%;
+			margin-bottom: 0;
+		}
 	}
 }

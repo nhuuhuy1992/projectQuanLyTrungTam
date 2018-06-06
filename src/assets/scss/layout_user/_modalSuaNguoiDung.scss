@@ -70,29 +70,6 @@
 				font-size: 13px;
 			}
 		}
-		.mainInfo{
-			form{
-				label{
-					margin-bottom: 5px;
-					font-weight: bold;
-				}
-				.txt{
-					height: 42px;
-					box-shadow: none;
-					border: 1px solid #dedede;
-					padding: 6px 20px;
-					background: none;
-					color: #959595;
-					font-size: 14px;
-					border-radius: 0;
-					font-family: monts-reg;
-				}
-				.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
-					cursor: not-allowed;
-					background-color: #eee;
-				}
-			}
-		}
 		.data-tab{
 			display: none;
 			&.active{
@@ -102,3 +79,25 @@
 
 	}
 }
+form{
+	label, .labelModal{
+		margin-bottom: 5px;
+		font-weight: bold;
+	}
+	.txt, .inputModal{
+		height: 42px;
+		box-shadow: none;
+		border: 1px solid #dedede;
+		padding: 6px 20px;
+		background: none;
+		color: #959595;
+		font-size: 14px;
+		border-radius: 0;
+		font-family: monts-reg;
+	}
+	.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+		cursor: not-allowed;
+		background-color: #eee;
+	}
+}
+

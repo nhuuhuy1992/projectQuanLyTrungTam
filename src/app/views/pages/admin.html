@@ -55,7 +55,7 @@
 
 
     <nav class="sidebar--admin">
-        <ul class="sidebar__nav w-100">
+        <ul class="sidebar__nav">
             <li class="sidebar__item" data-tab="divDashboard">
                 <a href="#" class="sidebar__link">
                     <i class="fa fa-home"></i>
@@ -101,7 +101,7 @@
                                 <option value="50">50</option>
                             </select>
                             <div class="d-flex justify-content-center">
-                                
+
                                 <button class="btn btn-outline-success " id="btnModalKhoaHoc" data-toggle="modal" data-target="#modalKhoaHoc">
                                     <i class="fa fa-plus"></i>
                                 </button>
@@ -258,7 +258,7 @@
                                     </div>
                                 </div>
                                 <div class="overview-chart">
-                                    <canvas id="widgetChart1"></canvas>
+                                    <canvas id="widgetChart2"></canvas>
                                 </div>
                             </div>
                         </div>
@@ -312,7 +312,7 @@
                                     </div>
                                 </div>
                                 <div class="overview-chart">
-                                    <canvas id="widgetChart4"></canvas>
+                                    <canvas id="recent-rep-chart"></canvas>
                                 </div>
                             </div>
                         </div>
@@ -365,50 +365,51 @@
                         </button>
                     </div>
                     <div class="modal-body container">
-                        <div class="row">
+                        <form class="row" id="formThemKH">
                             <div class="col-12">
                                 <div class="form-group">
-                                    <label for="MaKhoaHoc">Mã Khoá Học</label>
-                                    <input type="text" class="form-control" id="MaKhoaHoc" placeholder="Nhập Vào Mã Khoá Học">
+                                    <label for="MaKhoaHoc" class="labelModal">Mã Khoá Học</label>
+                                    <input type="text" name="maKH" class="form-control inputModal" id="MaKhoaHoc" placeholder="Nhập Vào Mã Khoá Học">
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-group">
-                                    <label for="TenKhoaHoc">Tên Khoá Học</label>
-                                    <input type="text" class="form-control" id="TenKhoaHoc" placeholder="Nhập Vào Tên Khoá Học">
+                                    <label for="TenKhoaHoc" class="labelModal">Tên Khoá Học</label>
+                                    <input type="text" name="tenKH" class="form-control inputModal" id="TenKhoaHoc" placeholder="Nhập Vào Tên Khoá Học">
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-group" >
-                                    <label for="MoTa">Mô Tả</label>
-                                    <textarea name="Mota" id="MoTa" class="form-control" rows="7"></textarea>
+                                    <label for="MoTa" class="labelModal">Mô Tả</label>
+                                    <textarea name="Mota" id="MoTa" class="form-control inputModal" rows="7"></textarea>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-group">
-                                    <label for="HinhAnh">Hình Ảnh</label>
-                                    <input type="url" class="form-control" id="HinhAnh" placeholder="Nhập vào đường dẫn hình ảnh">
+                                    <label for="HinhAnh" class="labelModal">Hình Ảnh</label>
+                                    <input type="url" name="hinhKH" class="form-control inputModal" id="HinhAnh" placeholder="Nhập vào đường dẫn hình ảnh">
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-group">
-                                    <label for="LuotXem">Lượt Xem</label>
-                                    <input type="number" class="form-control" id="LuotXem" placeholder="Nhập Số Lượt Xem">
+                                    <label for="LuotXem" class="labelModal">Lượt Xem</label>
+                                    <input type="number" class="form-control inputModal" value="1" id="LuotXem" placeholder="Nhập Số Lượt Xem">
                                 </div>
                             </div>
 
                             <div class="col-12">
-                                <label for="maND">Người tạo</label>
-                                <select class="custom-select" id="NguoiTao">
+                                <label for="maND" class="labelModal">Người tạo</label>
+                                <select class="custom-select inputModal" id="NguoiTao">
                                     <option value="HV">HV</option>
                                     <option value="GV">GV</option>
                                 </select>
                             </div>
-                        </div>
+                        </form>
                     </div>
                     <div class="modal-footer">
+                        <button class="btn btn-success" id="btnCapNhatKH">Cập Nhật</button>
                         <button class="btn btn-danger" data-dismiss="modal">Close</button>
-                        <button class="btn btn-success" data-dismiss="modal" id="btnThemKhoaHoc">Thêm</button>
+                        <button class="btn btn-warning" id="btnXoaKHEdit">Xoá Khoá Học</button>
                     </div>
                 </div>
             </div>
@@ -425,50 +426,51 @@
                         </button>
                     </div>
                     <div class="modal-body container">
-                        <div class="row">
+                        <form class="row" id="formThemNguoiDung">
                             <div class="col-12">
                                 <div class="form-group">
-                                    <label for="TaiKhoan">Tài Khoản</label>
-                                    <input type="text" class="form-control" id="TaiKhoanND" placeholder="Nhập Vào Tài Khoản">
+                                    <label for="TaiKhoan" class="labelModal">Tài Khoản</label>
+                                    <input name="TKThem" type="text" class="form-control inputModal" id="TaiKhoanND" placeholder="Nhập Vào Tài Khoản">
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-group">
-                                    <label for="MatKhauND">Mật Khẩu</label>
-                                    <input type="text" class="form-control" id="MatKhauND" placeholder="Nhập Vào Mật Khẩu">
+                                    <label for="MatKhauND" class="labelModal">Mật Khẩu</label>
+                                    <input name="MKThem" type="text" class="form-control inputModal" id="MatKhauND" placeholder="Nhập Vào Mật Khẩu">
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-group">
-                                    <label for="HoTen">Họ Tên</label>
-                                    <input type="text" class="form-control" id="HoTenND" placeholder="Nhập Họ Tên">
+                                    <label for="HoTen" class="labelModal">Họ Tên</label>
+                                    <input name="tenThem" type="text" class="form-control inputModal" id="HoTenND" placeholder="Nhập Họ Tên">
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-group">
-                                    <label for="Email">Email</label>
-                                    <input type="text" class="form-control" id="EmailND" placeholder="Nhập Email">
+                                    <label for="Email" class="labelModal">Email</label>
+                                    <input name="emailThem" type="text" class="form-control inputModal" id="EmailND" placeholder="Nhập Email">
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-group">
-                                    <label for="SoDT">Số Điện Thoại</label>
-                                    <input type="text" class="form-control" id="SoDTND" placeholder="Nhập Số Điện Thoại">
+                                    <label for="SoDT" class="labelModal">Số Điện Thoại</label>
+                                    <input name="SDTThem" type="text" class="form-control inputModal" id="SoDTND" placeholder="Nhập Số Điện Thoại">
                                 </div>
                             </div>
 
                             <div class="col-12">
-                                <label for="maND">Mã Người Dùng</label>
-                                <select class="custom-select" id="maND">
+                                <label for="maND" class="labelModal">Mã Người Dùng</label>
+                                <select class="custom-select inputModal" id="maND">
                                     <option value="HV">HV</option>
                                     <option value="GV">GV</option>
                                 </select>
                             </div>
-                        </div>
+                        </form>
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-danger" data-dismiss="modal">Close</button>
-                        <button class="btn btn-success" data-dismiss="modal" id="btnThemNguoiDung">Thêm</button>
+                        <button class="btn btn-success" id="btnThemNguoiDung">Thêm</button>
+                        <button class="btn btn-warning d-none" id="btnXoaKHEdit">Xoá</button>
                     </div>
                 </div>
             </div>
@@ -487,63 +489,64 @@
                     <div class="modal-body container">
                         <div class="row">
                             <div class="col-md">
-                                <div class="row">
+                                <form class="row" id="formCapNhatND">
                                     <div class="col-12">
                                         <div class="form-group">
-                                            <label for="TaiKhoan">Tài Khoản</label>
-                                            <input type="text" class="form-control" id="TaiKhoanNDCN" placeholder="Nhập Vào Tài Khoản" disabled>
+                                            <label for="TaiKhoan" class="labelModal">Tài Khoản</label>
+                                            <input type="text" class="form-control inputModal" id="TaiKhoanNDCN" placeholder="Nhập Vào Tài Khoản" disabled>
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-group">
-                                            <label for="MatKhauND">Mật Khẩu</label>
-                                            <input type="password" class="form-control" id="MatKhauNDCN" placeholder="Nhập Vào Mật Khẩu">
+                                            <label for="MatKhauND" class="labelModal">Mật Khẩu</label>
+                                            <input type="password" class="form-control inputModal" id="MatKhauNDCN" name="mkCapNhat" placeholder="Nhập Vào Mật Khẩu">
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-group">
-                                            <label for="HoTen">Họ Tên</label>
-                                            <input type="text" class="form-control" id="HoTenNDCN" placeholder="Nhập Họ Tên">
+                                            <label for="HoTen" class="labelModal">Họ Tên</label>
+                                            <input type="text" class="form-control inputModal" id="HoTenNDCN" placeholder="Nhập Họ Tên" name="tenCapNhat">
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-group">
-                                            <label for="Email">Email</label>
-                                            <input type="text" class="form-control" id="EmailNDCN" placeholder="Nhập Email">
+                                            <label for="Email" class="labelModal">Email</label>
+                                            <input type="text" class="form-control inputModal" id="EmailNDCN" placeholder="Nhập Email" name="emailCapNhat">
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-group">
-                                            <label for="SoDT">Số Điện Thoại</label>
-                                            <input type="text" class="form-control" id="SoDTNDCN" placeholder="Nhập Số Điện Thoại">
+                                            <label for="SoDT" class="labelModal">Số Điện Thoại</label>
+                                            <input type="text" class="form-control inputModal" id="SoDTNDCN" placeholder="Nhập Số Điện Thoại" name="sdtCapNhat">
                                         </div>
                                     </div>
 
                                     <div class="col-12">
-                                        <label for="maND">Mã Người Dùng</label>
-                                        <select class="custom-select" id="maNDCN">
+                                        <label for="maND" class="labelModal">Mã Người Dùng</label>
+                                        <select class="custom-select inputModal" id="maNDCN">
                                             <option value="HV">HV</option>
                                             <option value="GV">GV</option>
                                         </select>
                                     </div>
-                                </div>
+                                </form>
                             </div>
                             <div class="col-md-5 khoahocHV">
                                 <h5>Các Khoá Học Đã Đăng ký</h5>
                                 <ul class="list-group" id="listKhoaHoc">
 
                                 </ul>
-                                <div class="d-flex flex-column justify-content-between mt-3">
-                                    <select name="" id="listKHoaHocDK"></select>
-                                    <button class="btn btn-primary " id="btnGhiDanh">Ghi Danh</button>
-                                </div>
+                                <form class="d-flex flex-column justify-content-between mt-3">
+                                    <select name="" id="listKHoaHocDK" class="inputModal mb-3"></select>
+                                    <button class="btn btn-primary p-2" id="btnGhiDanh">Ghi Danh</button>
+                                </form>
                             </div>
                         </div>
 
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-success" data-dismiss="modal" id="btnCapNhatND">Cập Nhật</button>
-                        <button class="btn btn-danger" id="btnXoaNĐEit">Xoá Người Dùng</button>
+                        <button class="btn btn-danger" data-dismiss="modal" >Đóng</button>
+                        <button class="btn btn-success" id="btnCapNhatND">Cập Nhật</button>
+                        <button class="btn btn-warning xoaNDEdit" id="btnXoaNDEdit">Xoá Người Dùng</button>
                     </div>
                 </div>
             </div>

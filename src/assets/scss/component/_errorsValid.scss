@@ -1,0 +1,17 @@
+label.big-err{
+    color: red;
+    position: absolute;
+    top: -43%;
+    transition: .3s all;
+    background: #fff;
+    right: 0;
+    padding: 2px 11px;
+    font-size: 11px;
+    border-radius: 6px;
+    font-family: monts-reg;
+}
+#formThemNguoiDung, #formCapNhatND, #formThemKH {
+        label.big-err,{
+        top: 10%;
+    }
+}

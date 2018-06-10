@@ -2,7 +2,6 @@ import * as $ from "jquery";
 import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "font-awesome/css/font-awesome.min.css";
-import swal from "sweetalert2";
 import 'froala-editor';
 import "./../../assets/js/froalaEditor.js";
 import "../vendors/animate.css";
@@ -10,12 +9,12 @@ import "./../../assets/scss/admin.scss";
 import "./../../assets/js/app_admin.js";
 import "./../../assets/js/validation.js";
 //obj
-import { paginate, renderTable, compareValues, pageOnClick }  from "../../assets/js/table.js";
+import { renderTable, compareValues }  from "../../assets/js/table.js";
 import { KhoaHoc } from "../models/KhoaHoc";
 import { KhoaHocServices } from '../services/KhoaHocServices';
 import { DanhSachKhoaHoc } from "../models/DanhSachKhoaHoc";
 //DI
-import { suaKhiClickVaoRow, alertFail, alertSuccess, resetForm, nhanKHServices, alertXoa } from "./dependInjection";
+import { suaKhiClickVaoRow, alertFail, alertSuccess, resetForm, alertXoa } from "./helpers";
 // services
 let DSKHService: any = new KhoaHocServices();
 // let DSKhoaHoc = new DanhSachKhoaHoc();
@@ -26,8 +25,15 @@ $('#showEntriesKH').change(function(){
 })
 // Khoa Hoc
 let danhSachKhoaHoc = new DanhSachKhoaHoc();
-danhSachKhoaHoc.DSKH = nhanKHServices();
-renderTable(danhSachKhoaHoc.DSKH,'#showEntriesKH','#tableKhoaHoc',showKH);
+
+DSKHService.layKhoaHocService()
+	.done(res =>{
+		danhSachKhoaHoc.DSKH =  res.map( kh => new KhoaHoc(kh.MaKhoaHoc, kh.TenKhoaHoc, kh.MoTa, kh.HinhAnh, kh.LuotXem, kh.NguoiTao));
+		renderTable(danhSachKhoaHoc.DSKH,'#showEntriesKH','#tableKhoaHoc',showKH);
+	})
+	.fail()
+
+
 
 function showDSKHDK(taikhoan:string){
 	DSKHService.layThongTinKH(taikhoan)
@@ -40,7 +46,7 @@ function showDSKHDK(taikhoan:string){
 				res.forEach((khoahoc)=>{
 					khoahocdk+= `<li class="list-group-item">${khoahoc.TenKhoaHoc}</li>`
 				})
-				danhSachKhoaHocDK.DSKH = danhSachKhoaHoc.DSKH.filter(kh1 => res.some(kh2 => kh1.MaKhoaHoc !== kh2.MaKhoaHoc))
+				danhSachKhoaHocDK.DSKH = danhSachKhoaHoc.DSKH.filter(kh1 => res.every(kh2 => kh1.MaKhoaHoc !== kh2.MaKhoaHoc))
 
 			}else{
 				khoahocdk = 'Chưa có khoá học';
@@ -82,42 +88,41 @@ function showKH(DSKH:Array<KhoaHoc>, divLoad, entry = 0){
 }
 
 
+//   Gán sự kiện thêm khoá học
 
-(function themKH(){
-	$('body').delegate('#btnThemKhoaHoc','click',function(){
-		let MaKhoaHoc:string = $('#MaKhoaHoc').val();
-		let TenKhoaHoc: string = $('#TenKhoaHoc').val();
-		let MoTa: string =  $('#MoTa').froalaEditor('html.get');
-		let HinhAnh: string = $('#HinhAnh').val();
-		let LuotXem: number = parseFloat($('#LuotXem').val());
-		let NguoiTao: string = $('#NguoiTao').val();
-		if($("#formThemKH").valid()){
-			let khoahoc = new KhoaHoc(MaKhoaHoc,TenKhoaHoc,MoTa,HinhAnh,LuotXem,NguoiTao);
-			DSKHService.themKhoaHocService(khoahoc)
-			.done(function(res){
-				alertSuccess("Thêm Thành Công!").then(()=>{
-					danhSachKhoaHoc.themKhoaHoc(khoahoc);
-					renderTable(danhSachKhoaHoc.DSKH,'#showEntriesKH','#tableKhoaHoc',showKH);
-				})
+$('body').delegate('#btnThemKhoaHoc','click',function(){
+	let MaKhoaHoc:string = $('#MaKhoaHoc').val();
+	let TenKhoaHoc: string = $('#TenKhoaHoc').val();
+	let MoTa: string =  $('#MoTa').froalaEditor('html.get');
+	let HinhAnh: string = $('#HinhAnh').val();
+	let LuotXem: number = parseFloat($('#LuotXem').val());
+	let NguoiTao: string = $('#NguoiTao').val();
+	if($("#formThemKH").valid()){
+		let khoahoc = new KhoaHoc(MaKhoaHoc,TenKhoaHoc,MoTa,HinhAnh,LuotXem,NguoiTao);
+		DSKHService.themKhoaHocService(khoahoc)
+		.done(function(res){
+			alertSuccess("Thêm Thành Công!").then(()=>{
+				danhSachKhoaHoc.themKhoaHoc(khoahoc);
+				renderTable(danhSachKhoaHoc.DSKH,'#showEntriesKH','#tableKhoaHoc',showKH);
 			})
-			.fail(function(err){
-				alertFail("Thêm Thất Bại!")
-			});
-		}
-	})
-}());
+		})
+		.fail(function(err){
+			alertFail("Thêm Thất Bại!")
+		});
+	}
+});
+// Gán sự kiện gọi Modal Thêm Kh
 
-(function createModalThemKH(){
-	$('#btnModalKhoaHoc').click(() =>{
-		resetForm("formKH");
-		$("#modalKhoaHoc .modal-title").html('Thêm Khoa Hoc');
-		let modal_footer = `
-		<button class="btn btn-danger" data-dismiss="modal">Close</button>
-		<button class="btn btn-success" data-dismiss="modal" id="btnThemKhoaHoc">Thêm</button>
-		`;
-		$("#modalKhoaHoc .modal-footer").html(modal_footer);
-	})
-}());
+$('#btnModalKhoaHoc').click(() =>{
+	resetForm("formKH");
+	$("#modalKhoaHoc .modal-title").html('Thêm Khoa Hoc');
+	let modal_footer = `
+	<button class="btn btn-danger" data-dismiss="modal">Close</button>
+	<button class="btn btn-success" data-dismiss="modal" id="btnThemKhoaHoc">Thêm</button>
+	`;
+	$("#modalKhoaHoc .modal-footer").html(modal_footer);
+});
+
 function createModalSuaKH(That){
 	let idKH = $(That).attr('data-id');
 	DSKHService.layCTKHService(idKH)
@@ -143,7 +148,8 @@ function createModalSuaKH(That){
 		})
 	.fail();
 };
-(function timKhoaHoc(){
+// Gán sự kiện tìm khoá học
+
 	$("#timKH").keyup(function(){
 		let key:string = $(this).val().trim().toLowerCase();
 		let DSKHCanTim = danhSachKhoaHoc.timKhoaHocTheoTen(key);
@@ -167,7 +173,7 @@ function createModalSuaKH(That){
 			$("#tableTimKiemKhoaHoc").addClass("active");
 		}
 	})
-}());
+
 function xoaKhoaHoc(btn){
 	let idKH = $(btn).attr('data-id');
 	let rowCanXoa = $(`tr#tr_${idKH}`);
@@ -195,92 +201,91 @@ function xoaKhoaHoc(btn){
 		}
 	})
 }
-(function clickBtnXoaKH(){
-	$("body").delegate(".btnXoaKH", "click", function(){
-		xoaKhoaHoc($(this));
-	})
-}());
-(function clickSuaKHModal(){
-	$('body').delegate('.btnSuaKH','click',function(){
-		event.preventDefault();
-		createModalSuaKH($(this));
-	})	
-}());
-(function xoaKHEdit(){
-	$("body").delegate("#btnXoaKHEdit", "click", function(){
-		event.preventDefault();
-		xoaKhoaHoc($(this));
-	})
-}());
-(function clickRowTimKiemKH(){
-	$("body").delegate(".trKhoaHocTimKiem","click", function(){
-		event.preventDefault();
-		$(".tableTimKiem").removeClass("active");
-		createModalSuaKH($(this));
-	})
-}());
+// Gán sự kiện xoá khoá học
+$("body").delegate(".btnXoaKH", "click", function(){
+	xoaKhoaHoc($(this));
+})
 
-(function capNhatKhoaHoc(){
-	$('body').delegate('#btnCapNhatKH','click',()=>{
-		let MaKhoaHoc:string = $('#MaKhoaHoc').val();
-		let TenKhoaHoc: string = $('#TenKhoaHoc').val();
-		let MoTa: string = $('#MoTa').froalaEditor('html.get');
-		let HinhAnh: string = $('#HinhAnh').val();
-		let LuotXem: number = parseFloat($('#LuotXem').val());
-		let NguoiTao: string = $('#NguoiTao').val();
-		if($("#formThemKH").valid()){
-			let khoahoc = new KhoaHoc(MaKhoaHoc,TenKhoaHoc,MoTa,HinhAnh,LuotXem,NguoiTao);
-			DSKHService.capNhatKhoaHocService(khoahoc)
-			.done(function(res){
-				alertSuccess("Cập Nhật Thành Công!").then((result)=>{
-					if(result.value){
-						$("#modalKhoaHoc").modal("hide");
-						danhSachKhoaHoc.suaKhoaHoc(khoahoc);
-						renderTable(danhSachKhoaHoc.DSKH,'#showEntriesKH','#tableKhoaHoc',showKH);
-					}
-				})
-			})
-			.fail(function(err){alertFail('Cập Nhật Thất Bại!');});
-		}
-		
-	})
-}());
 
-(function ghiDanh(){
-	$('body').delegate('#btnGhiDanh','click',function(){
-		event.preventDefault();
-		let makh:string = $('#listKHoaHocDK').val();
-		let taikhoan:string = $('#TaiKhoanNDCN').val();
-		DSKHService.ghiDanhKH(makh,taikhoan)
-		.done(
-			res =>{
-				if(res === 'Sucessfully'){
-					alertSuccess("Thêm Thành Công!").then(() => {
-						showDSKHDK(taikhoan);
-					})
+$('body').delegate('.btnSuaKH','click',function(){
+	event.preventDefault();
+	createModalSuaKH($(this));
+})	
+
+$("body").delegate("#btnXoaKHEdit", "click", function(){
+	event.preventDefault();
+	xoaKhoaHoc($(this));
+})
+
+$("body").delegate(".trKhoaHocTimKiem","click", function(){
+	event.preventDefault();
+	$(".tableTimKiem").removeClass("active");
+	createModalSuaKH($(this));
+})
+
+
+$('body').delegate('#btnCapNhatKH','click',()=>{
+	let MaKhoaHoc:string = $('#MaKhoaHoc').val();
+	let TenKhoaHoc: string = $('#TenKhoaHoc').val();
+	let MoTa: string = $('#MoTa').froalaEditor('html.get');
+	let HinhAnh: string = $('#HinhAnh').val();
+	let LuotXem: number = parseFloat($('#LuotXem').val());
+	let NguoiTao: string = $('#NguoiTao').val();
+	if($("#formThemKH").valid()){
+		let khoahoc = new KhoaHoc(MaKhoaHoc,TenKhoaHoc,MoTa,HinhAnh,LuotXem,NguoiTao);
+		DSKHService.capNhatKhoaHocService(khoahoc)
+		.done(function(res){
+			alertSuccess("Cập Nhật Thành Công!").then((result)=>{
+				if(result.value){
+					$("#modalKhoaHoc").modal("hide");
+					danhSachKhoaHoc.suaKhoaHoc(khoahoc);
+					renderTable(danhSachKhoaHoc.DSKH,'#showEntriesKH','#tableKhoaHoc',showKH);
 				}
-			}
-			)
-		.fail()
-	})
-}());
-
-(function sortKhoaHoc(){
-	$('#tableKhoaHoc th').click(function(){
-		let key = $(this).data('sort');
-		if(key){
-			if($(this).hasClass('asc')){
-				$(this).removeClass('asc');
-				$(this).addClass('desc');
-				danhSachKhoaHoc.DSKH.sort(compareValues(key,'desc'))
-			}else{
-				$(this).removeClass('desc');
-				$(this).addClass('asc');
-				danhSachKhoaHoc.DSKH.sort(compareValues(key))
-			}
-			$('#tableKhoaHoc').next('.pagination').find('.page-item.active > .page-link').click();
-		}
+			})
+		})
+		.fail(function(err){alertFail('Cập Nhật Thất Bại!');});
+	}
 	
-	})
-}());
+})
 
+
+
+$('body').delegate('#btnGhiDanh','click',function(){
+	event.preventDefault();
+	let makh:string = $('#listKHoaHocDK').val();
+	let taikhoan:string = $('#TaiKhoanNDCN').val();
+	DSKHService.ghiDanhKH(makh,taikhoan)
+	.done(
+		res =>{
+			if(res === 'Sucessfully'){
+				alertSuccess("Thêm Thành Công!").then(() => {
+					showDSKHDK(taikhoan);
+				})
+			}
+		}
+		)
+	.fail()
+})
+
+$('#tableKhoaHoc th').click(function(){
+	let key = $(this).data('sort');
+	if(key){
+		if($(this).hasClass('asc')){
+			$(this).removeClass('asc');
+			$(this).addClass('desc');
+			danhSachKhoaHoc.DSKH.sort(compareValues(key,'desc'))
+		}else{
+			$(this).removeClass('desc');
+			$(this).addClass('asc');
+			danhSachKhoaHoc.DSKH.sort(compareValues(key))
+		}
+		$('#tableKhoaHoc').next('.pagination').find('.page-item.active > .page-link').click();
+	}
+
+})
+
+$("#mountKH").html(danhSachKhoaHoc.slKhoaHoc());
+$("#mountView").html(danhSachKhoaHoc.soView());
+
+
+export { showDSKHDK }

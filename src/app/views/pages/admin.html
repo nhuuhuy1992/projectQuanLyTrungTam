@@ -7,20 +7,24 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Admin pages</title>
     <style>
-    th, td{
-        text-align: center;
-    }
-    th{
-        padding: 12px 22px !important;
-    }
-    .btnXoaTungND:hover{
-        color: #fff !important;
-    }
-    .btn{
-        padding: .375rem .75rem !important;
-        margin: 0 10px !important;
-    }
-</style>
+        th,
+        td {
+            text-align: center;
+        }
+        
+        th {
+            padding: 12px 22px !important;
+        }
+        
+        .btnXoaTungND:hover {
+            color: #fff !important;
+        }
+        
+        .btn {
+            padding: .375rem .75rem !important;
+            margin: 0 10px !important;
+        }
+    </style>
 </head>
 
 <body>
@@ -34,19 +38,19 @@
                 <span class="h-100 d-flex align-items-center">
                     <i class="fa fa-envelope-o">
                         <span class="badge badge-success rounded-circle">7</span>
-                    </i>
-                    <i class="fa fa-bell-o">
+                </i>
+                <i class="fa fa-bell-o">
                         <span class="badge badge-success rounded-circle">3</span>
                     </i>
-                    <i class="fa fa-comment-o">
+                <i class="fa fa-comment-o">
                         <span class="badge badge-success rounded-circle">1</span>
                     </i>
-                    <a href="#" class="d-flex justify-content-center align-items-center divAdmin">
-                        <strong id="adminName">Admin</strong>
-                        <span class="avatar">
+                <a href="#" class="d-flex justify-content-center align-items-center divAdmin">
+                    <strong id="adminName">Admin</strong>
+                    <span class="avatar">
                             <img src="../../../assets/images/user.png" alt="">
                         </span>
-                    </a>
+                </a>
                 </span>
             </div>
         </div>
@@ -137,418 +141,418 @@
                     <table class="table table-hoverable table-striped tableData z-depth-2" id="tableKhoaHoc">
                         <thead>
                             <tr>
-                                <th >#</th>
+                                <th>#</th>
                                 <th class="both" data-sort="MaKhoaHoc">Mã</th>
                                 <th class="both" data-sort="TenKhoaHoc">Tên</th>
                                 <!-- <th>Mô Tả</th>
                                     <th>Hình Ảnh</th> -->
-                                    <th class="both" data-sort="NguoiTao">Người Tạo</th>
-                                    <th class="both" data-sort="LuotXem">Lượt Xem</th>
+                                <th class="both" data-sort="NguoiTao">Người Tạo</th>
+                                <th class="both" data-sort="LuotXem">Lượt Xem</th>
 
-                                    <th>Thao Tác</th>
-                                </tr>
-                            </thead>
-                            <tbody id="dataKhoaHoc">
+                                <th>Thao Tác</th>
+                            </tr>
+                        </thead>
+                        <tbody id="dataKhoaHoc">
 
-                            </tbody>
-                        </table>
-                    </div>
+                        </tbody>
+                    </table>
                 </div>
             </div>
+        </div>
 
-            <div class="container divData active" id="divNguoiDung">
-                <div class="row">
-                    <div class="col-12 text-center mb-5">
-                        <h3 class="text-center title__data heading-secondary">Danh Sách Người Dùng</h3>
-                    </div>
+        <div class="container divData active" id="divNguoiDung">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h3 class="text-center title__data heading-secondary">Danh Sách Người Dùng</h3>
                 </div>
-                <div class="row">
-                    <div class="col-12">
-                        <div class="blockForm d-flex justify-content-between align-items-center">
-                            <div class="show d-flex align-content-center w-25">
-                                <select class="custom-select" style="width: 100%;border-color: #776a6a; font-size: 17px" id="showEntriesUser">
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="blockForm d-flex justify-content-between align-items-center">
+                        <div class="show d-flex align-content-center w-25">
+                            <select class="custom-select" style="width: 100%;border-color: #776a6a; font-size: 17px" id="showEntriesUser">
                                     <option  disabled>Show Entries...</option>
                                     <option value="10" selected>10</option>
                                     <option value="25">25</option>
                                     <option value="50">50</option>
                                 </select>
-                                <div class="d-flex justify-content-center">
-                                    <button class="btn btn-outline-danger " id="btnXoaNhieuND"><i class="fa fa-trash"></i>
+                            <div class="d-flex justify-content-center">
+                                <button class="btn btn-outline-danger " id="btnXoaNhieuND"><i class="fa fa-trash"></i>
                                     </button>
-                                    <button class="btn btn-outline-success" id="btnThemHocVien" data-toggle="modal" data-target="#modalNguoiDung">
+                                <button class="btn btn-outline-success" id="btnThemHocVien" data-toggle="modal" data-target="#modalNguoiDung">
                                         <i class="fa fa-user-plus"></i>
                                     </button>
-                                </div>
                             </div>
-
-                            <div class="search w-25">
-                                <div class="input-group">
-                                    <div class="form-group mb-0 w-100">
-                                        <label for="searchField" class="mb-0" style="font-size: 13px">Tìm Người Dùng</label>
-                                        <input type="email" class="form-control" placeholder="Nhập Tên..." style="border-color: #dbdbdb; font-size: 13px" id="timND">
-
-                                    </div>
-
-                                </div>
-                            </div>
-                            <table class="z-depth-2 table-hover tableTimKiem" id="tableTimKiemNguoiDung">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Tài Khoản</th>
-                                        <th>Tên</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="dataTimKiemNguoiDung">
-
-                                </tbody>
-                            </table>
                         </div>
-                    </div>
-                </div>
-                <div class="row mt-4">
-                    <div class="col-12 p-0">
 
-                        <table class="table table-hover  tableData z-depth-2" id="tableNguoiDung">
+                        <div class="search w-25">
+                            <div class="input-group">
+                                <div class="form-group mb-0 w-100">
+                                    <label for="searchField" class="mb-0" style="font-size: 13px">Tìm Người Dùng</label>
+                                    <input type="email" class="form-control" placeholder="Nhập Tên..." style="border-color: #dbdbdb; font-size: 13px" id="timND">
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <table class="z-depth-2 table-hover tableTimKiem" id="tableTimKiemNguoiDung">
                             <thead>
                                 <tr>
-                                    <th>
-                                        <i class="fa fa-trash"></i>
-                                    </th>
                                     <th>#</th>
-                                    <th class="both" data-sort="_TaiKhoan">Tài Khoản</th>
-                                    <!-- <th data-sort="true">Mật Khẩu</th> -->
-                                    <th class="both" data-sort="_HoTen">Tên</th>
-                                    <th class="both" data-sort="_Email">Email</th>
-                                    <th class="both" data-sort="_SoDT">Số Điện Thoại</th>
-                                    <th class="both" data-sort="_MaLoaiNguoiDung">Mã Người Dùng</th>
-                                    <th>Thao Tác</th>
+                                    <th>Tài Khoản</th>
+                                    <th>Tên</th>
                                 </tr>
                             </thead>
-                            <tbody id="dataNguoiDung">
+                            <tbody id="dataTimKiemNguoiDung">
 
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
+            <div class="row mt-4">
+                <div class="col-12 p-0">
 
-            <div class="container divData" id="divDashboard">
-                <div class="row">
-                    <div class="col-12 text-center mb-4">
-                        <h3 class="text-center heading-secondary">Biểu Đồ Thống Kê</h3>
-                    </div>
-                </div>
-                <div class="row my-2">
-                    <div class="col-12">
-                        <h3 class="font-weight-bold">Overview</h3>
-                    </div>
-                </div>
-                <div class="row mt-5">
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="overview-item overview-item--c1 thongke thongKeUser">
-                            <div class="overview__inner">
-                                <div class="overview-box clearfix">
-                                    <div class="icon">
-                                        <i class="fa fa-users"></i>
-                                    </div>
-                                    <div class="text">
-                                        <h2 id="mountND"></h2>
-                                        <span>Người Dùng</span>
-                                    </div>
-                                </div>
-                                <div class="overview-chart">
-                                    <canvas id="widgetChart2"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="overview-item overview-item--c2 thongke thongKeHocVien">
-                            <div class="overview__inner">
-                                <div class="overview-box clearfix">
-                                    <div class="icon">
-                                        <i class="fa fa-graduation-cap"></i>
-                                    </div>
-                                    <div class="text">
-                                        <h2 id="mountHV"></h2>
-                                        <span>Học Viên</span>
-                                    </div>
-                                </div>
-                                <div class="overview-chart">
-                                    <canvas id="widgetChart2"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="overview-item overview-item--c3 thongke thongKeKhoaHoc">
-                            <div class="overview__inner">
-                                <div class="overview-box clearfix">
-                                    <div class="icon">
-                                        <i class="fa fa-book"></i>
-                                    </div>
-                                    <div class="text">
-                                        <h2 id="mountKH"></h2>
-                                        <span>Khoá Học</span>
-                                    </div>
-                                </div>
-                                <div class="overview-chart">
-                                    <canvas id="widgetChart3"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="overview-item overview-item--c4 thongke thongKeView">
-                            <div class="overview__inner">
-                                <div class="overview-box clearfix">
-                                    <div class="icon">
-                                        <i class="fa fa-eye"></i>
-                                    </div>
-                                    <div class="text">
-                                        <h2 id="mountView"></h2>
-                                        <span>Lượt Xem</span>
-                                    </div>
-                                </div>
-                                <div class="overview-chart">
-                                    <canvas id="recent-rep-chart"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-12">
-                        <div class="au-card">
-                            <div class="au-card-inner">
-                                <h3 class="title-2">NGƯỜI DÙNG</h3>
-                                <canvas id="sales-chart"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-12">
-                        <div class="au-card">
-                            <div class="au-card-inner">
-                                <h3 class="title-2">HỌC VIÊN</h3>
-                                <canvas id="team-chart"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-12">
-                        <div class="au-card">
-                            <div class="au-card-inner">
-                                <h3 class="title-2">LƯỢT XEM</h3>
-                                <canvas id="barChart"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-12">
-                        <div class="au-card">
-                            <div class="au-card-inner">
-                                <h3 class="title-2">KHOÁ HỌC</h3>
-                                <canvas id="radarChart"></canvas>
-                            </div>
-                        </div>
-                    </div>
+                    <table class="table table-hover  tableData z-depth-2" id="tableNguoiDung">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <i class="fa fa-trash"></i>
+                                </th>
+                                <th>#</th>
+                                <th class="both" data-sort="_TaiKhoan">Tài Khoản</th>
+                                <!-- <th data-sort="true">Mật Khẩu</th> -->
+                                <th class="both" data-sort="_HoTen">Tên</th>
+                                <th class="both" data-sort="_Email">Email</th>
+                                <th class="both" data-sort="_SoDT">Số Điện Thoại</th>
+                                <th class="both" data-sort="_MaLoaiNguoiDung">Mã Người Dùng</th>
+                                <th>Thao Tác</th>
+                            </tr>
+                        </thead>
+                        <tbody id="dataNguoiDung">
+
+                        </tbody>
+                    </table>
                 </div>
             </div>
-        </main>
+        </div>
 
-        <div class="modal fade" id="modalKhoaHoc" tabindex="-1" role="dialog" style="overflow-y: auto!important">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <div class="modal-title">
-                            <h3>Thêm Khoá Học</h3>
+        <div class="container divData" id="divDashboard">
+            <div class="row">
+                <div class="col-12 text-center mb-4">
+                    <h3 class="text-center heading-secondary">Biểu Đồ Thống Kê</h3>
+                </div>
+            </div>
+            <div class="row my-2">
+                <div class="col-12">
+                    <h3 class="font-weight-bold">Overview</h3>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-sm-6 col-lg-3">
+                    <div class="overview-item overview-item--c1 thongke thongKeUser">
+                        <div class="overview__inner">
+                            <div class="overview-box clearfix">
+                                <div class="icon">
+                                    <i class="fa fa-users"></i>
+                                </div>
+                                <div class="text">
+                                    <h2 id="mountND"></h2>
+                                    <span>Người Dùng</span>
+                                </div>
+                            </div>
+                            <div class="overview-chart">
+                                <canvas id="widgetChart2"></canvas>
+                            </div>
                         </div>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
                     </div>
-                    <div class="modal-body container">
-                        <form class="row" id="formThemKH">
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <label for="MaKhoaHoc" class="labelModal">Mã Khoá Học</label>
-                                    <input type="text" name="maKH" class="form-control inputModal" id="MaKhoaHoc" placeholder="Nhập Vào Mã Khoá Học">
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="overview-item overview-item--c2 thongke thongKeHocVien">
+                        <div class="overview__inner">
+                            <div class="overview-box clearfix">
+                                <div class="icon">
+                                    <i class="fa fa-graduation-cap"></i>
+                                </div>
+                                <div class="text">
+                                    <h2 id="mountHV"></h2>
+                                    <span>Học Viên</span>
                                 </div>
                             </div>
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <label for="TenKhoaHoc" class="labelModal">Tên Khoá Học</label>
-                                    <input type="text" name="tenKH" class="form-control inputModal" id="TenKhoaHoc" placeholder="Nhập Vào Tên Khoá Học">
-                                </div>
+                            <div class="overview-chart">
+                                <canvas id="widgetChart2"></canvas>
                             </div>
-                            <div class="col-12">
-                                <div class="form-group" >
-                                    <label for="MoTa" class="labelModal">Mô Tả</label>
-                                    <textarea name="Mota" id="MoTa" class="form-control inputModal" rows="7"></textarea>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <label for="HinhAnh" class="labelModal">Hình Ảnh</label>
-                                    <input type="url" name="hinhKH" class="form-control inputModal" id="HinhAnh" placeholder="Nhập vào đường dẫn hình ảnh">
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <label for="LuotXem" class="labelModal">Lượt Xem</label>
-                                    <input type="number" class="form-control inputModal" value="1" id="LuotXem" placeholder="Nhập Số Lượt Xem">
-                                </div>
-                            </div>
-
-                            <div class="col-12">
-                                <label for="maND" class="labelModal">Người tạo</label>
-                                <select class="custom-select inputModal" id="NguoiTao">
-                                    <option value="HV">HV</option>
-                                    <option value="GV">GV</option>
-                                </select>
-                            </div>
-                        </form>
+                        </div>
                     </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-success" id="btnCapNhatKH">Cập Nhật</button>
-                        <button class="btn btn-danger" data-dismiss="modal">Close</button>
-                        <button class="btn btn-warning" id="btnXoaKHEdit">Xoá Khoá Học</button>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="overview-item overview-item--c3 thongke thongKeKhoaHoc">
+                        <div class="overview__inner">
+                            <div class="overview-box clearfix">
+                                <div class="icon">
+                                    <i class="fa fa-book"></i>
+                                </div>
+                                <div class="text">
+                                    <h2 id="mountKH"></h2>
+                                    <span>Khoá Học</span>
+                                </div>
+                            </div>
+                            <div class="overview-chart">
+                                <canvas id="widgetChart3"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="overview-item overview-item--c4 thongke thongKeView">
+                        <div class="overview__inner">
+                            <div class="overview-box clearfix">
+                                <div class="icon">
+                                    <i class="fa fa-eye"></i>
+                                </div>
+                                <div class="text">
+                                    <h2 id="mountView"></h2>
+                                    <span>Lượt Xem</span>
+                                </div>
+                            </div>
+                            <div class="overview-chart">
+                                <canvas id="recent-rep-chart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-12">
+                    <div class="au-card">
+                        <div class="au-card-inner">
+                            <h3 class="title-2">NGƯỜI DÙNG</h3>
+                            <canvas id="sales-chart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-12">
+                    <div class="au-card">
+                        <div class="au-card-inner">
+                            <h3 class="title-2">HỌC VIÊN</h3>
+                            <canvas id="team-chart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-12">
+                    <div class="au-card">
+                        <div class="au-card-inner">
+                            <h3 class="title-2">LƯỢT XEM</h3>
+                            <canvas id="barChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-12">
+                    <div class="au-card">
+                        <div class="au-card-inner">
+                            <h3 class="title-2">KHOÁ HỌC</h3>
+                            <canvas id="radarChart"></canvas>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="modalNguoiDung" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <div class="modal-title">
-                            <h3>Thêm Người Dùng</h3>
-                        </div>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    </main>
+
+    <div class="modal fade" id="modalKhoaHoc" tabindex="-1" role="dialog" style="overflow-y: auto!important">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="modal-title">
+                        <h3>Thêm Khoá Học</h3>
+                    </div>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
-                    </div>
-                    <div class="modal-body container">
-                        <form class="row" id="formThemNguoiDung">
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <label for="TaiKhoan" class="labelModal">Tài Khoản</label>
-                                    <input name="TKThem" type="text" class="form-control inputModal" id="TaiKhoanND" placeholder="Nhập Vào Tài Khoản">
-                                </div>
+                </div>
+                <div class="modal-body container">
+                    <form class="row" id="formThemKH">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="MaKhoaHoc" class="labelModal">Mã Khoá Học</label>
+                                <input type="text" name="maKH" class="form-control inputModal" id="MaKhoaHoc" placeholder="Nhập Vào Mã Khoá Học">
                             </div>
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <label for="MatKhauND" class="labelModal">Mật Khẩu</label>
-                                    <input name="MKThem" type="text" class="form-control inputModal" id="MatKhauND" placeholder="Nhập Vào Mật Khẩu">
-                                </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="TenKhoaHoc" class="labelModal">Tên Khoá Học</label>
+                                <input type="text" name="tenKH" class="form-control inputModal" id="TenKhoaHoc" placeholder="Nhập Vào Tên Khoá Học">
                             </div>
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <label for="HoTen" class="labelModal">Họ Tên</label>
-                                    <input name="tenThem" type="text" class="form-control inputModal" id="HoTenND" placeholder="Nhập Họ Tên">
-                                </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="MoTa" class="labelModal">Mô Tả</label>
+                                <textarea name="Mota" id="MoTa" class="form-control inputModal" rows="7"></textarea>
                             </div>
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <label for="Email" class="labelModal">Email</label>
-                                    <input name="emailThem" type="text" class="form-control inputModal" id="EmailND" placeholder="Nhập Email">
-                                </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="HinhAnh" class="labelModal">Hình Ảnh</label>
+                                <input type="url" name="hinhKH" class="form-control inputModal" id="HinhAnh" placeholder="Nhập vào đường dẫn hình ảnh">
                             </div>
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <label for="SoDT" class="labelModal">Số Điện Thoại</label>
-                                    <input name="SDTThem" type="text" class="form-control inputModal" id="SoDTND" placeholder="Nhập Số Điện Thoại">
-                                </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="LuotXem" class="labelModal">Lượt Xem</label>
+                                <input type="number" class="form-control inputModal" value="1" id="LuotXem" placeholder="Nhập Số Lượt Xem">
                             </div>
+                        </div>
 
-                            <div class="col-12">
-                                <label for="maND" class="labelModal">Mã Người Dùng</label>
-                                <select class="custom-select inputModal" id="maND">
+                        <div class="col-12">
+                            <label for="maND" class="labelModal">Người tạo</label>
+                            <select class="custom-select inputModal" id="NguoiTao">
                                     <option value="HV">HV</option>
                                     <option value="GV">GV</option>
                                 </select>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-danger" data-dismiss="modal">Close</button>
-                        <button class="btn btn-success" id="btnThemNguoiDung">Thêm</button>
-                        <button class="btn btn-warning d-none" id="btnXoaKHEdit">Xoá</button>
-                    </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-success" id="btnCapNhatKH">Cập Nhật</button>
+                    <button class="btn btn-danger" data-dismiss="modal">Close</button>
+                    <button class="btn btn-warning" id="btnXoaKHEdit">Xoá Khoá Học</button>
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="modalCapNhatND" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <div class="modal-title">
-                            <h3>Cập nhật thông tin người dùng</h3>
-                        </div>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    </div>
+    <div class="modal fade" id="modalNguoiDung" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="modal-title">
+                        <h3>Thêm Người Dùng</h3>
+                    </div>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
-                    </div>
-                    <div class="modal-body container">
-                        <div class="row">
-                            <div class="col-md">
-                                <form class="row" id="formCapNhatND">
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                            <label for="TaiKhoan" class="labelModal">Tài Khoản</label>
-                                            <input type="text" class="form-control inputModal" id="TaiKhoanNDCN" placeholder="Nhập Vào Tài Khoản" disabled>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                            <label for="MatKhauND" class="labelModal">Mật Khẩu</label>
-                                            <input type="password" class="form-control inputModal" id="MatKhauNDCN" name="mkCapNhat" placeholder="Nhập Vào Mật Khẩu">
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                            <label for="HoTen" class="labelModal">Họ Tên</label>
-                                            <input type="text" class="form-control inputModal" id="HoTenNDCN" placeholder="Nhập Họ Tên" name="tenCapNhat">
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                            <label for="Email" class="labelModal">Email</label>
-                                            <input type="text" class="form-control inputModal" id="EmailNDCN" placeholder="Nhập Email" name="emailCapNhat">
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                            <label for="SoDT" class="labelModal">Số Điện Thoại</label>
-                                            <input type="text" class="form-control inputModal" id="SoDTNDCN" placeholder="Nhập Số Điện Thoại" name="sdtCapNhat">
-                                        </div>
-                                    </div>
+                </div>
+                <div class="modal-body container">
+                    <form class="row" id="formThemNguoiDung">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="TaiKhoan" class="labelModal">Tài Khoản</label>
+                                <input name="TKThem" type="text" class="form-control inputModal" id="TaiKhoanND" placeholder="Nhập Vào Tài Khoản">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="MatKhauND" class="labelModal">Mật Khẩu</label>
+                                <input name="MKThem" type="password" class="form-control inputModal" id="MatKhauND" placeholder="Nhập Vào Mật Khẩu">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="HoTen" class="labelModal">Họ Tên</label>
+                                <input name="tenThem" type="text" class="form-control inputModal" id="HoTenND" placeholder="Nhập Họ Tên">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="Email" class="labelModal">Email</label>
+                                <input name="emailThem" type="text" class="form-control inputModal" id="EmailND" placeholder="Nhập Email">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="SoDT" class="labelModal">Số Điện Thoại</label>
+                                <input name="SDTThem" type="text" class="form-control inputModal" id="SoDTND" placeholder="Nhập Số Điện Thoại">
+                            </div>
+                        </div>
 
-                                    <div class="col-12">
-                                        <label for="maND" class="labelModal">Mã Người Dùng</label>
-                                        <select class="custom-select inputModal" id="maNDCN">
+                        <div class="col-12">
+                            <label for="maND" class="labelModal">Mã Người Dùng</label>
+                            <select class="custom-select inputModal" id="maND">
+                                    <option value="HV">HV</option>
+                                    <option value="GV">GV</option>
+                                </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-danger" data-dismiss="modal">Close</button>
+                    <button class="btn btn-success" id="btnThemNguoiDung">Thêm</button>
+                    <button class="btn btn-warning d-none" id="btnXoaKHEdit">Xoá</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modalCapNhatND" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="modal-title">
+                        <h3>Cập nhật thông tin người dùng</h3>
+                    </div>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                </div>
+                <div class="modal-body container">
+                    <div class="row">
+                        <div class="col-md">
+                            <form class="row" id="formCapNhatND">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="TaiKhoan" class="labelModal">Tài Khoản</label>
+                                        <input type="text" class="form-control inputModal" id="TaiKhoanNDCN" placeholder="Nhập Vào Tài Khoản" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="MatKhauND" class="labelModal">Mật Khẩu</label>
+                                        <input type="password" class="form-control inputModal" id="MatKhauNDCN" name="mkCapNhat" placeholder="Nhập Vào Mật Khẩu">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="HoTen" class="labelModal">Họ Tên</label>
+                                        <input type="text" class="form-control inputModal" id="HoTenNDCN" placeholder="Nhập Họ Tên" name="tenCapNhat">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="Email" class="labelModal">Email</label>
+                                        <input type="text" class="form-control inputModal" id="EmailNDCN" placeholder="Nhập Email" name="emailCapNhat">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="SoDT" class="labelModal">Số Điện Thoại</label>
+                                        <input type="text" class="form-control inputModal" id="SoDTNDCN" placeholder="Nhập Số Điện Thoại" name="sdtCapNhat">
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <label for="maND" class="labelModal">Mã Người Dùng</label>
+                                    <select class="custom-select inputModal" id="maNDCN">
                                             <option value="HV">HV</option>
                                             <option value="GV">GV</option>
                                         </select>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="col-md-5 khoahocHV">
-                                <h5>Các Khoá Học Đã Đăng ký</h5>
-                                <ul class="list-group" id="listKhoaHoc">
-
-                                </ul>
-                                <form class="d-flex flex-column justify-content-between mt-3">
-                                    <select name="" id="listKHoaHocDK" class="inputModal mb-3"></select>
-                                    <button class="btn btn-primary p-2" id="btnGhiDanh">Ghi Danh</button>
-                                </form>
-                            </div>
+                                </div>
+                            </form>
                         </div>
+                        <div class="col-md-5 khoahocHV">
+                            <h5>Các Khoá Học Đã Đăng ký</h5>
+                            <ul class="list-group" id="listKhoaHoc">
 
+                            </ul>
+                            <form class="d-flex flex-column justify-content-between mt-3">
+                                <select name="" id="listKHoaHocDK" class="inputModal mb-3"></select>
+                                <button class="btn btn-primary p-2" id="btnGhiDanh">Ghi Danh</button>
+                            </form>
+                        </div>
                     </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-danger" data-dismiss="modal" >Đóng</button>
-                        <button class="btn btn-success" id="btnCapNhatND">Cập Nhật</button>
-                        <button class="btn btn-warning xoaNDEdit" id="btnXoaNDEdit">Xoá Người Dùng</button>
-                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-danger" data-dismiss="modal">Đóng</button>
+                    <button class="btn btn-success" id="btnCapNhatND">Cập Nhật</button>
+                    <button class="btn btn-warning xoaNDEdit" id="btnXoaNDEdit">Xoá Người Dùng</button>
                 </div>
             </div>
         </div>
-    </body>
+    </div>
+</body>

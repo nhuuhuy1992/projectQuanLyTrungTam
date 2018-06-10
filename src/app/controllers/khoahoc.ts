@@ -19,7 +19,7 @@ DangKiNguoiDung();
 DangXuatNguoiDung();
 showThongTinNguoiDung();
 
-function showKH(DSKH:Array<KhoaHoc>, divLoad, entry = 0){
+function showKH(DSKH:Array<KhoaHoc>, divLoad){
 	let dataKH = "";
  	for(let kh of DSKH){
  		dataKH += `
@@ -72,3 +72,4 @@ $('#sortKH').change(function(){
 $('#showEntriesKH').change(function(){
 	renderTable(danhSachKhoaHoc.DSKH,'#showEntriesKH','.ListKhoaHoc',showKH);
 })
+

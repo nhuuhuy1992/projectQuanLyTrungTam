@@ -7,12 +7,12 @@ import { NguoiDung } from "./../models/NguoiDung";
 import { DanhSachNguoiDung } from "./../models/DanhSachNguoiDung";
 import { DanhSachKhoaHoc } from "./../models/DanhSachKhoaHoc";
 import { KhoaHocServices } from "./../services/KhoaHocServices";
-import { alertSuccess, alertFail, alertDangXuat } from "./dependInjection";
+import { alertSuccess, alertFail, alertDangXuat } from "./helpers";
 
 const DSNDServices = new DanhSachNguoiDungServices();
 
  //lưu thông tin người dùng vào local storage
-export function luuNguoiDK(nd){
+export function luuNguoiDK(nd){									
 	let json = JSON.stringify(nd);
 	localStorage.setItem("NguoiDung", json);
 }
@@ -23,7 +23,7 @@ export function xoaNguoiDungLocal(){
 export function ktNguoiDungDN(){
 	if(localStorage.getItem("NguoiDung")){
 		let json = JSON.parse(localStorage.getItem("NguoiDung"));
-		DSNDServices.dangNhap(json.TaiKhoan, json.MatKhau)
+		DSNDServices.dangNhap(json.TaiKhoan, json.MatKhau)											
 		.done(function(res){
 			let nguoiDangNhap = res[0];
 			let Obj:            NguoiDung =  new NguoiDung(nguoiDangNhap.TaiKhoan, nguoiDangNhap.MatKhau, nguoiDangNhap.HoTen, nguoiDangNhap.SoDT, nguoiDangNhap.Email, nguoiDangNhap.MaLoaiNguoiDung);
@@ -46,16 +46,16 @@ export function ktNguoiDungDN(){
 	}
 }
 
-export function DangNhapNguoiDung(){
-    return $("#sign-up-form").submit(function(){
-		event.preventDefault();
-		if($("#sign-up-form").valid()){
+export function DangNhapNguoiDung(){					
+    return $("#sign-up-form").submit(function(){			
+		event.preventDefault();						
+		if($("#sign-up-form").valid()){	
 			let TKDN:string = $("#inputTKDN").val();
-			let passDN:string = $("#inputPassDN").val();
-			DSNDServices.dangNhap(TKDN, passDN)
-			.done(res => {
+			let passDN:string = $("#inputPassDN").val();	
+			DSNDServices.dangNhap(TKDN, passDN)					
+			.done(res => {																				
 				let nguoiDangNhap = res[0];
-				let Obj:            NguoiDung = new NguoiDung(nguoiDangNhap.TaiKhoan, nguoiDangNhap.MatKhau, nguoiDangNhap.HoTen, nguoiDangNhap.SoDT, nguoiDangNhap.Email, nguoiDangNhap.MaLoaiNguoiDung);
+				let Obj:            NguoiDung = new NguoiDung(nguoiDangNhap.TaiKhoan, passDN, nguoiDangNhap.HoTen, nguoiDangNhap.SoDT, nguoiDangNhap.Email, nguoiDangNhap.MaLoaiNguoiDung);
 				if(Obj._MaLoaiNguoiDung == "HV"){
 					alertSuccess("Đăng Nhập Thành Công!").then(() => {
 						luuNguoiDK(Obj);//luu nguoi dung vao local

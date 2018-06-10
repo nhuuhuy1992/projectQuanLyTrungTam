@@ -13,59 +13,31 @@ import { paginate, renderTable, compareValues, pageOnClick }  from "../../assets
 import { NguoiDung } from "./../models/NguoiDung";
 import { DanhSachNguoiDungServices } from "./../services/NguoiDungServices";
 import { DanhSachNguoiDung } from "./../models/DanhSachNguoiDung";
-import { KhoaHoc } from "../models/KhoaHoc";
-import { KhoaHocServices } from '../services/KhoaHocServices';
-import { DanhSachKhoaHoc } from "../models/DanhSachKhoaHoc";
+import {showDSKHDK} from './admin_KhoaHoc';
 
-import { suaKhiClickVaoRow, alertFail, alertSuccess, resetForm, getDataNDServices, getDataKHServices, alertXoa, nhanKHServices, nhanNDServices } from "./dependInjection";
-let getid = el => document.getElementById(el);
-let getInputId = el => <HTMLInputElement>document.getElementById(el);
+import { suaKhiClickVaoRow, alertFail, alertSuccess,  alertXoa } from "./helpers";
 
 //instance
 let DSNguoiDung:DanhSachNguoiDung = new DanhSachNguoiDung();
-let danhSachKhoaHoc = new DanhSachKhoaHoc();
 let DSNDService:any = new DanhSachNguoiDungServices();
-let DSKHService: any = new KhoaHocServices();
+// let DSKHService: any = new KhoaHocServices();
+const DSNDServices:any = new DanhSachNguoiDungServices();
 
-
-
-function showDSKHDK(taikhoan:string){
-	DSKHService.layThongTinKH(taikhoan)
-	.done(
-		res =>{
-			let khoahocdk:string ='';
-			let khChuaDk: string ='';
-			let danhSachKhoaHocDK = new DanhSachKhoaHoc();
-			if( typeof res !== 'string'){
-				res.forEach((khoahoc)=>{
-					khoahocdk+= `<li class="list-group-item">${khoahoc.TenKhoaHoc}</li>`
-				})
-				danhSachKhoaHocDK.DSKH = danhSachKhoaHoc.DSKH.filter(kh1 => res.some(kh2 => kh1.MaKhoaHoc !== kh2.MaKhoaHoc))
-			}else{
-				khoahocdk = 'Chưa có khoá học';
-				danhSachKhoaHocDK.DSKH = danhSachKhoaHoc.DSKH
-			}
-			$('#listKhoaHoc').html(khoahocdk);
-
-			danhSachKhoaHocDK.DSKH.forEach((khoahoc:KhoaHoc)=>{
-				khChuaDk +=`<option value="${khoahoc.MaKhoaHoc}">${khoahoc.TenKhoaHoc}</option>`
-			})
-			$('#listKHoaHocDK').html(khChuaDk);
-		}
-		)
-	.fail()
-}
-danhSachKhoaHoc.DSKH = nhanKHServices();
-(function showEntriesND(){
-	$('#showEntriesUser').change(function(){
-		renderTable(DSNguoiDung.DSND,'#showEntriesUser','#tableNguoiDung',showDSND);
+function hienThiDSGV(dsnd:DanhSachNguoiDung){
+	let dsGV:Array<NguoiDung> = dsnd.locNguoiDung('GV').DSND;
+	let data:string = ''
+	dsGV.forEach(gv =>{
+		data+=`
+		<option value="${gv._TaiKhoan}">${gv._HoTen}</option>
+		`
 	})
-}());
+	$('#NguoiTao').html(data)
+}
 
 function showDSND(DSND:Array<NguoiDung>, divLoad, entry = 0){
 	let data:string = "";
 	let table = $(divLoad).find('tbody');
-	table.html();
+	table.html('');
 	for(let i:number = 0; i < DSND.length; i++){
 		let motNguoiDung = DSND[i];
 		data += `
@@ -97,24 +69,59 @@ function showDSND(DSND:Array<NguoiDung>, divLoad, entry = 0){
 	}
 	table.html(data);
 	suaKhiClickVaoRow(".trNguoiDung","", "taikhoan",);
-}
-(function clickXoaND(){
-	$("body").delegate(".btnXoaTungND", "click", function(){
-		event.preventDefault();
-		xoaNguoiDungAPI($(this));
-	})
-}());
+	$("#mountND").html(DSNguoiDung.slNguoiDung());
+	$("#mountHV").html(DSNguoiDung.slHocVien());
 
-(function GetAndShowND(){
-	for(let person of getDataNDServices().responseJSON){
-		let personObj:  NguoiDung = new NguoiDung(person.TaiKhoan, person.MatKhau, person.HoTen, person.SoDT, person.Email, person.MaLoaiNguoiDung);
-		DSNguoiDung.themNguoiDung(personObj);
+}
+
+function createModalSuaND(That){
+	let id:string = That.attr('data-id');
+	let nguoidung:NguoiDung = DSNguoiDung.DSND.find(user => user._TaiKhoan === id );
+	$('#TaiKhoanNDCN').val(nguoidung._TaiKhoan);
+	$('#MatKhauNDCN').val(nguoidung._MatKhau);
+	$('#HoTenNDCN').val(nguoidung._HoTen);
+	$('#EmailNDCN').val(nguoidung._Email);
+	$('#SoDTNDCN').val(nguoidung._SoDT);
+
+	$("#btnXoaNDEdit").attr("data-id", id);
+	if(nguoidung._MaLoaiNguoiDung === 'GV'){
+		$('#modalCapNhatND .modal-dialog').removeClass('modal-lg');
+		$('#maNDCN option[value="HV"]').removeAttr('selected');
+		$('#maNDCN option[value="GV"]').attr('selected','selected');
+		$("#btnXoaNDEdit").css({"display" : "none"});
+		$('.khoahocHV').hide();
+	}else{
+		$('#modalCapNhatND .modal-dialog').addClass('modal-lg');
+		$('#maNDCN option[value="GV"]').removeAttr('selected');
+		$('#maNDCN option[value="HV"]').attr('selected','selected');
+		$('.khoahocHV').show();
+		$("#btnXoaNDEdit").css({"display" : "block"});
+		showDSKHDK(nguoidung._TaiKhoan);
 	}
+}
+
+
+DSNDServices.layDSNDService()
+.done( function(res) {
+	DSNguoiDung.DSND = res.map(person => new NguoiDung(person.TaiKhoan,  person.MatKhau, person.HoTen,person.SoDT,  person.Email, person.MaLoaiNguoiDung) );
 	renderTable(DSNguoiDung.DSND,'#showEntriesUser','#tableNguoiDung',showDSND);
 	hienThiDSGV(DSNguoiDung);
-}());
-(function ThemNguoiDung(){
-	$("#btnThemNguoiDung").click(function(){
+})
+.fail(err => console.log(err));
+
+
+
+$('#showEntriesUser').change(function(){
+	renderTable(DSNguoiDung.DSND,'#showEntriesUser','#tableNguoiDung',showDSND);
+})
+
+
+$("body").delegate(".btnXoaTungND", "click", function(){
+	event.preventDefault();
+	xoaNguoiDungAPI($(this));
+})
+
+$("#btnThemNguoiDung").click(function(){
 		if($("#formThemNguoiDung").valid()){
 			let HoTen:string     = $("#HoTenND").val();
 			let TaiKhoan:string     = $("#TaiKhoanND").val();
@@ -141,7 +148,7 @@ function showDSND(DSND:Array<NguoiDung>, divLoad, entry = 0){
 		}
 		
 	})
-}());
+
 //xoá người dùng api
 function xoaNguoiDungAPI(btns){
 	let idND = $(btns).attr('data-id');
@@ -170,175 +177,131 @@ function xoaNguoiDungAPI(btns){
 	})
 }
 
-(function CapNhatND(){
-	$('#btnCapNhatND').click(function(){
-		let HoTenCN     = $('#HoTenNDCN').val();
-		let TaiKhoanCN  = $('#TaiKhoanNDCN').val();
-		let EmailCN     = $('#EmailNDCN').val();
-		let SoDTCN      = Number($('#SoDTNDCN').val());
-		let maNDCN      = $('#maNDCN').val();
-		let MatKhauNDCN = $('#MatKhauNDCN').val();
-		if($("#formCapNhatND").valid()){
-			let NDCapNhat = new NguoiDung(TaiKhoanCN, MatKhauNDCN, HoTenCN, SoDTCN, EmailCN, maNDCN);
-			DSNDService.suaNguoiDungService(NDCapNhat)
-			.done(function(res){
-						alertSuccess('Cập Nhật Thành Công!')
-						.then(()=>{
-							$("#modalCapNhatND").modal("hide");
-							DSNguoiDung.suaNguoiDung(NDCapNhat);
-							renderTable(DSNguoiDung.DSND,'#showEntriesUser','#tableNguoiDung',showDSND);
-						})
-					})
-			.fail(function(err){
-				alertFail("Thông Tin Không Thể Thay Đổi")
-			});
-		}
-	})
-}());
-function createModalSuaND(That){
-	let id:string = $(That).attr('data-id');
-	let nguoidung:NguoiDung = DSNguoiDung.DSND.find(user => user._TaiKhoan === id );
-	$('#TaiKhoanNDCN').val(nguoidung._TaiKhoan);
-	$('#MatKhauNDCN').val(nguoidung._MatKhau);
-	$('#HoTenNDCN').val(nguoidung._HoTen);
-	$('#EmailNDCN').val(nguoidung._Email);
-	$('#SoDTNDCN').val(nguoidung._SoDT);
 
-	$("#btnXoaNDEdit").attr("data-id", id);
-	if(nguoidung._MaLoaiNguoiDung === 'GV'){
-		$('#modalCapNhatND .modal-dialog').removeClass('modal-lg');
-		$('#maNDCN option[value="HV"]').removeAttr('selected');
-		$('#maNDCN option[value="GV"]').attr('selected','selected');
-		$("#btnXoaNDEdit").css({"display" : "none"});
-		$('.khoahocHV').hide();
-	}else{
-		$('#modalCapNhatND .modal-dialog').addClass('modal-lg');
-		$('#maNDCN option[value="GV"]').removeAttr('selected');
-		$('#maNDCN option[value="HV"]').attr('selected','selected');
-		$('.khoahocHV').show();
-		$("#btnXoaNDEdit").css({"display" : "block"});
-		showDSKHDK(nguoidung._TaiKhoan);
-	}
-}
-(function clickBtnCapNhat(){
-	$('body').delegate('.btnCapNhatND','click',function(){
-		event.preventDefault();
-		createModalSuaND($(this))
-	})
-}());
-(function clickRowTimKiem(){
-	$("body").delegate(".trNguoiDungTimKiem", "click",function(){
-		event.preventDefault();
-		createModalSuaND($(this));
-		$(".tableTimKiem").removeClass("active");
-	})
-}());
-(function clickXoaNDEdit(){
-	$("body").delegate("#btnXoaNDEdit", "click", function(){
-		event.preventDefault();
-		xoaNguoiDungAPI($(this));
-	})
-}());
-// (function xoaNDModalEdit(){
-// 	$("#btnXoaNDEdit").click(function(){
-// 		event.preventDefault();
-// 		xoaNguoiDungAPI(".xoaNDEdit");
-// 	})
-// }());
-(function xoaNhieuNguoiDung(){
-	$("#btnXoaNhieuND").click(function(){
-		event.preventDefault();
-		let cbx = $(".cbxNguoiDung");
-		if(!cbx.is(":checked")){
-			swal({
-				type: 'error',
-				title: 'Xin Chọn Người Dùng Cần Xoá!',
-				toast: true,
-				position: 'top-end',
-				showConfirmButton: false,
-				timer: 2000
-			})
-			return false;
-		}
-		for(let i = 0; i < cbx.length; i++){
-			if($(cbx[i]).is(":checked")){
-				let ndCanXoa = $(cbx[i]).attr("taikhoan");
-				alertXoa("Người Dùng Này").then(res => {
-					if(res.value){
-						DSNDService.xoaNguoiDungService(ndCanXoa)
-						.done(res => {
-							alertSuccess("Xoá Thành Công!")
-							.then(res => {
-									DSNguoiDung.xoaNguoiDungTheoTk($(cbx[i]).attr("taikhoan"));
-									showDSND(DSNguoiDung.DSND, "#dataNguoiDung");
-									console.log(DSNguoiDung.DSND);
-								})
-
-							})
-						.fail(err => {
-							alertFail("Không Thể Xoá Người Dùng Này!")
-						})
-					}
+$('#btnCapNhatND').click(function(){
+let HoTenCN     = $('#HoTenNDCN').val();
+let TaiKhoanCN  = $('#TaiKhoanNDCN').val();
+let EmailCN     = $('#EmailNDCN').val();
+let SoDTCN      = Number($('#SoDTNDCN').val());
+let maNDCN      = $('#maNDCN').val();
+let MatKhauNDCN = $('#MatKhauNDCN').val();
+if($("#formCapNhatND").valid()){
+	let NDCapNhat = new NguoiDung(TaiKhoanCN, MatKhauNDCN, HoTenCN, SoDTCN, EmailCN, maNDCN);
+	DSNDService.suaNguoiDungService(NDCapNhat)
+	.done(function(res){
+				alertSuccess('Cập Nhật Thành Công!')
+				.then(()=>{
+					$("#modalCapNhatND").modal("hide");
+					DSNguoiDung.suaNguoiDung(NDCapNhat);
+					renderTable(DSNguoiDung.DSND,'#showEntriesUser','#tableNguoiDung',showDSND);
 				})
-			}
-		}
-
-	})
-}());
-
-
-(function TimNguoiDung(){
-	$("#timND").keyup(function(){
-		let key:string = $(this).val().trim().toLowerCase();
-		let DSNDCanTimKiem = DSNguoiDung.timNguoiDungTheoTen(key);
-		let data = "";
-		if(key === "" || key === " " || DSNDCanTimKiem.DSND.length == 0){
-			$("#dataTimKiemNguoiDung").html("");
-			$("#tableTimKiemNguoiDung").removeClass("active");
-		}
-		else{
-			for(let i:number = 0; i < DSNDCanTimKiem.DSND.length; i++){
-				let ndTimKiem = DSNDCanTimKiem.DSND[i];
-				data += `
-					<tr taikhoan=${ndTimKiem._TaiKhoan} data-target="#modalCapNhatND" data-toggle="modal" class="trNguoiDungTimKiem" data-id="${ndTimKiem._TaiKhoan}">
-						<td>${i+1}</td>
-						<td>${ndTimKiem._TaiKhoan}</td>
-						<td>${ndTimKiem._HoTen}</td>
-					</tr>
-				`;
-			}
-			$("#dataTimKiemNguoiDung").html(data);
-			$("#tableTimKiemNguoiDung").addClass("active");
-		}
-	})
-}());
-
-(function sortNguoiDung(){
-	$('#tableNguoiDung th').click(function(){
-		let key = $(this).data('sort');
-		if(key){
-			if($(this).hasClass('asc')){
-				$(this).removeClass('asc');
-				$(this).addClass('desc');
-				DSNguoiDung.DSND.sort(compareValues(key,'desc'))
-
-			}else{
-				$(this).removeClass('desc');
-				$(this).addClass('asc');
-				DSNguoiDung.DSND.sort(compareValues(key))
-			}
-			$('#tableNguoiDung').next('.pagination').find('.page-item.active > .page-link').click();
-		}
-
-	})
-}());
-function hienThiDSGV(dsnd:DanhSachNguoiDung){
-	let dsGV:Array<NguoiDung> = dsnd.locNguoiDung('GV').DSND;
-	let data:string = ''
-	dsGV.forEach(gv =>{
-		data+=`
-		<option value="${gv._TaiKhoan}">${gv._HoTen}</option>
-		`
-	})
-	$('#NguoiTao').html(data)
+			})
+	.fail(function(err){
+		alertFail("Thông Tin Không Thể Thay Đổi")
+	});
 }
+})
+
+
+$('body').delegate('.btnCapNhatND','click',function(){
+	// event.preventDefault();
+	createModalSuaND($(this))
+})
+
+
+$("body").delegate(".trNguoiDungTimKiem", "click",function(){
+	event.preventDefault();
+	createModalSuaND($(this));
+	$(".tableTimKiem").removeClass("active");
+})
+
+$("body").delegate("#btnXoaNDEdit", "click", function(){
+	event.preventDefault();
+	xoaNguoiDungAPI($(this));
+})
+
+$("#btnXoaNhieuND").click(function(){
+	event.preventDefault();
+	let cbx = $(".cbxNguoiDung");
+	if(!cbx.is(":checked")){
+		swal({
+			type: 'error',
+			title: 'Xin Chọn Người Dùng Cần Xoá!',
+			toast: true,
+			position: 'top-end',
+			showConfirmButton: false,
+			timer: 2000
+		})
+		return false;
+	}
+	for(let i = 0; i < cbx.length; i++){
+		if($(cbx[i]).is(":checked")){
+			let ndCanXoa = $(cbx[i]).attr("taikhoan");
+			alertXoa("Người Dùng Này").then(res => {
+				if(res.value){
+					DSNDService.xoaNguoiDungService(ndCanXoa)
+					.done(res => {
+						alertSuccess("Xoá Thành Công!")
+						.then(res => {
+								DSNguoiDung.xoaNguoiDungTheoTk($(cbx[i]).attr("taikhoan"));
+								showDSND(DSNguoiDung.DSND, "#dataNguoiDung");
+							})
+
+						})
+					.fail(err => {
+						alertFail("Không Thể Xoá Người Dùng Này!")
+					})
+				}
+			})
+		}
+	}
+
+})
+
+
+
+$("#timND").keyup(function(){
+	let key:string = $(this).val().trim().toLowerCase();
+	let DSNDCanTimKiem = DSNguoiDung.timNguoiDungTheoTen(key);
+	let data = "";
+	if(key === "" || key === " " || DSNDCanTimKiem.DSND.length == 0){
+		$("#dataTimKiemNguoiDung").html("");
+		$("#tableTimKiemNguoiDung").removeClass("active");
+	}
+	else{
+		for(let i:number = 0; i < DSNDCanTimKiem.DSND.length; i++){
+			let ndTimKiem = DSNDCanTimKiem.DSND[i];
+			data += `
+				<tr taikhoan=${ndTimKiem._TaiKhoan} data-target="#modalCapNhatND" data-toggle="modal" class="trNguoiDungTimKiem" data-id="${ndTimKiem._TaiKhoan}">
+					<td>${i+1}</td>
+					<td>${ndTimKiem._TaiKhoan}</td>
+					<td>${ndTimKiem._HoTen}</td>
+				</tr>
+			`;
+		}
+		$("#dataTimKiemNguoiDung").html(data);
+		$("#tableTimKiemNguoiDung").addClass("active");
+	}
+})
+
+
+
+$('#tableNguoiDung th').click(function(){
+	let key = $(this).data('sort');
+	if(key){
+		if($(this).hasClass('asc')){
+			$(this).removeClass('asc');
+			$(this).addClass('desc');
+			DSNguoiDung.DSND.sort(compareValues(key,'desc'))
+
+		}else{
+			$(this).removeClass('desc');
+			$(this).addClass('asc');
+			DSNguoiDung.DSND.sort(compareValues(key))
+		}
+		$('#tableNguoiDung').next('.pagination').find('.page-item.active > .page-link').click();
+	}
+
+})
+
+

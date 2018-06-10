@@ -1,46 +1,8 @@
 import * as $ from "jquery";
 import swal from "sweetalert2";
 
-import { NguoiDung } from "../models/NguoiDung";
-import { DanhSachNguoiDung } from "../models/DanhSachNguoiDung";
-import { DanhSachNguoiDungServices } from "./../services/NguoiDungServices";
 
-import { KhoaHoc } from "../models/KhoaHoc";
-import { KhoaHocServices } from '../services/KhoaHocServices';
-import { DanhSachKhoaHoc } from "../models/DanhSachKhoaHoc";
-
-const DSKhoaHoc = new DanhSachKhoaHoc();
-const DSKHService: any = new KhoaHocServices();
-const DSNDServices:any = new DanhSachNguoiDungServices();
-const DSNguoiDung = new DanhSachNguoiDung();
-
-export function getDataNDServices(){
-	return DSNDServices.layDSNDService()
-				.done( function(res) {
-					for(let person of res){
-						let personObj:  NguoiDung = new NguoiDung(person.TaiKhoan,  person.MatKhau, person.HoTen, person.SoDT,  person.Email, person.MaLoaiNguoiDung);
-						DSNguoiDung.themNguoiDung(personObj);
-					}
-				})
-				.fail();
-}
-export function getDataKHServices(){
-	return DSKHService.layKhoaHocService()
-	.done(res =>{
-		for(let kh of res){
-				let khOBJ:  KhoaHoc = new KhoaHoc(kh.MaKhoaHoc, kh.TenKhoaHoc, kh.MoTa, kh.HinhAnh, kh.LuotXem, kh.NguoiTao);
-				DSKhoaHoc.themKhoaHoc(khOBJ);
-			}
-	})
-	.fail()
-}
-export function nhanNDServices(){
-	return getDataNDServices().responseJSON;
-}
-export function nhanKHServices(){
-	return getDataKHServices().responseJSON;
-}
-export function suaKhiClickVaoRow(thisTR, obj ,thisAttr){
+ function suaKhiClickVaoRow(thisTR, obj ,thisAttr){
 	let tr = document.querySelectorAll(thisTR);
 	for(let i = 0; i < tr.length; i++){
 		tr[i].addEventListener("click", function() {
@@ -53,7 +15,7 @@ export function suaKhiClickVaoRow(thisTR, obj ,thisAttr){
 		})
 	}
 }
-export function resetForm(str){
+ function resetForm(str){
 	if(str === "formKH"){
 		$('#MaKhoaHoc').val('');
 		$('#TenKhoaHoc').val('');
@@ -71,19 +33,19 @@ export function resetForm(str){
 		$("#SoDTND").val("");
 	}
 }
-export function alertSuccess(noti){
+ function alertSuccess(noti){
 	return swal({
 		type:  'success',
 		title: `${noti}`,
 	})
 }
-export function alertFail(noti){
+ function alertFail(noti){
 	return swal({
 		type: 'error',
 		title: `${noti}`,
 	})
 }
-export function alertDangXuat(){
+ function alertDangXuat(){
 	return swal({
 		title: '<strong>Bạn Muốn Đăng Xuất?</strong>',
 		type: 'warning',
@@ -98,7 +60,7 @@ export function alertDangXuat(){
 	})
 }
 
-export function alertXoa(noti){
+ function alertXoa(noti){
 	return swal({
 		title:                 `<strong>Bạn Có Muốn Xoá ${noti}?</strong>`,
 		type:                  'warning',
@@ -113,4 +75,5 @@ export function alertXoa(noti){
 	})
 }
 
+export { alertXoa, alertDangXuat, alertFail, alertSuccess, resetForm, suaKhiClickVaoRow }
 

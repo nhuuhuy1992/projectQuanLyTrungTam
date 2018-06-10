@@ -33,7 +33,8 @@ export class DanhSachNguoiDung{
 		return this.DSND.length;
 	}
 	slHocVien():number{
-		return this.DSHV.length;
+		// return this.DSHV.length;
+		return this.DSND.filter((nd:NguoiDung)=> nd._MaLoaiNguoiDung === "HV" ).length;
 	}
 	timNguoiDungTheoTen(tuKhoaTen:string):DanhSachNguoiDung{
 		let DSNDCanTim:DanhSachNguoiDung = new DanhSachNguoiDung();

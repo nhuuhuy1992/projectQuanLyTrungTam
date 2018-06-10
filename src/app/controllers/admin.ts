@@ -3,7 +3,7 @@ import swal from "sweetalert2";
 import "./admin_NguoiDung";
 import "./admin_KhoaHoc";
 import "./admin_dashboard";
-import { alertDangXuat } from "./dependInjection";
+import { alertDangXuat } from "./helpers";
 $("#itemDangXuat").click(function(){
 	event.preventDefault();
 	alertDangXuat().then( res => {

@@ -15,11 +15,10 @@ import "./../../assets/js/sidebar.js"
 import "./../../assets/js/app_index.js";
 import { DanhSachNguoiDungServices } from "./../services/NguoiDungServices";
 import { KhoaHoc } from "./../models/KhoaHoc";
-import { NguoiDung } from "./../models/NguoiDung";
 import { DanhSachNguoiDung } from "./../models/DanhSachNguoiDung";
 import { DanhSachKhoaHoc } from "./../models/DanhSachKhoaHoc";
 import { KhoaHocServices } from "./../services/KhoaHocServices";
-import { alertSuccess, alertFail, getDataKHServices, getDataNDServices, nhanNDServices, nhanKHServices, alertDangXuat } from "./dependInjection";
+
 import { DangNhapNguoiDung, DangKiNguoiDung, luuNguoiDK, ktNguoiDungDN, xoaNguoiDungLocal, DangXuatNguoiDung, showThongTinNguoiDung } from "./authentication";
 const DSNDServices:any = new DanhSachNguoiDungServices();
 const DSNguoiDung = new DanhSachNguoiDung();
@@ -27,8 +26,12 @@ const DSKhoaHoc = new DanhSachKhoaHoc();
 const DSKHServices = new KhoaHocServices();
 
 //lấy danh sách người dùng và khoá học
-DSKhoaHoc.DSKH = nhanKHServices();
-DSNguoiDung.DSND = nhanNDServices();
+
+DSKHServices.layKhoaHocService()
+.done(res =>{
+	DSKhoaHoc.DSKH =  res.map( kh => new KhoaHoc(kh.MaKhoaHoc, kh.TenKhoaHoc, kh.MoTa, kh.HinhAnh, kh.LuotXem, kh.NguoiTao));
+})
+.fail()
 DangNhapNguoiDung();
 DangKiNguoiDung();
 ktNguoiDungDN();

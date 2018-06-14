@@ -2,11 +2,10 @@
     @include posi-top-right(fixed, 0, -19rem);
     @include size(19rem, 100vh);
     transition: .2s all linear;
-    overflow-y: scroll;
+    overflow-y: auto;
     overflow-x: hidden;
     z-index: $z_sidebar;
     background-color: $bg_sidebar__overlay;
-    box-shadow: 0 0 .3em rgba(0, 0, 0, 0.1);
     &__content {
         @include size(100%, 100%);
         @include flex(center, flex-start, column, nowrap);
@@ -89,6 +88,27 @@
         }
     }
     &.active {
+        box-shadow: 0 16px 28px 0 rgba(0, 0, 0, .22), 0 25px 55px 0 rgba(0, 0, 0, .21);
         right: 0;
+        transform-origin: 100% 50% 0;
+        animation: sidebarAnimate .8s cubic-bezier(0.23, 1, 0.320, 1) forwards;
+    }
+}
+
+@keyframes sidebarAnimate {
+    0% {
+        border-radius: 200% 0 0 200%
+    }
+    20% {
+        transform: scaleX(1.2);
+    }
+    50% {
+        transform: scaleX(1.1);
+    }
+    80% {
+        border-radius: 0;
+    }
+    100% {
+        transform: scaleX(1);
     }
 }

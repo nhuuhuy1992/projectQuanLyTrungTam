@@ -3,7 +3,6 @@
     font-weight: 700 !important;
     display: inline-block;
     color: #1641b5;
-    letter-spacing: .2rem;
     transition: all .2s;
     position: relative;
 }
@@ -11,6 +10,7 @@
 .heading-secondary {
     @extend %heading;
     font-size: 2rem !important;
+    letter-spacing: .2rem;
     &::after {
         content: "";
         position: absolute;
@@ -25,6 +25,6 @@
 
 .modal-heading {
     @extend %heading;
-    font-size: 1rem !important;
-    line-height: 1.5rem
+    font-size: 1.5rem !important;
+    line-height: 1.8rem
 }

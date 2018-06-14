@@ -17,7 +17,8 @@ import 'froala-editor/js/plugins/fullscreen.min.js';
 // import 'froala-editor/css/plugins/fullscreen.min.css';
 
 export default $('#MoTa').froalaEditor({
-    height: 200,
+    height: 'auto',
+    heightMin: 300,
     codeBeautifierOptions: {
         end_with_newline: true,
         indent_inner_html: true,
@@ -26,10 +27,9 @@ export default $('#MoTa').froalaEditor({
         indent_char: ' ',
         indent_size: 4,
         wrap_line_length: 0
-      },
-      videoAllowedProviders: ['youtube', 'vimeo'],
-      enter: $.FroalaEditor.ENTER_BR,
-        videoMove: true
+    },
+    videoAllowedProviders: ['youtube', 'vimeo'],
+    enter: $.FroalaEditor.ENTER_BR,
+    videoMove: true
 
-  });
-  
+});

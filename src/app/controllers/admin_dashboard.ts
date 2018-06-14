@@ -7,4 +7,4 @@ import "./../vendors/animsition.min.js"
 import "./../vendors/Chart.bundle.min.js"
 import "./../../assets/js/dashboard.js";
 import "./../../assets/js/app_admin.js";
-
+import "./../../assets/js/app_user.js";

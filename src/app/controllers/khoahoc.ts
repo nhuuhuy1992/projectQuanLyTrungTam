@@ -9,7 +9,7 @@ import { paginate, renderTable, compareValues, pageOnClick }  from "../../assets
 import { KhoaHoc } from "../models/KhoaHoc";
 import { KhoaHocServices } from '../services/KhoaHocServices';
 import { DanhSachKhoaHoc } from "../models/DanhSachKhoaHoc";
-import { DangNhapNguoiDung, DangKiNguoiDung, DangXuatNguoiDung, ktNguoiDungDN, showThongTinNguoiDung } from "./authentication";
+import { DangNhapNguoiDung, DangKiNguoiDung, DangXuatNguoiDung, ktNguoiDungDN } from "./authentication";
 const DSKHService: any = new KhoaHocServices();
 let danhSachKhoaHoc = new DanhSachKhoaHoc();
 
@@ -17,7 +17,7 @@ ktNguoiDungDN();
 DangNhapNguoiDung();
 DangKiNguoiDung();
 DangXuatNguoiDung();
-showThongTinNguoiDung();
+// showThongTinNguoiDung();
 
 function showKH(DSKH:Array<KhoaHoc>, divLoad){
 	let dataKH = "";

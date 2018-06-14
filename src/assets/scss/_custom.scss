@@ -14,12 +14,13 @@ $z_slider__overlay: 1;
 $bg_slider__overlay: rgba(0, 0, 0, .6);
 $z_slider__caption: 2;
 //sidebar
-$bg_sidebar__overlay: -webkit-linear-gradient(bottom, rgba(0, 88, 162, 0.89), #eeeeee);
+// $bg_sidebar__overlay: -webkit-linear-gradient(bottom, rgba(0, 88, 162, 0.89), #eeeeee);
+$bg_sidebar__overlay: #fff;
 $img_sidebar_width: 200px;
 $z_sidebar: 1031;
 $z_sidebar_overlay: 1;
 $z_sidebar_content: 2;
-$link_sidebar_text_color: #eee;
+$link_sidebar_text_color: $text-color-inverse;
 //burger-icon
 $z_burger-icon: 1032;
 //cam nhan

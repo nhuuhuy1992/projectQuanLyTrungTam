@@ -1,103 +1,105 @@
-#modalInfoUser{
-	.modal-dialog {
-		padding: 27px;
-		background: #f7f7f7;
-		@include mobile{
-			max-width: auto !important;
-		}
-		.titleInfo{
-			&__content{
-				@include flex(flex-start, center, column, wrap);
-				background: #fff;
-				padding: 3rem 0;
-				.userName {
-					font-size: 36px;
-					letter-spacing: 1px;
-					font-weight: 900;
-					font-family: monts-reg;
-					color: #6d6d6d;
-				}
-				.avatar{
-					@include size(100px, 100px);
-					@include flex(center,center, row, wrap);
-					border-radius: 50%;
-					background: #EDEDED;
-					color: #B2B2B2;
-				}
-				ul{
-					margin-top: 1em;
-					.nav-item{
-						padding: 6px 0;
-						border-left-color: #2975aa;
-						border-left-style: solid;
-						border-left-width:0; 
-						transition: .3s all;
-						.nav-link{
-							color: #222;
-						}
-						&.active{
-							background: #f7f7f7;
-							border-left-width:5px; 
-							.nav-link{
-								color: #2975aa;
-							}
-						}
-						&:hover{
-							background: #f7f7f7;
-						}
-					}
-				}
-			}
-
-		}
-		.header-tab{
-			&-item{
-				&.active{
-					color: #fff;
-					background:  #2975AA;
-					&:hover{
-						background: #2975AA;
-					}
-				}
-				&:hover{
-					background: #E3E3E3;
-				}
-				transition: .5s all;
-				margin: 6px;
-				padding: 7px 12px;
-				color: #000;
-				border-radius: 5rem;
-				font-size: 13px;
-			}
-		}
-		.data-tab{
-			display: none;
-			&.active{
-				display: block;
-			}
-		}
-
-	}
-}
-form{
-	label, .labelModal{
-		margin-bottom: 5px;
-		font-weight: bold;
-	}
-	.txt, .inputModal{
-		height: 42px;
-		box-shadow: none;
-		border: 1px solid #dedede;
-		padding: 6px 20px;
-		background: none;
-		color: #959595;
-		font-size: 14px;
-		border-radius: 0;
-		font-family: monts-reg;
-	}
-	.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
-		cursor: not-allowed;
-		background-color: #eee;
-	}
+#modalInfoUser {
+    .modal-dialog {
+        padding: 27px;
+        background: #f7f7f7;
+        @include mobile {
+            max-width: auto !important;
+        }
+        .titleInfo {
+            &__content {
+                @include flex(flex-start, center, column, wrap);
+                background: #fff;
+                padding: 3rem 0;
+                .userName {
+                    font-size: 36px;
+                    letter-spacing: 1px;
+                    font-weight: 900;
+                    font-family: monts-reg;
+                    color: #6d6d6d;
+                }
+                .avatar {
+                    @include size(100px, 100px);
+                    @include flex(center, center, row, wrap);
+                    border-radius: 50%;
+                    background: #EDEDED;
+                    color: #B2B2B2;
+                }
+                ul {
+                    margin-top: 1em;
+                    .nav-item {
+                        padding: 6px 0;
+                        border-left-color: #1641b5;
+                        border-left-style: solid;
+                        border-left-width: 0;
+                        transition: .3s all;
+                        .nav-link {
+                            color: #222;
+                        }
+                        &.active {
+                            background: #f7f7f7;
+                            border-left-width: 5px;
+                            .nav-link {
+                                color: #1641b5;
+                            }
+                        }
+                        &:hover {
+                            background: #f7f7f7;
+                        }
+                    }
+                }
+            }
+        }
+        .header-tab {
+            &-item {
+                &.active {
+                    color: #fff;
+                    background: #1641b5;
+                    &:hover {
+                        background: #1641b5;
+                    }
+                }
+                &:hover {
+                    background: #E3E3E3;
+                }
+                transition: .5s all;
+                margin: 6px;
+                padding: 7px 12px;
+                color: #000;
+                border-radius: 5rem;
+                font-size: 13px;
+            }
+        }
+        .data-tab {
+            display: none;
+            &.active {
+                display: block;
+            }
+        }
+    }
 }
 
+form {
+    label,
+    .labelModal {
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+    .txt,
+    .inputModal {
+        height: 42px;
+        box-shadow: none;
+        border: 1px solid #dedede;
+        padding: 6px 20px;
+        background: none;
+        color: #959595;
+        font-size: 14px;
+        border-radius: 0;
+        font-family: monts-reg;
+    }
+    .form-control[disabled],
+    .form-control[readonly],
+    fieldset[disabled] .form-control {
+        cursor: not-allowed;
+        background-color: #eee;
+    }
+}

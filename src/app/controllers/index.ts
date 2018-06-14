@@ -19,9 +19,8 @@ import { DanhSachNguoiDung } from "./../models/DanhSachNguoiDung";
 import { DanhSachKhoaHoc } from "./../models/DanhSachKhoaHoc";
 import { KhoaHocServices } from "./../services/KhoaHocServices";
 
-import { DangNhapNguoiDung, DangKiNguoiDung, luuNguoiDK, ktNguoiDungDN, xoaNguoiDungLocal, DangXuatNguoiDung, showThongTinNguoiDung } from "./authentication";
-const DSNDServices:any = new DanhSachNguoiDungServices();
-const DSNguoiDung = new DanhSachNguoiDung();
+import { DangNhapNguoiDung, DangKiNguoiDung, luuNguoiDK, ktNguoiDungDN, xoaNguoiDungLocal, DangXuatNguoiDung } from "./authentication";
+
 const DSKhoaHoc = new DanhSachKhoaHoc();
 const DSKHServices = new KhoaHocServices();
 
@@ -36,7 +35,7 @@ DangNhapNguoiDung();
 DangKiNguoiDung();
 ktNguoiDungDN();
 DangXuatNguoiDung();
-showThongTinNguoiDung();
+// showThongTinNguoiDung();
 //Tìm kiếm khoá học
 (function timKiemTatCaKH(){
 	$("#inputTimKiem").keyup(function(){

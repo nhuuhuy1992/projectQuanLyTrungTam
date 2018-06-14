@@ -1,5 +1,4 @@
-.heading-secondary {
-    font-size: 2rem !important;
+%heading {
     text-transform: uppercase;
     font-weight: 700 !important;
     display: inline-block;
@@ -7,6 +6,11 @@
     letter-spacing: .2rem;
     transition: all .2s;
     position: relative;
+}
+
+.heading-secondary {
+    @extend %heading;
+    font-size: 2rem !important;
     &::after {
         content: "";
         position: absolute;
@@ -17,4 +21,10 @@
         margin-left: -2.5px;
         background: #2be6ab;
     }
+}
+
+.modal-heading {
+    @extend %heading;
+    font-size: 1rem !important;
+    line-height: 1.5rem
 }

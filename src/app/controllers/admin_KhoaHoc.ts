@@ -17,9 +17,7 @@ import { DanhSachKhoaHoc } from "../models/DanhSachKhoaHoc";
 import { suaKhiClickVaoRow, alertFail, alertSuccess, resetForm, alertXoa } from "./helpers";
 // services
 let DSKHService: any = new KhoaHocServices();
-// let DSKhoaHoc = new DanhSachKhoaHoc();
-let getid = el => document.getElementById(el);
-let showEntriesKH = $('#showEntriesKH');
+
 $('#showEntriesKH').change(function(){
 	renderTable(danhSachKhoaHoc.DSKH,'#showEntriesKH','#tableKhoaHoc',showKH);
 })
@@ -44,7 +42,7 @@ function showDSKHDK(taikhoan:string){
 			let danhSachKhoaHocDK = new DanhSachKhoaHoc();
 			if( typeof res !== 'string'){
 				res.forEach((khoahoc)=>{
-					khoahocdk+= `<li class="list-group-item">${khoahoc.TenKhoaHoc}</li>`
+					khoahocdk+= `<li class="list-group-item"><i class="fa fa-minus" style="color:#1641B5"></i>  ${khoahoc.TenKhoaHoc}</li>`
 				})
 				danhSachKhoaHocDK.DSKH = danhSachKhoaHoc.DSKH.filter(kh1 => res.every(kh2 => kh1.MaKhoaHoc !== kh2.MaKhoaHoc))
 
@@ -115,10 +113,10 @@ $('body').delegate('#btnThemKhoaHoc','click',function(){
 
 $('#btnModalKhoaHoc').click(() =>{
 	resetForm("formKH");
-	$("#modalKhoaHoc .modal-title").html('Thêm Khoa Hoc');
+	$("#modalKhoaHoc .modal-title").html('<h3 class="modal-heading">Thêm Khoá học</h3>');
 	let modal_footer = `
-	<button class="btn btn-danger" data-dismiss="modal">Close</button>
-	<button class="btn btn-success" data-dismiss="modal" id="btnThemKhoaHoc">Thêm</button>
+	<button class="btn btn-outline-danger" data-dismiss="modal">Đóng</button>
+	<button class="btn btn-outline-success" data-dismiss="modal" id="btnThemKhoaHoc">Thêm</button>
 	`;
 	$("#modalKhoaHoc .modal-footer").html(modal_footer);
 });
@@ -128,7 +126,7 @@ function createModalSuaKH(That){
 	DSKHService.layCTKHService(idKH)
 	.done(
 		res =>{
-			$("#modalKhoaHoc .modal-title").html('Cap Nhat Khoa Hoc');
+			$("#modalKhoaHoc .modal-title").html('<h3 class="modal-heading">Cập Nhật Khoá Học</h3>');
 			$("#btnXoaKHEdit").attr("makhoahoc", idKH);
 			$('#MaKhoaHoc').val(res.MaKhoaHoc);
 			$('#MaKhoaHoc').attr('disabled','disabled');
@@ -143,36 +141,20 @@ function createModalSuaKH(That){
 					self.attr('selected','true')
 
 				}
-			})
+			});
+			let modal_footer = `
+			<button class="btn btn-outline-success" id="btnCapNhatKH">Cập Nhật</button>
+			<button class="btn btn-outline-danger" data-dismiss="modal">Đóng</button>
+			<button class="btn btn-outline-warning" id="btnXoaKHEdit">Xoá Khoá Học</button>
+			`;
+			$("#modalKhoaHoc .modal-footer").html(modal_footer);
 			$('#modalKhoaHoc').modal();
 		})
 	.fail();
 };
 // Gán sự kiện tìm khoá học
 
-	$("#timKH").keyup(function(){
-		let key:string = $(this).val().trim().toLowerCase();
-		let DSKHCanTim = danhSachKhoaHoc.timKhoaHocTheoTen(key);
-		let data = "";
-		if(key === "" || DSKHCanTim.DSKH.length == 0){
-			$("#dataTimKiemKhoaHoc").html("");
-			$("#tableTimKiemKhoaHoc").removeClass("active");
-		}
-		else{
-			for(let i:number = 0; i < DSKHCanTim.DSKH.length; i++){
-				let khTimKiem = DSKHCanTim.DSKH[i];
-				data += `
-				<tr MaKhoaHoc=${khTimKiem.MaKhoaHoc} class="trKhoaHocTimKiem" data-id="${khTimKiem.MaKhoaHoc}">
-					<td>${i+1}</td>
-					<td>${khTimKiem.MaKhoaHoc}</td>
-					<td>${khTimKiem.TenKhoaHoc}</td>
-				</tr>
-				`;
-			}
-			$("#dataTimKiemKhoaHoc").html(data);
-			$("#tableTimKiemKhoaHoc").addClass("active");
-		}
-	})
+	
 
 function xoaKhoaHoc(btn){
 	let idKH = $(btn).attr('data-id');
@@ -269,7 +251,11 @@ $('body').delegate('#btnGhiDanh','click',function(){
 
 $('#tableKhoaHoc th').click(function(){
 	let key = $(this).data('sort');
+	
 	if(key){
+		$('#tableKhoaHoc th[data-sort]').addClass('both');
+		$(this).removeClass('both');
+
 		if($(this).hasClass('asc')){
 			$(this).removeClass('asc');
 			$(this).addClass('desc');
@@ -279,7 +265,7 @@ $('#tableKhoaHoc th').click(function(){
 			$(this).addClass('asc');
 			danhSachKhoaHoc.DSKH.sort(compareValues(key))
 		}
-		$('#tableKhoaHoc').next('.pagination').find('.page-item.active > .page-link').click();
+		$('#tableKhoaHoc').parent().next('.pagination').find('.page-item.active > .page-link').click();
 	}
 
 })
@@ -287,5 +273,28 @@ $('#tableKhoaHoc th').click(function(){
 $("#mountKH").html(danhSachKhoaHoc.slKhoaHoc());
 $("#mountView").html(danhSachKhoaHoc.soView());
 
+$("#timKH").keyup(function(){
+	let key:string = $(this).val().trim().toLowerCase();
+	let DSKHCanTim = danhSachKhoaHoc.timKhoaHocTheoTen(key);
+	let data = "";
+	if(key === "" || DSKHCanTim.DSKH.length == 0){
+		$("#dataTimKiemKhoaHoc").html("");
+		$("#tableTimKiemKhoaHoc").removeClass("active");
+	}
+	else{
+		for(let i:number = 0; i < DSKHCanTim.DSKH.length; i++){
+			let khTimKiem = DSKHCanTim.DSKH[i];
+			data += `
+			<tr MaKhoaHoc=${khTimKiem.MaKhoaHoc} class="trKhoaHocTimKiem" data-id="${khTimKiem.MaKhoaHoc}">
+				<td>${i+1}</td>
+				<td>${khTimKiem.MaKhoaHoc}</td>
+				<td>${khTimKiem.TenKhoaHoc}</td>
+			</tr>
+			`;
+		}
+		$("#dataTimKiemKhoaHoc").html(data);
+		$("#tableTimKiemKhoaHoc").addClass("active");
+	}
+})
 
 export { showDSKHDK }

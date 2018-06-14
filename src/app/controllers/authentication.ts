@@ -30,17 +30,22 @@ export function ktNguoiDungDN(){
 			$(".btn-dangky").remove();
 			$(".btn-dangnhap").remove();
 			$("#formDangNhap").modal("hide");
-			$(".block-btn-form").append(`
-				<a href="#" class="btn-showInfo btn-contact" taikhoan="${json.TaiKhoan}">
-				<span>Thông Tin</span>
+			let blockForm = `<a href="#" class="btn-dangXuat btn-contact">
+			<span>Đăng Xuất</span>
+			<span class="fa fa-sign-out icon icon-info rounded-circle"></span>
+			</a>`
+			if(Obj._MaLoaiNguoiDung === 'GV'){
+				blockForm += `<a href="/admin.html" class="btn-showInfo btn-contact">
+				<span>Dashboard</span>
 				<span class="fa fa-user icon icon-info rounded-circle"></span>
-				</a>
-
-				<a href="#" class="btn-dangXuat btn-contact">
-				<span>Đăng Xuất</span>
-				<span class="fa fa-sign-out icon icon-info rounded-circle"></span>
-				</a>
-				`);
+				</a>`
+			} else {
+				blockForm += `<a href="#" class="btn-showInfo btn-contact" taikhoan="${json.TaiKhoan}">
+				<span>Thông tin</span>
+				<span class="fa fa-user icon icon-info rounded-circle"></span>
+				</a>`
+			}
+			$(".block-btn-form").append(blockForm);
 		})
 		.fail();
 	}
@@ -72,6 +77,8 @@ export function DangNhapNguoiDung(){
 				}
 				else if(Obj._MaLoaiNguoiDung == "GV"){
 					alertSuccess("Đăng Nhập Thành Công!").then(() => {
+						luuNguoiDK(Obj);
+						ktNguoiDungDN();
 						window.location.href = "/admin.html"
 					})
 				}
@@ -120,14 +127,5 @@ export function DangXuatNguoiDung(){
 		})
 	})
 }
-export function showThongTinNguoiDung(){
-	$("body").delegate(".btn-showInfo", "click", function(){
-		let taiKhoan:string = $(this).attr("taikhoan");
-		DSNDServices.thongTinNguoiDung(taiKhoan)
-		.done(function(res){
-			window.location.href = "/user.html";
-		})
-		.fail();
-	})
-}
+
 

@@ -9,14 +9,16 @@ import "../vendors/animate.css";
 import "./../../assets/scss/admin.scss";
 import "./../../assets/js/app_admin.js";
 import "./../../assets/js/validation.js";
-import { paginate, renderTable, compareValues, pageOnClick }  from "../../assets/js/table.js";
+import {  renderTable, compareValues}  from "../../assets/js/table.js";
 import { NguoiDung } from "./../models/NguoiDung";
 import { DanhSachNguoiDungServices } from "./../services/NguoiDungServices";
 import { DanhSachNguoiDung } from "./../models/DanhSachNguoiDung";
 import {showDSKHDK} from './admin_KhoaHoc';
 
 import { suaKhiClickVaoRow, alertFail, alertSuccess,  alertXoa } from "./helpers";
+import { layNguoiDungDN } from './user';
 
+layNguoiDungDN();
 //instance
 let DSNguoiDung:DanhSachNguoiDung = new DanhSachNguoiDung();
 let DSNDService:any = new DanhSachNguoiDungServices();
@@ -288,18 +290,22 @@ $("#timND").keyup(function(){
 
 $('#tableNguoiDung th').click(function(){
 	let key = $(this).data('sort');
+	
 	if(key){
+		$('#tableNguoiDung th[data-sort]').addClass('both');
+
+		$(this).removeClass('both');
 		if($(this).hasClass('asc')){
 			$(this).removeClass('asc');
 			$(this).addClass('desc');
-			DSNguoiDung.DSND.sort(compareValues(key,'desc'))
+			DSNguoiDung.DSND.sort(compareValues(key,'desc'));
 
 		}else{
 			$(this).removeClass('desc');
 			$(this).addClass('asc');
 			DSNguoiDung.DSND.sort(compareValues(key))
 		}
-		$('#tableNguoiDung').next('.pagination').find('.page-item.active > .page-link').click();
+		$('#tableNguoiDung').parent().next('.pagination').find('.page-item.active > .page-link').click();
 	}
 
 })

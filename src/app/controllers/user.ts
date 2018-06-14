@@ -9,98 +9,94 @@ import "./../../assets/js/app_user.js";
 import "./../../assets/js/validation.js";
 import "./../vendors/animate.css";
 import { NguoiDung } from "./../models/NguoiDung";
-import { DanhSachNguoiDung } from "./../models/DanhSachNguoiDung";
 import { DanhSachNguoiDungServices } from "./../services/NguoiDungServices";
 import { KhoaHoc } from "../models/KhoaHoc";
 import { KhoaHocServices } from '../services/KhoaHocServices';
 // import { AuthService } from '../services/AuthService';
+import {luuNguoiDK} from './authentication';
 import { DanhSachKhoaHoc } from "../models/DanhSachKhoaHoc";
 
 import { alertSuccess } from "./helpers";
 
 let danhSachKhoaHoc = new DanhSachKhoaHoc();
-let DSNguoiDung = new DanhSachNguoiDung();
+// let DSNguoiDung = new DanhSachNguoiDung();
 let DSNguoiDungServices:any = new DanhSachNguoiDungServices();
 let khoaHocService = new KhoaHocServices();
 
 function layNguoiDungDN(){
-	if(localStorage.getItem("NguoiDung")){																																																										
+	if(localStorage.getItem("NguoiDung")){													
 		let dataND = JSON.parse(localStorage.getItem("NguoiDung"));
 		DSNguoiDungServices.dangNhap(dataND.TaiKhoan, dataND.MatKhau)
 		.done(function(res){
-			console.log(res);
-			DSNguoiDungServices.thongTinNguoiDung(res[0].TaiKhoan)
-			.done( res => {												
-				let nguoiDangNhap = res[0];
-				let thisUser:            NguoiDung = new NguoiDung(nguoiDangNhap.TaiKhoan, nguoiDangNhap.MatKhau, nguoiDangNhap.HoTen, nguoiDangNhap.SoDT, nguoiDangNhap.Email, nguoiDangNhap.MaLoaiNguoiDung);
-				layInfoND(thisUser);
-				$("#btnCapNhatND").click(function(){
-					event.preventDefault();
-					let tenTKCN = $("#inputTKEdit").val();
-					let tenCN = $("#inputTenEdit").val();
-					let tenEmailCN = $("#inputEmailEdit").val();
-					let tenSDTCN = $("#inputSdtEdit").val();
-					let tenMKCN = $("#inputReMKMoi").val();
-					if(tenMKCN === ""){
-						let ObjCapNhat = new NguoiDung(tenTKCN, thisUser._MatKhau, tenCN, tenSDTCN, tenEmailCN, "HV");
+			let nguoiDangNhap = res[0];
+			
+			let thisUser: NguoiDung = new NguoiDung(nguoiDangNhap.TaiKhoan, dataND.MatKhau, nguoiDangNhap.HoTen, nguoiDangNhap.SoDT, nguoiDangNhap.Email, nguoiDangNhap.MaLoaiNguoiDung);
+			layInfoND(thisUser);
+			$("#btnCapNhatProfile").click(function(){
+				event.preventDefault();
+				let tenTKCN = $("#inputTKEdit").val();
+				let tenCN = $("#inputTenEdit").val();
+				let tenEmailCN = $("#inputEmailEdit").val();
+				let tenSDTCN = $("#inputSdtEdit").val();
+				let tenMKCN = $("#inputReMKMoi").val();
+				if(tenMKCN === ""){
+					let ObjCapNhat = new NguoiDung(tenTKCN, thisUser._MatKhau, tenCN, tenSDTCN, tenEmailCN, "HV");
+					capNhatInfo(ObjCapNhat);
+				}
+				else{
+					if($("#inputMKMoi").val() === $("#inputReMKMoi").val()){
+						let ObjCapNhat = new NguoiDung(tenTKCN, tenMKCN, tenCN, tenSDTCN, tenEmailCN, "HV");
 						capNhatInfo(ObjCapNhat);
 					}
 					else{
-						if($("#inputMKMoi").val() === $("#inputReMKMoi").val()){
-							let ObjCapNhat = new NguoiDung(tenTKCN, tenMKCN, tenCN, tenSDTCN, tenEmailCN, "HV");
-							capNhatInfo(ObjCapNhat);
-						}
-						else{
-							swal({
-								type: 'error',
-								title: 'Mật Khẩu Xác Nhận Không Đúng!',
-								toast: true,
-								position: 'top-end',
-								showConfirmButton: false,
-								timer: 1000
-							})
-							return false;
-						}
+						swal({
+							type: 'error',
+							title: 'Mật Khẩu Xác Nhận Không Đúng!',
+							toast: true,
+							position: 'top-end',
+							showConfirmButton: false,
+							timer: 1000
+						})
+						return false;
 					}
-				})
-				$("#inputXacNhanMatKhau").keyup(function(){
-					if($(this).val() === thisUser._MatKhau){
-						$("#inputMKMoi").prop("disabled", false);
-						$("#inputReMKMoi").prop("disabled", false);
-						$("#inputMKMoi").css({"cursor" : "auto"});
-						$("#inputReMKMoi").css({"cursor" : "auto"});
-					}
-					else{
-						$("#inputMKMoi").attr("disabled", "disabled");
-						$("#inputReMKMoi").attr("disabled", "disabled");
-						$("#inputMKMoi").css({"cursor" : "not-allowed"});
-						$("#inputReMKMoi").css({"cursor" : "not-allowed"});
-					}
-				})
-
-
-
-				khoaHocService.layThongTinKH(thisUser._TaiKhoan)
-					.done( res => {
-						console.log(res);
-						for(let kh of res){
-							khoaHocService.layCTKHService(kh.MaKhoaHoc)
-							.done( argKH => {
-								let ObjKH = new KhoaHoc(argKH.MaKhoaHoc, argKH.TenKhoaHoc, argKH.MoTa,argKH.HinhAnh,Number(argKH.LuotXem),argKH.NguoiTao);
-								danhSachKhoaHoc.themKhoaHoc(argKH);
-								showKH(danhSachKhoaHoc.DSKH);
-							})
-							.fail( () => {
-								$(".ListKhoaHoc").html(`<h5 class="noti-kh">Bạn Chưa Có Khoá Học Nào!!</h5>`)
-							});
-						}
-					})
-					.fail();
-				showProfile(thisUser);
+				}
 			})
+			$("#inputXacNhanMatKhau").keyup(function(){
+				if($(this).val() === thisUser._MatKhau){
+					$("#inputMKMoi").prop("disabled", false);
+					$("#inputReMKMoi").prop("disabled", false);
+					$("#inputMKMoi").css({"cursor" : "auto"});
+					$("#inputReMKMoi").css({"cursor" : "auto"});
+				}
+				else{
+					$("#inputMKMoi").attr("disabled", "disabled");
+					$("#inputReMKMoi").attr("disabled", "disabled");
+					$("#inputMKMoi").css({"cursor" : "not-allowed"});
+					$("#inputReMKMoi").css({"cursor" : "not-allowed"});
+				}
+			})
+
+			if(nguoiDangNhap.MaLoaiNguoiDung === 'HV'){
+				khoaHocService.layThongTinKH(thisUser._TaiKhoan)
+				.done( res => {
+					for(let kh of res){
+						khoaHocService.layCTKHService(kh.MaKhoaHoc)
+						.done( argKH => {
+							let ObjKH = new KhoaHoc(argKH.MaKhoaHoc, argKH.TenKhoaHoc, argKH.MoTa,argKH.HinhAnh,Number(argKH.LuotXem),argKH.NguoiTao);
+							danhSachKhoaHoc.themKhoaHoc(ObjKH);
+							showKH(danhSachKhoaHoc.DSKH);
+						})
+						.fail( () => {
+							$(".ListKhoaHoc").html(`<h5 class="noti-kh">Bạn Chưa Có Khoá Học Nào!!</h5>`)
+						});
+					}
+				})
+				.fail();
+			}
+			showProfile(thisUser);
 		}).fail();
 	}else{	
-		window.location.href = "/	"
+		window.location.href = "/"
 	}
 }
 function showProfile(hocVien:NguoiDung){
@@ -167,12 +163,6 @@ $("#DangXuatND").click(function(){
 })
 layNguoiDungDN();
 
-
-
-// let dataND = JSON.parse(localStorage.getItem("NguoiDung"));
-// let indexND = DSNguoiDung.timNguoiDungTheoTK(dataND.TaiKhoan);
-// let thisUser = DSNguoiDung.DSND[indexND];
-// // layInfoND(thisUser);
 function layInfoND(infoND:NguoiDung){
 	$("#inputTKEdit").val(infoND._TaiKhoan);
 	$("#inputTenEdit").val(infoND._HoTen);
@@ -182,12 +172,17 @@ function layInfoND(infoND:NguoiDung){
 }
 
 function capNhatInfo(obj:NguoiDung){
+	xoaNguoiDungLocal();
+
 	return DSNguoiDungServices.capNhatThongTinNguoiDung(obj)
 					.done(res => {
+						// console.log(res);
+						luuNguoiDK(res);
 						alertSuccess('Cập Nhật Thành Công!')
 						.then(() => {
 							$("#modalInfoUser").modal("hide");
 							showProfile(obj);
+							
 							resetComfirmPassForm();
 						})
 					})
@@ -201,3 +196,4 @@ function resetComfirmPassForm(){
 	$("#inputReMKMoi").css({"cursor" : "not-allowed"});
 }
 
+export { layNguoiDungDN }

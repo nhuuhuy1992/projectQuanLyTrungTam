@@ -157,7 +157,7 @@ $("#DangXuatND").click(function(){
 	}).then((res) => {
 		if(res.value){
 			xoaNguoiDungLocal();
-			window.location.href = "/index.html";
+			window.location.href = "/";
 		}
 	})
 })

@@ -92,7 +92,7 @@ $(function() {
                 },
                 HoTen: {
                     required: notification("họ tên")[0],
-                    lettersonly: true
+                    lettersonly: notification("họ tên")[8]
                 },
                 tenTaiKhoan: {
                     required: notification("Tên Tài Khoản")[0],

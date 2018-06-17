@@ -18,6 +18,7 @@ module.exports = {
         extensions: [".ts", ".tsx", ".js"],
 
     },
+
     devtool: 'inline-source-map',
     devServer: {
         contentBase: path.join(__dirname, "dist"),
@@ -26,6 +27,7 @@ module.exports = {
         open: true,
         port: 9000
     },
+
     mode: 'development',
     module: {
         rules: [{
@@ -104,6 +106,8 @@ module.exports = {
         new HtmlWebpackPlugin({
             filename: 'index.html',
             template: './src/app/views/pages/index.html',
+            title: 'Project Quản Lý Trung Tâm - Cybersoft',
+            favicon: './src/assets/images/logo.png',
             chunks: ['index'],
             minify: {
                 collapseWhitespace: false //bo khoang trong
@@ -113,6 +117,8 @@ module.exports = {
         new HtmlWebpackPlugin({
             filename: 'admin.html',
             template: './src/app/views/pages/admin.html',
+            title: 'Admin - Cybersoft',
+            favicon: './src/assets/images/logo.png',
             chunks: ['admin'],
             minify: {
                 collapseWhitespace: false //bo khoang trong
@@ -122,6 +128,8 @@ module.exports = {
         new HtmlWebpackPlugin({
             filename: 'user.html',
             template: './src/app/views/pages/user.html',
+            title: 'User - Cybersoft',
+            favicon: './src/assets/images/logo.png',
             chunks: ['user'],
             minify: {
                 collapseWhitespace: false //bo khoang trong
@@ -131,6 +139,8 @@ module.exports = {
         new HtmlWebpackPlugin({
             filename: 'khoahoc.html',
             template: './src/app/views/pages/khoahoc.html',
+            title: 'Khoá Học - Cybersoft',
+            favicon: './src/assets/images/logo.png',
             chunks: ['khoahoc'],
             minify: {
                 collapseWhitespace: false //bo khoang trong

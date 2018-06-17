@@ -84,7 +84,7 @@ function createModalSuaND(That){
 	$('#HoTenNDCN').val(nguoidung._HoTen);
 	$('#EmailNDCN').val(nguoidung._Email);
 	$('#SoDTNDCN').val(nguoidung._SoDT);
-
+	$('.big-err').html('');
 	$("#btnXoaNDEdit").attr("data-id", id);
 	if(nguoidung._MaLoaiNguoiDung === 'GV'){
 		$('#modalCapNhatND .modal-dialog').removeClass('modal-lg');

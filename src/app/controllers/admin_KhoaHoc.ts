@@ -123,6 +123,8 @@ $('#btnModalKhoaHoc').click(() =>{
 
 function createModalSuaKH(That){
 	let idKH = $(That).attr('data-id');
+	$('.big-err').html('');
+
 	DSKHService.layCTKHService(idKH)
 	.done(
 		res =>{

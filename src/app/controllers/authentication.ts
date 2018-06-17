@@ -104,13 +104,13 @@ export function DangKiNguoiDung(){
 		if($("#register-form").valid()){
 			DSNDServices.dangKy(ndDK)
 			.done(function(res){
-				alertSuccess("Đăng Kí Thành Công!").then(() => {
+				alertSuccess("Đăng Ký Thành Công!").then(() => {
 					$("#formDangKy").modal("hide");
 					$(".btn-dangnhap").trigger("click");
 				})
 			})
 			.fail(function(err){
-				alertFail("Tên Tài Khoản Đã Được Đăng Kí !");
+				alertFail("Tên Tài Khoản Đã Được Đăng Ký !");
 			})
 		}
 		event.preventDefault();

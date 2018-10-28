@@ -1,4 +1,4 @@
-¸import * as $ from "jquery";
+import * as $ from "jquery";
 import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "font-awesome/css/font-awesome.min.css";

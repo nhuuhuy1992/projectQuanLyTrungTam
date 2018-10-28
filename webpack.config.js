@@ -25,7 +25,7 @@ module.exports = {
         compress: true,
         stats: "errors-only",
         open: true,
-        port: 9000
+        port: 8000
     },
 
     mode: 'development',

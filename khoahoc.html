@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="shortcut icon" href="logo.png"><link href="khoahoc.css" rel="stylesheet"></head>
+
+<body>
+    <header class="navbar fixed-top px-1 px-md-4">
+        <a href="/" class="navbar__logo"><img src="images/logo-FwiPNhM.png" alt=""></a>
+    </header>
+    <!-- End navbar -->
+    <!-- Burger-icon -->
+    <div class="burger-icon aqua-gradient fixed fixed-right border-0">
+        <div class="burger"></div>
+    </div>
+    <nav class="sidebar">
+        <div class="sidebar__content">
+            <div class="sidebar__top text-center">
+                <a href="#" class="mb-3"><img src="images/logo-FwiPNhM.png" alt=""></a>
+                <h3 class="text-center">CYBERSOFT</h3>
+            </div>
+            <ul class="sidebar__menu w-100 my-5">
+                <li class="sidebar__item">
+                    <a href="/" class="sidebar__link">
+                        <i class="fa fa-home"></i> Trang Chủ
+                    </a>
+                </li>
+
+                <li class="sidebar__item">
+                    <a href="#khoaHoc-page" class="sidebar__link">
+                        <i class="fa fa-briefcase"></i> Khóa Học
+                    </a>
+                </li>
+
+            </ul>
+            <ul class="sidebar__social d-flex justify-content-center flex-column align-items-center">
+                <li>
+                    <h3 class="text-white mb-2">Social</h3>
+                </li>
+                <li>
+                    <a href="#" class="fa fa-facebook" target="_blank"></a>
+                    <a href="#" class="fa fa-youtube" target="_blank"></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <main>
+        <section class="slider" id="slider-page">
+            <div class="overlay"></div>
+            <div class="container">
+                <div class="slider__content">
+                    <h2>CYBERSOFT</h2>
+                    <h5>TRUNG TÂM ĐÀO TẠO CHUYÊN GIA LẬP TRÌNH.</h5>
+                    <nav class="breadcrumb justify-content-center bg-transparent">
+                        <a class="breadcrumb-item" href="/">Trang Chủ</a>
+                        <span class="breadcrumb-item active">Khoá Học</span>
+                    </nav>
+                </div>
+            </div>
+        </section>
+        <section class="khoaHoc" id="khoaHoc-page">
+            <div class="khoaHoc__title title text-center">
+                <h2 class="display-4 mt-5 heading-secondary">Khóa Học</h2>
+            </div>
+            <div class="container">
+                <div class="khoaHoc__filter d-flex justify-content-end">
+                    <div class="show">
+                        <label for="" class="font-weight-bold"> Hiển thị:
+                        <select class="custom-select" style="width:50%;border-color: #776a6a; font-size: 17px" id="showEntriesKH">
+                                    <option disabled="disabled">Show Entries...</option>
+                                    <option selected="selected" value="9">9</option>
+                                    <option value="24">24</option>
+                                    <option value="45">45</option>
+                         </select>
+                        </label>
+                    </div>
+                    <div class="short ml-2">
+                        <label for="" class="font-weight-bold">Sắp xếp :
+                        <select class="custom-select" style="width:50%;border-color: #776a6a; font-size: 17px" id="sortKH">
+                                <option selected="selected" value="TenKhoaHoc_asc">Tên A-Z</option>
+                                <option value="TenKhoaHoc_desc">Tên Z-A</option>
+                                <option value="LuotXem_asc"> Lượt xem tăng dần</option>
+                                <option value="LuotXem_desc">Lượt xem giảm dần</option>
+                     </select>
+                    </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="khoaHoc__content">
+                <div class="container">
+                    <div class="row ListKhoaHoc">
+                    </div>
+                </div>
+        </div></section>
+    </main>
+
+    <footer class="footer pt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="footer__block">
+                        <a href="/" title="CyberSoft" class="footer__logo">
+                            <img src="data:image/png;base64,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LjAvc1R5cGUvUmVzb3VyY2VFdmVudCMiIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIgeG1sbnM6cGhvdG9zaG9wPSJodHRwOi8vbnMuYWRvYmUuY29tL3Bob3Rvc2hvcC8xLjAvIiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCBDQyAoTWFjaW50b3NoKSIgeG1wOkNyZWF0ZURhdGU9IjIwMTgtMDQtMjBUMTI6NDI6MzUrMDc6MDAiIHhtcDpNZXRhZGF0YURhdGU9IjIwMTgtMDQtMjBUMTI6NDI6MzUrMDc6MDAiIHhtcDpNb2RpZnlEYXRlPSIyMDE4LTA0LTIwVDEyOjQyOjM1KzA3OjAwIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjg4MmNiZWFjLTBhNGUtNDgyMy1hYTQ0LWE5NWNjNzc1Y2ZjZSIgeG1wTU06RG9jdW1lbnRJRD0iYWRvYmU6ZG9jaWQ6cGhvdG9zaG9wOjAxYzVhOGUxLTAxYWEtOGU0ZC1hNDgzLWU4NDliMTBkMmQzZCIgeG1wTU06T3JpZ2luYWxEb2N1bWVudElEPSJ4bXAuZGlkOjAxY2E2MWJiLTQ1NjMtNDdlMS1hMzgxLWViNDkxZmI0MGY0NCIgZGM6Zm9ybWF0PSJpbWFnZS9wbmciIHBob3Rvc2hvcDpDb2xvck1vZGU9IjMiIHBob3Rvc2hvcDpJQ0NQcm9maWxlPSJEaXNwbGF5Ij4gPHhtcE1NOkhpc3Rvcnk+IDxyZGY6U2VxPiA8cmRmOmxpIHN0RXZ0OmFjdGlvbj0iY3JlYXRlZCIgc3RFdnQ6aW5zdGFuY2VJRD0ieG1wLmlpZDowMWNhNjFiYi00NTYzLTQ3ZTEtYTM4MS1lYjQ5MWZiNDBmNDQiIHN0RXZ0OndoZW49IjIwMTgtMDQtMjBUMTI6NDI6MzUrMDc6MDAiIHN0RXZ0OnNvZnR3YXJlQWdlbnQ9IkFkb2JlIFBob3Rvc2hvcCBDQyAoTWFjaW50b3NoKSIvPiA8cmRmOmxpIHN0RXZ0OmFjdGlvbj0ic2F2ZWQiIHN0RXZ0Omluc3RhbmNlSUQ9InhtcC5paWQ6ODgyY2JlYWMtMGE0ZS00ODIzLWFhNDQtYTk1Y2M3NzVjZmNl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" alt="CyberSoft">
+                        </a>
+                        <div class="footer__content mt-3">
+                            <p>CyberSoft Academy là học viện tiên phong tại Việt Nam áp dụng phương pháp đào tạo Active Learning và Flipped Learning thông qua các dự án thực tiễn trong lĩnh vực đào tạo CNTT. Học viên sẽ đóng vai trò là một Scrum member trong
+                                mô hình Agile để trở thành một lập trình chuyên nghiệp, đáp ứng mọi nhu cầu tuyển dụng của Doanh nghiệp</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="block-footer block-footer-margin">
+                        <h3 class="footer__title"><span>THÔNG TIN</span></h3>
+                        <ul class="footer__menu">
+                            <li class="footer__item"><a href=""><span>Trang chủ</span></a></li>
+                            <li class="footer__item"><a href=""><span>Giới thiệu</span></a></li>
+                            <li class="footer__item"><a href=""><span>Khoá học</span></a>
+                            </li>
+                            <li class="footer__item"><a href=""><span>Giảng viên</span></a></li>
+                            <li class="footer__item"><a href=""><span>Cảm nhận học viên</span></a></li>
+
+                            <li class="footer__item"><a href=""><span>Liên hệ</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="footer__block">
+                        <h3 class="footer__title"><span>LIÊN HỆ </span></h3>
+                        <ul class="footer__info">
+                            <li class="footer__item">
+                                <b>ĐC:</b> 459 Sư Vạn Hạnh, Quận 10 - HCM </li>
+                            <li class="footer__item">
+                                <b>T:</b> +84 961.05.10.14 </li>
+                            <li class="footer__item">
+                                <b>E:</b> info@cybersoft.edu.vn </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- end row -->
+
+        </div>
+        <div class="footer__copyright text-center py-3">
+
+            <p>© Bản quyền CyberSoft 2017. Empower by MyClass.vn</p>
+            <!-- end bottom -->
+
+        </div>
+        <!-- end row -->
+    </footer>
+
+
+    <div class="block-form">
+        <div class="block-btn-form">
+            <a href="#" class="btn-dangky btn-contact" data-toggle="modal" data-target="#formDangKy">
+                <span>Đăng ký</span>
+                <span class="fa fa-book icon icon-info rounded-circle"></span>
+            </a>
+            <a href="#" class="btn-dangnhap btn-contact" data-toggle="modal" data-target="#formDangNhap">
+                <span>Đăng nhập</span>
+                <span class="fa fa-sign-in icon icon-info rounded-circle"></span>
+            </a>
+            <a href="#" class="btn-timKiem btn-contact" data-toggle="modal" data-target="#FormTimKiem">
+                <span>Tìm kiếm...</span>
+                <span class="fa fa-search icon icon-info rounded-circle"></span>
+            </a>
+        </div>
+    </div>
+
+    <div class="modal fade p-0 modalDangKy modalForm" id="formDangKy" role="dialog">
+        <div class="modal-dialog" role="document" style="max-width: initial;">
+            <div class="modal-content container w-75">
+
+                <div class="modal-body row p-0">
+
+                    <div class="col-lg-6 col-12 m-0 right">
+                        <div class="container">
+                            <form id="register-form" class="row" method="POST">
+                                <div class="col-12 text-center mb-3">
+                                    <h2 class="modal-heading">Đăng Ký</h2>
+                                </div>
+                                <div class="col-12 colInput">
+                                    <span class="input input--jiro">
+                                                        <input name="HoTen" class="input__field input__field--jiro txt" type="text" id="inputHoTenDK" data-thongbao="tbTen">
+                                                        <label class="input__label input__label--jiro" for="inputHoTenDK">
+                                                            <span class="input__label-content input__label-content--jiro">Họ Tên...</span>
+                                    </label>
+                                    <span class="divTB" id="tbTen"></span>
+                                    </span>
+                                </div>
+                                <div class="col-12 colInput">
+                                    <span class="input input--jiro">
+                                                        <input name="tenTaiKhoan" class="input__field input__field--jiro txt" type="text" id="inputTenTKDK" data-thongbao="tbTK">
+                                                        <label class="input__label input__label--jiro" for="inputTenTKDK">
+                                                            <span class="input__label-content input__label-content--jiro">Tên Tài Khoản</span>
+                                    </label>
+                                    <span class="divTB" id="tbTK"></span>
+                                    </span>
+                                </div>
+                                <div class="col-12 colInput">
+                                    <span class="input input--jiro">
+                                                    <input name="mail" class="input__field input__field--jiro txt" type="text" id="inputEmailDK" data-thongbao="tbEmail">
+                                                    <label class="input__label input__label--jiro" for="inputEmailDK">
+                                                        <span class="input__label-content input__label-content--jiro">Email</span>
+                                    </label>
+                                    <span class="divTB" id="tbEmail"></span>
+                                    </span>
+                                </div>
+                                <div class="col-12 colInput">
+                                    <span class="input input--jiro">
+                                                <input name="SDT" class="input__field input__field--jiro txt" type="text" id="inputSDTDK" data-thongbao="tbSDT">
+                                                <label class="input__label input__label--jiro" for="inputSDTDK">
+                                                    <span class="input__label-content input__label-content--jiro">Số Điện Thoại</span>
+                                    </label>
+                                    <span class="divTB" id="tbSDT"></span>
+                                    </span>
+                                </div>
+                                <div class="col-12 colInput">
+                                    <span class="input input--jiro">
+                                            <input name="matKhau" class="input__field input__field--jiro txt" type="password" id="inputPASSDK" data-thongbao="tbMK">
+                                            <label class="input__label input__label--jiro" for="inputPASSDK">
+                                                <span class="input__label-content input__label-content--jiro">Nhập Mật Khẩu</span>
+                                    </label>
+                                    <span class="divTB" id="tbMK"></span>
+                                    </span>
+                                </div>
+                                <div class="col-12 colInput">
+                                    <span class="input input--jiro">
+                                        <input name="reMatKhau" class="input__field input__field--jiro txt" type="password" id="inputRePASSDK" data-thongbao="tbReMK">
+                                        <label class="input__label input__label--jiro" for="inputRePASSDK">
+                                            <span class="input__label-content input__label-content--jiro">Nhập Mật Lại Khẩu</span>
+                                    </label>
+                                    <span class="divTB" id="tbReMK"></span>
+                                    </span>
+                                </div>
+                                <div class="col-12 colInput text-center">
+                                    <button class="btn btn-primary rounded-1" type="submit" id="btnDangKy">Đăng Ký</button>
+                                </div>
+                                <ul class="col-12 colInput d-flex justify-content-center colInput--social">
+                                    <li>
+                                        <a href="#" class="fa fa-facebook"></a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="fa fa-google-plus"></a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="fa fa-github"></a>
+                                    </li>
+                                </ul>
+                            </form>
+
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-12 left d-none d-lg-block text-center">
+                        <!-- <div class="overlay"></div> -->
+                        <h2 class="heading-secondary text-white mt-5">Welcome To <br> CyberSoft
+                        </h2>
+                    </div>
+                    <!-- End Left -->
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade modalDangNhap modalForm" id="formDangNhap">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body container">
+                    <div class="row">
+                        <div class="col-12 text-center mb-3">
+                            <h2 class="modal-heading">Đăng Nhập</h2>
+                        </div>
+                        <div class="col-12">
+                            <form class="container" id="sign-up-form">
+                                <div class="row">
+
+                                    <div class="col-12 colInput">
+                                        <span class="input input--jiro">
+                                            <input name="TKDN" class="input__field input__field--jiro txt" type="text" id="inputTKDN">
+                                            <label class="input__label input__label--jiro" for="inputTKDN">
+                                                <span class="input__label-content input__label-content--jiro">Tài Khoản</span>
+                                        </label>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 colInput">
+                                        <span class="input input--jiro">
+                                            <input name="passwordDN" class="input__field input__field--jiro txt" type="password" id="inputPassDN">
+                                            <label class="input__label input__label--jiro" for="inputPassDN">
+                                                <span class="input__label-content input__label-content--jiro">Mật Khẩu</span>
+                                        </label>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 colInput text-center">
+                                        <button class="btn btn-primary rounded-1" type="submit" id="btnDangNhap">Đăng Nhập</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade modalTimKiem modalForm" id="FormTimKiem">
+        <div class="modal-dialog" style="max-width: 650px !important">
+            <div class="modal-content">
+                <div class="modal-body container pb-0 px-0">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="col-12 colInput">
+                                <span class="input input--jiro">
+                                    <input class="input__field input__field--jiro txt" type="text" id="inputTimKiem">
+                                    <label class="input__label input__label--jiro" for="inputTimKiem">
+                                        <span class="input__label-content input__label-content--jiro">Tìm Kiếm Khoá học</span>
+                                </label>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="block-kh">
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<script type="text/javascript" src="js/khoahoc-258e9d50b80149e97cc9.js"></script></body>
+
+</html>

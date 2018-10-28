@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+        th,
+        td {
+            text-align: center;
+        }
+        
+        th {
+            padding: 12px 22px !important;
+        }
+        
+        .btnXoaTungND:hover {
+            color: #fff !important;
+        }
+        
+        .btn {
+            padding: .375rem .75rem !important;
+            margin: 0 10px !important;
+        }
+    </style>
+<link rel="shortcut icon" href="logo.png"><link href="admin.css" rel="stylesheet"></head>
+
+<body>
+    <!-- Start Header-->
+    <header class="header fixed-top">
+        <nav class="navbar navbar-expand navbar-light active" style="z-index: 11">
+            <div class="container navbar__content">
+                <div class="nav-res w-100">
+                    <a href="/" class="header__logo header__left h-100 d-flex align-items-center">
+                        <img src="images/logo-FwiPNhM.png" class="img-fluid" width="130" alt="">
+                    </a>
+                    <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+                                <span class="navbar-toggler-icon"></span>
+                            </button> -->
+                </div>
+            </div>
+            <div class="collapse navbar-collapse align-content-center" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto menu-right h-100">
+                    <li class="nav-item divInfo" data-target="#modalInfoUser" data-toggle="modal">
+                        <span class="divIcon">
+                                    <a href="#" class="nav-link">
+                                        <i class="fa fa-user fa-2x"></i>
+                                    </a>
+                                </span>
+                        <span class="fa fa-angle-down"></span>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!-- <div class="container-fluid header__content px-3 d-flex align-items-center justify-content-between">
+            <a href="#" class="header__logo header__left h-100 d-flex align-items-center">
+                <img src="images/logo-FwiPNhM.png" class="img-fluid" width="130" alt="">
+            </a>
+            <div class="nofication header__right">
+                <span class="h-100 d-flex align-items-center">
+                    <i class="fa fa-envelope-o">
+                        <span class="badge badge-success rounded-circle">7</span>
+                </i>
+                <i class="fa fa-bell-o">
+                        <span class="badge badge-success rounded-circle">3</span>
+                    </i>
+                <i class="fa fa-comment-o">
+                        <span class="badge badge-success rounded-circle">1</span>
+                    </i>
+                <a href="#" class="d-flex justify-content-center align-items-center divAdmin">
+                    <strong id="adminName">Admin</strong>
+                    <span class="avatar">
+                            <img src="data:image/png;base64,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" alt="">
+                        </span>
+                </a>
+                </span>
+            </div>
+        </div> -->
+    </header>
+    <!-- End Header -->
+
+
+    <nav class="sidebar--admin">
+        <ul class="sidebar__nav">
+            <li class="sidebar__item active" data-tab="divDashboard">
+                <a href="#" class="sidebar__link">
+                    <i class="fa fa-home"></i>
+                    <span class="heading-secondary">Dashboard</span>
+                </a>
+            </li>
+            <li class="sidebar__item" data-tab="divNguoiDung">
+                <a href="#" class="sidebar__link">
+                    <i class="fa fa-users"></i>
+                    <span class="heading-secondary">Users</span>
+                </a>
+            </li>
+            <li class="sidebar__item" data-tab="divKhoaHoc">
+                <a href="#" class="sidebar__link">
+                    <i class="fa fa-book"></i>
+                    <span class="heading-secondary">Courses</span>
+                </a>
+            </li>
+        </ul>
+        <div id="itemDangXuat">
+            <a href="#" class="sidebar__link">
+                <i class="fa fa-sign-out"></i>
+                <span class="heading-secondary">Sign Out</span>
+            </a>
+        </div>
+    </nav>
+
+    <main class="main__content">
+        <div class="container divData" id="divKhoaHoc">
+            <div class="row">
+                <div class="col-12 mb-5 text-center">
+                    <h3 class="text-center title__data heading-secondary">Danh Sách Khoá Học</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="blockForm d-flex justify-content-between align-items-center">
+                        <div class="show d-flex align-content-center w-25">
+                            <select class="custom-select" style="width: 100%;border-color: #776a6a; font-size: 17px" id="showEntriesKH">
+                                <option disabled="disabled">Show Entries...</option>
+                                <option selected="selected" value="10">10</option>
+                                <option value="25">25</option>
+                                <option value="50">50</option>
+                            </select>
+                            <div class="d-flex justify-content-center">
+
+                                <button class="btn btn-outline-success" id="btnModalKhoaHoc" data-toggle="modal" data-target="#modalKhoaHoc">
+                                    <i class="fa fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="search">
+                            <div class="input-group">
+                                <div class="form-group mb-0">
+                                    <label for="timKH" class="mb-0" style="font-size: 13px">Tìm Khoá Học</label>
+                                    <input type="text" class="form-control" style="border-color: #dbdbdb; font-size: 13px" id="timKH" placeholder="Nhập Tên Khoá Học">
+                                </div>
+                            </div>
+                        </div>
+
+                        <table class="z-depth-2 table-hover tableTimKiem" id="tableTimKiemKhoaHoc">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Mã</th>
+                                    <th>Tên Khoá Học</th>
+                                </tr>
+                            </thead>
+                            <tbody id="dataTimKiemKhoaHoc">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-12 p-0">
+                    <div class="table-wrapper z-depth-2">
+                        <table class="table table-hoverable table-striped tableData" id="tableKhoaHoc">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th class="both" data-sort="MaKhoaHoc">Mã</th>
+                                    <th class="both" data-sort="TenKhoaHoc">Tên</th>
+                                    <!-- <th>Mô Tả</th>
+                                                <th>Hình Ảnh</th> -->
+                                    <th class="both" data-sort="NguoiTao">Người Tạo</th>
+                                    <th class="both" data-sort="LuotXem">Lượt Xem</th>
+
+                                    <th>Thao Tác</th>
+                                </tr>
+                            </thead>
+                            <tbody id="dataKhoaHoc">
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="container divData" id="divNguoiDung">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h3 class="text-center title__data heading-secondary">Danh Sách Người Dùng</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="blockForm d-flex justify-content-between align-items-center">
+                        <div class="show d-flex align-content-center w-25">
+                            <select class="custom-select" style="width: 100%;border-color: #776a6a; font-size: 17px" id="showEntriesUser">
+                                    <option disabled="disabled">Show Entries...</option>
+                                    <option value="10" selected="selected">10</option>
+                                    <option value="25">25</option>
+                                    <option value="50">50</option>
+                                </select>
+                            <div class="d-flex justify-content-center">
+                                <button class="btn btn-outline-danger" id="btnXoaNhieuND"><i class="fa fa-trash"></i>
+                                    </button>
+                                <button class="btn btn-outline-success" id="btnThemHocVien" data-toggle="modal" data-target="#modalNguoiDung">
+                                        <i class="fa fa-user-plus"></i>
+                                    </button>
+                            </div>
+                        </div>
+
+                        <div class="search w-25">
+                            <div class="input-group">
+                                <div class="form-group mb-0 w-100">
+                                    <label for="searchField" class="mb-0" style="font-size: 13px">Tìm Người Dùng</label>
+                                    <input type="email" class="form-control" placeholder="Nhập Tên..." style="border-color: #dbdbdb; font-size: 13px" id="timND">
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <table class="z-depth-2 table-hover tableTimKiem" id="tableTimKiemNguoiDung">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Tài Khoản</th>
+                                    <th>Tên</th>
+                                </tr>
+                            </thead>
+                            <tbody id="dataTimKiemNguoiDung">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-12 p-0">
+                    <div class="table-wrapper z-depth-2">
+                        <table class="table table-hover tableData" id="tableNguoiDung">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <i class="fa fa-trash"></i>
+                                    </th>
+                                    <th>#</th>
+                                    <th class="both" data-sort="_TaiKhoan">Tài Khoản</th>
+                                    <!-- <th data-sort="true">Mật Khẩu</th> -->
+                                    <th class="both" data-sort="_HoTen">Tên</th>
+                                    <th class="both" data-sort="_Email">Email</th>
+                                    <th class="both" data-sort="_SoDT">Số Điện Thoại</th>
+                                    <th class="both" data-sort="_MaLoaiNguoiDung">Mã Người Dùng</th>
+                                    <th>Thao Tác</th>
+                                </tr>
+                            </thead>
+                            <tbody id="dataNguoiDung">
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="container divData active" id="divDashboard">
+            <div class="row">
+                <div class="col-12 text-center mb-4">
+                    <h3 class="text-center heading-secondary">Biểu Đồ Thống Kê</h3>
+                </div>
+            </div>
+            <div class="row my-2">
+                <div class="col-12">
+                    <h3 class="font-weight-bold">Overview</h3>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-sm-6 col-lg-3">
+                    <div class="overview-item overview-item--c1 thongke thongKeUser">
+                        <div class="overview__inner">
+                            <div class="overview-box clearfix">
+                                <div class="icon">
+                                    <i class="fa fa-users"></i>
+                                </div>
+                                <div class="text">
+                                    <h2 id="mountND"></h2>
+                                    <span>Người Dùng</span>
+                                </div>
+                            </div>
+                            <div class="overview-chart">
+                                <canvas id="widgetChart2"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="overview-item overview-item--c2 thongke thongKeHocVien">
+                        <div class="overview__inner">
+                            <div class="overview-box clearfix">
+                                <div class="icon">
+                                    <i class="fa fa-graduation-cap"></i>
+                                </div>
+                                <div class="text">
+                                    <h2 id="mountHV"></h2>
+                                    <span>Học Viên</span>
+                                </div>
+                            </div>
+                            <div class="overview-chart">
+                                <canvas id="widgetChart2"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="overview-item overview-item--c3 thongke thongKeKhoaHoc">
+                        <div class="overview__inner">
+                            <div class="overview-box clearfix">
+                                <div class="icon">
+                                    <i class="fa fa-book"></i>
+                                </div>
+                                <div class="text">
+                                    <h2 id="mountKH"></h2>
+                                    <span>Khoá Học</span>
+                                </div>
+                            </div>
+                            <div class="overview-chart">
+                                <canvas id="widgetChart3"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="overview-item overview-item--c4 thongke thongKeView">
+                        <div class="overview__inner">
+                            <div class="overview-box clearfix">
+                                <div class="icon">
+                                    <i class="fa fa-eye"></i>
+                                </div>
+                                <div class="text">
+                                    <h2 id="mountView"></h2>
+                                    <span>Lượt Xem</span>
+                                </div>
+                            </div>
+                            <div class="overview-chart">
+                                <canvas id="recent-rep-chart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-12">
+                    <div class="au-card">
+                        <div class="au-card-inner">
+                            <h3 class="title-2">NGƯỜI DÙNG</h3>
+                            <canvas id="sales-chart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-12">
+                    <div class="au-card">
+                        <div class="au-card-inner">
+                            <h3 class="title-2">HỌC VIÊN</h3>
+                            <canvas id="team-chart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-12">
+                    <div class="au-card">
+                        <div class="au-card-inner">
+                            <h3 class="title-2">LƯỢT XEM</h3>
+                            <canvas id="barChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-12">
+                    <div class="au-card">
+                        <div class="au-card-inner">
+                            <h3 class="title-2">KHOÁ HỌC</h3>
+                            <canvas id="radarChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="modal fade" id="modalKhoaHoc" tabindex="-1" role="dialog" style="overflow-y: auto!important">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="modal-title">
+                        <h3 class="modal-heading">Thêm Khoá Học</h3>
+                    </div>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                </div>
+                <div class="modal-body container">
+                    <form class="row" id="formThemKH">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="MaKhoaHoc" class="labelModal">Mã Khoá Học</label>
+                                <input type="text" name="maKH" class="form-control inputModal" id="MaKhoaHoc" placeholder="Nhập Vào Mã Khoá Học">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="TenKhoaHoc" class="labelModal">Tên Khoá Học</label>
+                                <input type="text" name="tenKH" class="form-control inputModal" id="TenKhoaHoc" placeholder="Nhập Vào Tên Khoá Học">
+                            </div>
+                        </div>
+
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="LuotXem" class="labelModal">Lượt Xem</label>
+                                <input type="number" class="form-control inputModal" value="1" id="LuotXem" placeholder="Nhập Số Lượt Xem">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <label for="maND" class="labelModal">Người tạo</label>
+                            <select class="custom-select inputModal" id="NguoiTao">
+                                    <option value="HV">HV</option>
+                                    <option value="GV">GV</option>
+                                </select>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="HinhAnh" class="labelModal">Hình Ảnh</label>
+                                <input type="url" name="hinhKH" class="form-control inputModal" id="HinhAnh" placeholder="Nhập vào đường dẫn hình ảnh">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="MoTa" class="labelModal">Mô Tả</label>
+                                <textarea name="Mota" id="MoTa" class="form-control inputModal" rows="7"></textarea>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-outline-success" id="btnCapNhatKH">Cập Nhật</button>
+                    <button class="btn btn-outline-danger" data-dismiss="modal">Đóng</button>
+                    <button class="btn btn-outline-warning" id="btnXoaKHEdit">Xoá Khoá Học</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modalNguoiDung" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="modal-title">
+                        <h3 class="modal-heading">Thêm Người Dùng</h3>
+                    </div>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                </div>
+                <div class="modal-body container">
+                    <form class="row" id="formThemNguoiDung">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="TaiKhoan" class="labelModal">Tài Khoản</label>
+                                <input name="TKThem" type="text" class="form-control inputModal" id="TaiKhoanND" placeholder="Nhập Vào Tài Khoản">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="MatKhauND" class="labelModal">Mật Khẩu</label>
+                                <input name="MKThem" type="password" class="form-control inputModal" id="MatKhauND" placeholder="Nhập Vào Mật Khẩu">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="HoTen" class="labelModal">Họ Tên</label>
+                                <input name="tenThem" type="text" class="form-control inputModal" id="HoTenND" placeholder="Nhập Họ Tên">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="Email" class="labelModal">Email</label>
+                                <input name="emailThem" type="text" class="form-control inputModal" id="EmailND" placeholder="Nhập Email">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="SoDT" class="labelModal">Số Điện Thoại</label>
+                                <input name="SDTThem" type="text" class="form-control inputModal" id="SoDTND" placeholder="Nhập Số Điện Thoại">
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="maND" class="labelModal">Mã Người Dùng</label>
+                            <select class="custom-select inputModal" id="maND">
+                                    <option value="HV">HV</option>
+                                    <option value="GV">GV</option>
+                                </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-outline-danger" data-dismiss="modal">Đóng</button>
+                    <button class="btn btn-outline-success" id="btnThemNguoiDung">Thêm</button>
+                    <button class="btn btn-outline-warning d-none" id="btnXoaKHEdit">Xoá</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modalCapNhatND" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="modal-title">
+                        <h3 class="modal-heading">Cập nhật thông tin người dùng</h3>
+                    </div>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                </div>
+                <div class="modal-body container">
+                    <div class="row">
+                        <div class="col-md">
+                            <form class="row" id="formCapNhatND">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="TaiKhoan" class="labelModal">Tài Khoản</label>
+                                        <input type="text" class="form-control inputModal" id="TaiKhoanNDCN" placeholder="Nhập Vào Tài Khoản" disabled="disabled">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="MatKhauND" class="labelModal">Mật Khẩu</label>
+                                        <input type="password" class="form-control inputModal" id="MatKhauNDCN" name="mkCapNhat" placeholder="Nhập Vào Mật Khẩu">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="HoTen" class="labelModal">Họ Tên</label>
+                                        <input type="text" class="form-control inputModal" id="HoTenNDCN" placeholder="Nhập Họ Tên" name="tenCapNhat">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="Email" class="labelModal">Email</label>
+                                        <input type="text" class="form-control inputModal" id="EmailNDCN" placeholder="Nhập Email" name="emailCapNhat">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="SoDT" class="labelModal">Số Điện Thoại</label>
+                                        <input type="text" class="form-control inputModal" id="SoDTNDCN" placeholder="Nhập Số Điện Thoại" name="sdtCapNhat">
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <label for="maND" class="labelModal">Mã Người Dùng</label>
+                                    <select class="custom-select inputModal" id="maNDCN">
+                                            <option value="HV">HV</option>
+                                            <option value="GV">GV</option>
+                                        </select>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-md-5 khoahocHV">
+                            <h5>Các Khoá Học Đã Đăng ký</h5>
+                            <ul class="list-group" id="listKhoaHoc">
+
+                            </ul>
+                            <form class="d-flex flex-column justify-content-between mt-3">
+                                <select name="" id="listKHoaHocDK" class="inputModal mb-3"></select>
+                                <button class="btn btn-outline-primary p-2" id="btnGhiDanh">Ghi Danh</button>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-outline-danger" data-dismiss="modal">Đóng</button>
+                    <button class="btn btn-outline-success" id="btnCapNhatND">Cập Nhật</button>
+                    <button class="btn btn-outline-warning xoaNDEdit" id="btnXoaNDEdit">Xoá Người Dùng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade bd-example-modal-lg modalForm" id="modalInfoUser" aria-hidden="true">
+        <div class="modal-dialog modal-lg" style="max-width: 1100px">
+            <div class="modal-content border-0">
+                <div class="modal-body container m-0" style="background: #f7f7f7">
+                    <div class="row">
+
+
+                        <div class="col-lg-5 col-12 mb-5 titleInfo">
+                            <div class="titleInfo__content w-100 z-depth-1-half">
+                                <div class="avatar">
+                                    <i class="fa fa-user fa-3x"></i>
+                                </div>
+                                <div class="userName">
+
+                                </div>
+                                <ul class="w-100">
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link" data-dismiss="modal">Trang Chủ</a>
+                                    </li>
+                                    <li class="nav-item active">
+                                        <a href="#" class="nav-link">Thông Tin Cá Nhân</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link" id="DangXuatND">Đăng Xuất</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-7 col-12 mainInfo z-depth-1-half">
+                            <div class="row py-5">
+                                <div class="col-12">
+                                    <div class="modal-header d-flex align-items-center container">
+                                        <div class="row w-100 d-flex align-items-center">
+                                            <div class="col-md-6 col-12 mb-4 text-md-left text-center">
+                                                <div class="modal-title header-tit">
+                                                    <h5 class="modal-heading">Thông Tin Cá Nhân</h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 ol-12 mb-4 text-md-left text-center">
+                                                <div class="header-tab d-flex flex-wrap justify-content-center">
+                                                    <a href="" class="header-tab-item active" data-id="tabChiTiet">
+                                                                Chi Tiết
+                                                            </a>
+                                                    <a href="" class="header-tab-item" data-id="tabMatKhau">
+                                                                Thay Đổi Mật Khẩu
+                                                            </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <form class="col-12">
+                                    <div class="container-fluid mt-5">
+                                        <div class="row data-tab active" id="tabChiTiet">
+                                            <div class="col-12">
+                                                <div class="form-group w-75 mx-auto">
+                                                    <label>Tài Khoản </label>
+                                                    <input type="text" class="form-control disabled txt" disabled="disabled" id="inputTKEdit">
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-group w-75 mx-auto">
+                                                    <label>Tên </label>
+                                                    <input type="text" class="form-control txt" id="inputTenEdit">
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-group w-75 mx-auto">
+                                                    <label>Email </label>
+                                                    <input type="text" class="form-control txt" id="inputEmailEdit">
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-group w-75 mx-auto">
+                                                    <label>Số Điện Thoại </label>
+                                                    <input type="text" class="form-control txt" id="inputSdtEdit">
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="row data-tab" id="tabMatKhau">
+                                            <div class="col-12">
+                                                <div class="form-group w-75 mx-auto">
+                                                    <label>Mật khẩu hiện tại </label>
+                                                    <input type="password" class="form-control txt" id="inputXacNhanMatKhau">
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-group w-75 mx-auto">
+                                                    <label>Mật khẩu mới</label>
+                                                    <input type="password" class="form-control txt" disabled="disabled" id="inputMKMoi">
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-group w-75 mx-auto">
+                                                    <label>Nhập lại mật khẩu</label>
+                                                    <input type="password" class="form-control txt" disabled="disabled" id="inputReMKMoi">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12 text-center">
+                                                <button class="btn btn-outline-primary" id="btnCapNhatProfile">
+                                                            Cập Nhật
+                                                        </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script type="text/javascript" src="js/admin-258e9d50b80149e97cc9.js"></script></body></html>

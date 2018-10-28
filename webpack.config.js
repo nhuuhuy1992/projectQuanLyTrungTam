@@ -28,7 +28,7 @@ module.exports = {
         port: 8000
     },
 
-    mode: 'development',
+    mode: 'production',
     module: {
         rules: [{
                 loader: "ts-loader",
@@ -102,7 +102,7 @@ module.exports = {
         ]
     },
     plugins: [
-        new CleanWebpackPlugin(['dist']),
+        // new CleanWebpackPlugin(['dist']),
         new HtmlWebpackPlugin({
             filename: 'index.html',
             template: './src/app/views/pages/index.html',

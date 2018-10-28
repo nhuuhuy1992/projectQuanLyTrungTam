@@ -3,8 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "homepage": "https://nhuuhuy1992.github.io/projectQuanLyTrungTam",
   "scripts": {
-    "prod": "webpack -p",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
+    "build": "webpack",
     "dev": "webpack-dev-server"
   },
   "keywords": [],
@@ -58,6 +61,7 @@
     "wowjs": "^1.1.3"
   },
   "dependencies": {
-    "bootstrap-table-fixed-columns-pro": "^1.0.2"
+    "bootstrap-table-fixed-columns-pro": "^1.0.2",
+    "gh-pages": "^2.0.1"
   }
 }
